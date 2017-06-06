@@ -26,6 +26,19 @@ namespace ProyectoSIGNDVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/estiloLogin").Include(
+                "~/Content/vendor/bootstrap/css/bootstrap.min.css",
+                "~/Content/vendor/metisMenu/metisMenu.min.css",
+                "~/Content/dist/css/sb-admin-2.css",
+                "~/Content/vendor/font-awesome/css/font-awesome.min.css"
+                ));
+            bundles.Add(new StyleBundle("~/Content/estiloIndex").Include(
+                "~/Content/vendor/bootstrap/css/bootstrap.min.css",
+                "~/Content/vendor/metisMenu/metisMenu.min.css",
+                "~/Content/dist/css/sb-admin-2.css",
+                "~/Content/vendor/font-awesome/css/font-awesome.min.css",
+                "~/Content/vendor/morrisjs/morris.css"));
         }
     }
 }

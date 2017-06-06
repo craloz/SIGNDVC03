@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/templates/_TemplateLogin.cshtml";
+}
+
+
+<ul>
+    @for (int i = 0; i < ViewBag.NumTimes; i++)
+    {
+        <li>@ViewBag.Message</li>
+    }
+</ul>
