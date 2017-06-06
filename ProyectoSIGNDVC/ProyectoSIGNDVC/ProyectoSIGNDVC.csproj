@@ -149,7 +149,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\PagoesController.cs" />
+    <Compile Include="Controllers\ConfigurationController.cs" />
+    <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Models\Carga.cs" />
     <Compile Include="Models\Configuracion.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -352,14 +353,12 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Templates\_TemplateIndex.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Pagoes\Create.cshtml" />
-    <Content Include="Views\Pagoes\Delete.cshtml" />
-    <Content Include="Views\Pagoes\Details.cshtml" />
-    <Content Include="Views\Pagoes\Edit.cshtml" />
-    <Content Include="Views\Pagoes\Index.cshtml" />
+    <Content Include="Views\Pago\TablaPagos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Configuration\" />
+    <Folder Include="Views\Templates\templatesbootstrap\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

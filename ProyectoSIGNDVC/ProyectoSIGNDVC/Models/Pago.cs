@@ -13,11 +13,8 @@ namespace ProyectoSIGNDVC
         private int numero_ref;
         private DateTime f_pago;
         private int monto;
-        private Boolean aprobado;     
+        private Boolean aprobado;
     }
 
-    public class PagoDBContext : DbContext
-    {
-        public DbSet<Pago> Pagos { get; set; }
-    }
+   
 }
