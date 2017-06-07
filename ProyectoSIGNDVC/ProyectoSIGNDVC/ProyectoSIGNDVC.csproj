@@ -354,10 +354,11 @@
     <Content Include="Views\Templates\_TemplateIndex.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Pago\TablaPagos.cshtml" />
+    <Content Include="Views\Configuration\RegistroUsuario.cshtml" />
+    <Content Include="Views\Configuration\TablaUsuarios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Configuration\" />
     <Folder Include="Views\Templates\templatesbootstrap\" />
   </ItemGroup>
   <ItemGroup>

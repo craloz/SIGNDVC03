@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "RegistroUsuario";
+    Layout = "~/Views/Templates/_TemplateIndex.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Registro De Usuario</h1>
+        </div>
+
+        <div class="col-lg-12">
+            <form role="form">
+                <fieldset>
+                    <div class="form-group row">
+                        <div class="col-xs-5">
+                            <label for="nombre">Nombres</label>
+                            <input id="nombre" class="form-control" placeholder="Nombres" name="nombre" type="text" autofocus>
+                        </div>
+                        <div class="col-xs-5">
+                            <label for="apellido">Apellidos</label>
+                            <input id="apellido" class="form-control" placeholder="Apellidos" name="apellido" type="text" autofocus>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-xs-3">
+                            <label for="fechanac">Fecha de Nacimiento</label>
+                            <input id="fechanac" name="fechanac" type="date" autofocus size="0" class="form-control">
+                        </div>
+
+                        <label class="radio-inline"><input type="radio" name="optradio">Masculino</label>
+
+
+                        <label class="radio-inline"><input type="radio" name="optradio">Femenino</label>
+                    </div>
+
+
+
+
+
+
+                    <div class="form-group row">
+                        <div class="col-xs-3">
+                            <label for="sel1">Estado</label>
+                            <select id="sel1" class="form-control">
+                                <option>Amazonas</option>
+                                <option>Anzoátegui</option>
+                                <option>Apure</option>
+                                <option>Aragua</option>
+                                <option>Barinas</option>
+                                <option>Bolívar</option>
+                                <option>Carabobo</option>
+                                <option>Cojedes</option>
+                                <option>Delta Amacuro</option>
+                                <option>Distrito Capital</option>
+                                <option>Falcón</option>
+                                <option>Guárico</option>
+                                <option>Lara</option>
+                                <option>Mérida</option>
+                                <option>Miranda</option>
+                                <option>Monagas</option>
+                                <option>Nueva Esparta</option>
+                                <option>Portuguesa</option>
+                                <option>Sucre</option>
+                                <option>Táchira</option>
+                                <option>Trujillo</option>
+                                <option>Vargas</option>
+                                <option>Yaracuy</option>
+                                <option>Zulia</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-3">
+                            <label for="ciudad">Ciudad</label>
+                            <input class="form-control" id="ciudad" type="text">
+                        </div>
+                        <div class="col-xs-3">
+                            <label for="calle">Calle</label>
+                            <input class="form-control" id="calle" type="text">
+                        </div>
+                        <div class="col-xs-3">
+                            <label for="casa">Casa/Apto</label>
+                            <input class="form-control" id="casa" type="text">
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="form-group">
+                        <label for="dir">Direccion</label>
+                        <textarea id="dir" class="form-control" col="5" rows="5"></textarea>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-xs-5">
+                            <label for="email">E-mail</label>
+                            <input id="email" class="form-control" placeholder="ejemplo@dvc.com" name="email" type="email" autofocus>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-xs-5">
+                            <label for="email">Usuario</label>
+                            <input id="email" class="form-control" name="email" type="text" autofocus>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-xs-5">
+                            <label for="psw">Clave</label>
+                            <input id="psw" class="form-control" name="psw" type="password" autofocus>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-xs-3">
+                            <label for="sel1">Cargo</label>
+                            <select id="sel1" class="form-control">
+                                <option>Administrador</option>
+                                <option>Director</option>
+                                <option>Empleado</option>
+
+                            </select>
+                        </div>
+                        <div class="col-xs-3">
+                            <label for="sueldo">Sueldo</label>
+                            <input type="text" id="sueldo" class="form-control">
+                        </div>
+
+                    </div>
+
+
+                    <!-- Change this to a button or input when using this as a form -->
+
+                    <div class="col-lg-15">
+                        <button type="submit" class="btn btn-success">Registrar</button>
+                        <button type="reset" class="btn btn-danger">Cancelar</button>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>

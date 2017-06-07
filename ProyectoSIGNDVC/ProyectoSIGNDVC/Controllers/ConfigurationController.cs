@@ -13,5 +13,17 @@ namespace ProyectoSIGNDVC.Controllers
         {
             return View();
         }
+
+        public ActionResult RegistroUsuario()
+        {
+            ViewBag.Message = "Your application description page.";
+            return View();
+        }
+
+        public ActionResult TablaUsuarios()
+        {
+            ViewBag.Message = "Your application description page.";
+            return View();
+        }
     }
 }

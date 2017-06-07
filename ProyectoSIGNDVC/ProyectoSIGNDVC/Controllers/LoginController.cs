@@ -14,5 +14,8 @@ namespace ProyectoSIGNDVC.Controllers
             ViewBag.Message = "Your application description page.";
             return View();
         }
+
+        // GET: Login
+       
     }
 }
