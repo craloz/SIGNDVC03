@@ -150,6 +150,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ConfigurationController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Models\Carga.cs" />
     <Compile Include="Models\Configuracion.cs" />
@@ -178,6 +179,7 @@
     <Content Include="Content\images\backgroundlogin.jpg" />
     <Content Include="Content\images\dvclogo.png" />
     <Content Include="Content\images\fondologin.jpg" />
+    <Content Include="Content\js\appscript.js" />
     <Content Include="Content\js\sb-admin-2.js" />
     <Content Include="Content\vendor\bootstrap-social\bootstrap-social.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap.css" />
@@ -356,6 +358,9 @@
     <Content Include="Views\Pago\TablaPagos.cshtml" />
     <Content Include="Views\Configuration\RegistroUsuario.cshtml" />
     <Content Include="Views\Configuration\TablaUsuarios.cshtml" />
+    <Content Include="Views\Pago\PagoNomina.cshtml" />
+    <Content Include="Views\Pago\AprobarNomina.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

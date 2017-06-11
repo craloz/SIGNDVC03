@@ -26,5 +26,10 @@ namespace ProyectoSIGNDVC.Controllers
 
             return View();
         }
+
+        public ActionResult Error()
+        {
+            return View();
+        }
     }
 }

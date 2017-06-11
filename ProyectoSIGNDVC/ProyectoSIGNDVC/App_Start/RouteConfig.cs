@@ -14,6 +14,11 @@ namespace ProyectoSIGNDVC
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+               name: "404-NotFound",
+               url: "NotFound",
+               defaults: new { controller = "Error", action = "NotFound" }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Login", action = "Login", id = UrlParameter.Optional }

@@ -13,5 +13,15 @@ namespace ProyectoSIGNDVC.Controllers
         {
             return View();
         }
+
+        public ActionResult PagoNomina()
+        {
+            return View();
+        }
+
+        public ActionResult AprobarNomina()
+        {
+            return View();
+        }
     }
 }
