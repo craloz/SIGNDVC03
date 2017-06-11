@@ -16,6 +16,10 @@
     white-space: normal;
 }
 
+/*Boton agregar para las tablas*/
+.boton-tabla {
+    margin-bottom: 5px;
+}
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,

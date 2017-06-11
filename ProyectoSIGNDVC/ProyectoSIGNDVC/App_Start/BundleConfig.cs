@@ -38,6 +38,7 @@ namespace ProyectoSIGNDVC
                 "~/Content/vendor/metisMenu/metisMenu.min.css",
                 "~/Content/dist/css/sb-admin-2.css",
                 "~/Content/vendor/font-awesome/css/font-awesome.min.css",
+                "~/Content/Site.css",
                 "~/Content/vendor/morrisjs/morris.css"));
         }
     }
