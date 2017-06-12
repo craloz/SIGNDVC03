@@ -363,6 +363,7 @@
     <Content Include="Views\Pago\AprobarNomina.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Pago\ListaNomina.cshtml" />
+    <Content Include="Views\Pago\DetallePago.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

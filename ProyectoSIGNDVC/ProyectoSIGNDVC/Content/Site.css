@@ -20,6 +20,10 @@
 .boton-tabla {
     margin-bottom: 5px;
 }
+
+.header-modal {
+	margin-top: 5px;
+}
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,

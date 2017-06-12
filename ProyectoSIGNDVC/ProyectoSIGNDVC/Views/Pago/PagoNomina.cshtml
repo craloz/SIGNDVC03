@@ -38,15 +38,94 @@
                             <td><span style="color: green">24.086,91</span></td>
                             <td>
                                 <center>
-                                    <a href="detalle.html" title="Editar"><span class="fa fa-search fa-fw" aria-hidden="true"></span></a>
-                                    
+									
+									<a title="Ver" data-toggle="modal" data-target="#myModal">
+										<i class="fa fa-search fa-fw"></i>
+									</a>                                    
                                 </center>
                             </td>
                         </tr>
 
                     </tbody>
                 </table>
-                <div>
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+							</div>
+							<div class="modal-body">
+								<form role="form" action="/Configuration/RegistroUsuario" method="post">
+									<fieldset>
+										<div class="form-group-row">
+											<div class="col-md-6">
+												<label for="salarioq">Salario Quincenal</label>
+												<input id="salarioq" class="form-control" readonly/>
+											</div>
+										</div>
+
+										<div class="form-group-row">
+											<div class="col-md-6">
+												<label for="retroact">Retroactivo</label>
+												<input id="retroact" class="form-control" readonly/>
+											</div>
+										</div>
+												
+												<h3 class="page-header header-modal">Retenciones</h3>
+										<div class="col-md-6">
+											<label for="sso">S.S.O</label>
+											<input id="sso" class="form-control" readonly/>
+										</div>
+										<div class="col-md-6">
+											<label for="rpe">R.P.E</label>
+											<input id="rpe" class="form-control" readonly/>
+										</div>
+										<div class="col-md-6">
+											<label for="faov">F.A.O.V</label>
+											<input id="faov" class="form-control" readonly/>
+										</div>
+										<div class="col-md-6">
+											<label for="islr">I.S.L.R</label>
+											<input id="islr" class="form-control" readonly/>
+										</div>
+										<h3 class="page-header header-modal">Aportes</h3>
+										<div class="col-md-6">
+											<label for="abv">Alic. Bono Vacacional</label>
+											<input id="abv" class="form-control" readonly/>
+										</div>
+
+										<div class="col-md-6">
+											<label for="autilidades">Alix. Utilidades</label>
+											<input id="autilidades" class="form-control" readonly/>
+										</div>
+
+										<div class="col-md-6">
+											<label for="apresta">Alic. Prestaciones</label>
+											<input id="apresta" class="form-control" readonly/>
+										</div>
+
+										<div class="col-md-6">
+											<label for="cesta">Cesta Tickets</label>
+											<input id="cesta" class="form-control" readonly/>
+										</div>
+
+										
+								</fieldset>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary">Save changes</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				
+				
+				<div>
                     <div class="col-md-offset-6 col-md-6">
                         <h3>Total Nomina: <strong>24.086,91</strong></h3>
                     </div>

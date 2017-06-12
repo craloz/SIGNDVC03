@@ -33,5 +33,10 @@ namespace ProyectoSIGNDVC.Controllers
         {
             return View();
         }
+
+        public ActionResult DetallePago()
+        {
+            return View();
+        }
     }
 }
