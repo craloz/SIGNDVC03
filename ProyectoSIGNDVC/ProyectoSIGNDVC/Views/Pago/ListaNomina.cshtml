@@ -1,21 +1,22 @@
 ﻿
 @{
-    ViewBag.Title = "TablaUsuarios";
+    ViewBag.Title = "ListaNomina";
     Layout = "~/Views/Templates/_TemplateIndex.cshtml";
 }
 
 
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Usuarios</h1>   
-       
+        <h1 class="page-header">Nomina</h1>
+
+
     </div>
     <!-- /.col-lg-12 -->
 </div>
 
 <div class="row">
     <div class="col-lg-12">
-        <a  href="/Configuration/RegistroUsuario" class="btn btn-success boton-tabla pull-right">Agregar</a>
+        <a href="/Pago/PagoNomina" class="btn btn-success boton-tabla pull-right">Agregar</a>
     </div>
 </div>
 
@@ -23,36 +24,22 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Usuarios Registrados
+                Lista de Nominas
             </div>
             <!-- /.panel-heading -->
             <center class="panel-body">
                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                         <tr>
-                            <th>Código de empleado</th>
-                            <th>Nombre</th>
-                            <th>FechaNac</th>
-                            <th>Usuario</th>
-                            <th>Clave</th>
+                            <th>Código de nomina</th>
+                            <th>Fecha</th>
+                            <th>Estatus</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="odd gradeX">
-                            <td>0001</td>
-                            <td>José Rodríguez</td>
-                            <td>05/05/2017</td>
-                            <td class="center">E-00521</td>
-                            <td class="center">****** <a class="fa fa-eye fa-fw"></a></td>
-                            <td>
-                                <center>
-                                    <a href="detalle.html" title="Editar"><span class="fa fa-pencil fa-fw" aria-hidden="true"></span></a>
-                                    <a href="" title="Aprobar Pago"><span style="color: red;" class="fa fa-close fa-fw" aria-hidden="true"></span></a>
-                                </center>
-                            </td>
-                        </tr>
-                        
+                        <tr class="odd gradeX"></tr>
+
                     </tbody>
                 </table>
                 <!-- /.table-responsive
@@ -67,6 +54,8 @@
     </div>
     <!-- /.panel -->
 </div>
+</div>
+
 
 
 

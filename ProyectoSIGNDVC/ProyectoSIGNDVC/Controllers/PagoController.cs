@@ -23,5 +23,15 @@ namespace ProyectoSIGNDVC.Controllers
         {
             return View();
         }
+
+        public ActionResult Nomina()
+        {
+            return View();
+        }
+
+        public ActionResult ListaNomina()
+        {
+            return View();
+        }
     }
 }

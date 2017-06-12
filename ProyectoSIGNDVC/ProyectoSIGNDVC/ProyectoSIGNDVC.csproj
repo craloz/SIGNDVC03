@@ -160,6 +160,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Nomina.cs" />
     <Compile Include="Models\Notificacion.cs" />
     <Compile Include="Models\Pago.cs" />
     <Compile Include="Models\Persona.cs" />
@@ -361,6 +362,7 @@
     <Content Include="Views\Pago\PagoNomina.cshtml" />
     <Content Include="Views\Pago\AprobarNomina.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Pago\ListaNomina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
