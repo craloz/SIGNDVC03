@@ -22,7 +22,11 @@
 }
 
 .header-modal {
-	margin-top: 5px;
+	margin-top: 10px;
+}
+
+.header-azul{
+        border-bottom: 1px solid red;
 }
 /* Set width on the form input elements since they're 100% wide by default */
 input,
