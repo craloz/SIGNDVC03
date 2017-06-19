@@ -8,13 +8,27 @@ namespace ProyectoSIGNDVC.Controllers
 {
     public class LoginController : Controller
     {
-        // GET: Login
+
         public ActionResult Login()
         {
-            ViewBag.Message = "Your application description page.";
             return View();
         }
+        // GET: Login
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(Usuario usuarioLogin)
+        {
+            ViewBag.Message = "Your application description page.";
+            return View(usuarioLogin);
+        }
 
+
+        public ActionResult Prueba()
+        {
+            
+            return View();
+        }
         // GET: Login
        
     }
