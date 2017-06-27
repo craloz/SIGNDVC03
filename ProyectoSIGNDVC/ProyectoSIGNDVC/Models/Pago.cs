@@ -4,16 +4,18 @@ using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoSIGNDVC
 {
     public class Pago
     {
-        public int ID { get; set; }
-        private int numero_ref;
-        private DateTime f_pago;
-        private int monto;
-        private Boolean aprobado;
+        [Key]
+        public int PagoID { get; set; }
+        public int numero_ref { get; set; }
+        public DateTime f_pago { get; set; }
+        public int monto { get; set; }
+        public Boolean aprobado { get; set; }
     }
 
    

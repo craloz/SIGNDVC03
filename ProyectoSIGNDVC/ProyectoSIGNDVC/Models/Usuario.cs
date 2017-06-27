@@ -9,6 +9,8 @@ namespace ProyectoSIGNDVC
 {
     public class Usuario
     {
+        [Key]
+        public int usuarioID { get; set; }
 
         [Required]
         [Display(Name = "Email")]
@@ -19,5 +21,6 @@ namespace ProyectoSIGNDVC
         [Display(Name = "Password")]
         public String clave { get; set; }
 
+        //public Empleado Empleado { get; set; }
     }
 }

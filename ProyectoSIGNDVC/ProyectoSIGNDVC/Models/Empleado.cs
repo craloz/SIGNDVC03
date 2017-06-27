@@ -3,14 +3,19 @@ using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoSIGNDVC
 {
     public class Empleado : Persona
     {
-        private String cargo;
-        private int sueldo;
-        private DateTime f_ingreso;
-        private DateTime f_salida;
+        [Key]
+        public int EmpleadoID { get; set; }
+        public String cargo { get; set; }
+        public int sueldo { get; set; }
+        public DateTime f_ingreso { get; set; }
+        public DateTime f_salida { get; set; }
+        
+        public Usuario Usuario { get; set; }
     }
 }

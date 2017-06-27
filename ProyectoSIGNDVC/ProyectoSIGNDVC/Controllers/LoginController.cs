@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ProyectoSIGNDVC.Models;
 
 namespace ProyectoSIGNDVC.Controllers
 {
@@ -15,12 +16,21 @@ namespace ProyectoSIGNDVC.Controllers
         }
         // GET: Login
         [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public ActionResult Login(Usuario usuarioLogin)
         {
-            ViewBag.Message = "Your application description page.";
-            return View(usuarioLogin);
+            
+            ViewBag.Message = usuarioLogin.username;
+            if (ModelState.IsValid)
+            {
+                using (var ctx = new AppDbContext())
+                {
+                    System.Console.WriteLine("aquiiiiii");
+                    ctx.Usuarios.Add(usuarioLogin);
+                    ctx.SaveChanges();
+                }
+                ModelState.Clear();
+            }
+                return View();
         }
 
 

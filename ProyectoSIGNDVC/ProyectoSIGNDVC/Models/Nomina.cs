@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,10 +8,11 @@ namespace ProyectoSIGNDVC.Models
 {
     public class Nomina
     {
-       
-        private DateTime fecha_emision;
-        private DateTime fecha_aprobacion;
-        private DateTime fecha_efectivo;
-        private List<Pago> pagos;
+        [Key]
+        public int NominaID { get; set; }
+        public DateTime fecha_emision { get; set; }
+        public DateTime fecha_aprobacion { get; set; }
+        public DateTime fecha_efectivo { get; set; }
+        public ICollection<Pago> pagos { get; set; }
     }
 }
