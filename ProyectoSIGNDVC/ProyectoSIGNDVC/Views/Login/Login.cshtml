@@ -1,4 +1,4 @@
-﻿@model 
+﻿@model Usuario
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/templates/_TemplateLogin.cshtml";
@@ -21,8 +21,8 @@
                         <fieldset>
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
-                               @Html.TextBoxFor(usuarioLogin=>usuarioLogin.username , new { @class = "form-control" ,@placeholder="Usuario",@type="email" })
-                               @Html.ValidationMessageFor(usuarioLogin => usuarioLogin.username, "", new { @class = "text-danger" })
+                               @Html.TextBoxFor(usuarioLogin=>usuarioLogin.usuario , new { @class = "form-control" ,@placeholder="Usuario",@type="email" })
+                               @Html.ValidationMessageFor(usuarioLogin => usuarioLogin.usuario, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-group">
                                 @Html.TextBoxFor(usuarioLogin => usuarioLogin.clave, new { @class="form-control",@plaholder="Contraseña",@type="password"})

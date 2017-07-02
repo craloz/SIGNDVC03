@@ -7,10 +7,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoSIGNDVC
 {
-    public class Persona
+    public abstract class Persona
     {
         [Key]
-        public int ID { get; set; }
+        public int PersonaID { get; set; }
         public String nombre { get; set; }
         public String apellido { get; set; }
         public int cedula { get; set; }

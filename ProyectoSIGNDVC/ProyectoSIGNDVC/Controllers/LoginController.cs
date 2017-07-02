@@ -19,7 +19,7 @@ namespace ProyectoSIGNDVC.Controllers
         public ActionResult Login(Usuario usuarioLogin)
         {
             
-            ViewBag.Message = usuarioLogin.username;
+            ViewBag.Message = usuarioLogin.usuario;
             if (ModelState.IsValid)
             {
                 using (var ctx = new AppDbContext())

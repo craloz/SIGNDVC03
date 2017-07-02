@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoSIGNDVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,9 +22,28 @@ namespace ProyectoSIGNDVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegistroUsuario(String nombre)
+        public ActionResult RegistroUsuario(FormCollection fc)
         {
-            ViewBag.Message = "Your application description page."+nombre;
+            Empleado emp = new Empleado {
+                nombre =fc.Get("nombre"),apellido=fc.Get("apellido"),
+                fecha =DateTime.Now,
+                cedula= int.Parse(fc.Get("cedula")),
+                //cargo =fc.Get("cargo"),
+                sexo =fc.Get("sexo")[0],
+                sueldo =int.Parse(fc.Get("sueldo")),
+                f_ingreso =DateTime.Now,
+                f_salida=DateTime.Now,
+                
+            };
+            Usuario usu = new Usuario { usuario = fc.Get("usuario"), clave = fc.Get("clave"), email = fc.Get("email"), Empleado = emp };
+            using (var ctx = new AppDbContext())
+            {
+
+                ctx.Usuarios.Add(usu);
+                ctx.SaveChanges();
+            }
+            //String cl = emp.Usuario.clave;
+            //String cl = fc.Get("clave");
             return View();
         }
 

@@ -11,15 +11,19 @@ namespace ProyectoSIGNDVC
     {
         [Key]
         public int usuarioID { get; set; }
-
+        public String email { get; set; }
         [Required]
-        [Display(Name = "Email")]
-        public String username { get; set; }
+        [Display(Name = "Username")]
+        public String usuario { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public String clave { get; set; }
+        
+        public int EmpleadoID { get; set; }
+
+        public Empleado Empleado { get; set; }
 
         //public Empleado Empleado { get; set; }
     }
