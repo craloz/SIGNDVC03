@@ -18,24 +18,33 @@ namespace ProyectoSIGNDVC.Controllers
         public ActionResult RegistroUsuario()
         {
             ViewBag.Message = "Your application description page.";
-            return View();
+            ViewModel vm = new ViewModel { direcciones=new List<Direccion> (new Direccion[] { new Direccion { nombre = "Vargas", tipo = "Estado" } }) };
+            return View(vm);
         }
 
         [HttpPost]
         public ActionResult RegistroUsuario(FormCollection fc)
         {
-            Empleado emp = new Empleado {
-                nombre =fc.Get("nombre"),apellido=fc.Get("apellido"),
-                fecha =DateTime.Now,
-                cedula= int.Parse(fc.Get("cedula")),
-                //cargo =fc.Get("cargo"),
-                sexo =fc.Get("sexo")[0],
-                sueldo =int.Parse(fc.Get("sueldo")),
-                f_ingreso =DateTime.Now,
-                f_salida=DateTime.Now,
-                
+
+            Usuario usu = new Usuario {
+                usuario = fc.Get("usuario"),
+                clave = fc.Get("clave"),
+                email = fc.Get("email"),
+                Empleado = new Empleado
+                {
+                    Persona = new Persona
+                    {
+                        nombre = fc.Get("nombre"),
+                        apellido = fc.Get("apellido"),
+                        fecha_nacimiento = DateTime.Now,
+                        cedula = int.Parse(fc.Get("cedula")),
+                        sexo = fc.Get("sexo")[0]
+                    },
+                    sueldo = int.Parse(fc.Get("sueldo")),
+                    fecha_ingreso = DateTime.Now,
+                    fecha_salida = DateTime.Now,
+                }
             };
-            Usuario usu = new Usuario { usuario = fc.Get("usuario"), clave = fc.Get("clave"), email = fc.Get("email"), Empleado = emp };
             using (var ctx = new AppDbContext())
             {
 

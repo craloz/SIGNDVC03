@@ -11,5 +11,6 @@ namespace ProyectoSIGNDVC.Models
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Empleado> Empleados { get; set; }
         public DbSet<Persona> Personas { get; set; }
+        public DbSet<Direccion> Direcciones { get; set; }
     }
 }

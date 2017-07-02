@@ -5,20 +5,24 @@ using System.Web.Services.Protocols;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ProyectoSIGNDVC.Models;
 
 namespace ProyectoSIGNDVC
 {
-    public class Empleado : Persona
+    public class Empleado 
     {
         [Key]
         public int EmpleadoID { get; set; }
         public String cargo { get; set; }
         public int sueldo { get; set; }
         [Column(TypeName = "Date")]
-        public DateTime f_ingreso { get; set; }
-        public DateTime f_salida { get; set; }
+        public DateTime fecha_ingreso { get; set; }
+        public DateTime fecha_salida { get; set; }
+        public Direccion Direccion { get; set; }
 
-        public int PersonaID { get; set; }
+        public int Fk_Persona { get; set; }
+        [ForeignKey("Fk_Persona")]
+        public Persona Persona { get; set; }
         //public int Fk_Usuario { get; set; }
         //[ForeignKey("Fk_Usuario")]
         //public Usuario Usuario { get; set; }

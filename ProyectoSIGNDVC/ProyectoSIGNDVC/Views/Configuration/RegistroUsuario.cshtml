@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ProyectoSIGNDVC.Models.ViewModel
+@{
     ViewBag.Title = "RegistroUsuario";
     Layout = "~/Views/Templates/_TemplateIndex.cshtml";
 }
@@ -56,30 +57,9 @@
                         <div class="col-xs-3">
                             <label for="sel1">Estado</label>
                             <select id="sel1" class="form-control">
-                                <option>Amazonas</option>
-                                <option>Anzoátegui</option>
-                                <option>Apure</option>
-                                <option>Aragua</option>
-                                <option>Barinas</option>
-                                <option>Bolívar</option>
-                                <option>Carabobo</option>
-                                <option>Cojedes</option>
-                                <option>Delta Amacuro</option>
-                                <option>Distrito Capital</option>
-                                <option>Falcón</option>
-                                <option>Guárico</option>
-                                <option>Lara</option>
-                                <option>Mérida</option>
-                                <option>Miranda</option>
-                                <option>Monagas</option>
-                                <option>Nueva Esparta</option>
-                                <option>Portuguesa</option>
-                                <option>Sucre</option>
-                                <option>Táchira</option>
-                                <option>Trujillo</option>
-                                <option>Vargas</option>
-                                <option>Yaracuy</option>
-                                <option>Zulia</option>
+                                @foreach (var dir in Model.direcciones) {
+                                    <option>@dir.nombre</option>
+                                }
                             </select>
                         </div>
                         <div class="col-xs-3">
