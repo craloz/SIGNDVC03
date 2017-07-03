@@ -154,6 +154,11 @@
     <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
+    <Compile Include="DataAccess\DAO.cs" />
+    <Compile Include="DataAccess\DAOEmpleado.cs" />
+    <Compile Include="DataAccess\Entidad.cs" />
+    <Compile Include="DataAccess\IDAO.cs" />
+    <Compile Include="DataAccess\IDAOEmpleado.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Carga.cs" />
     <Compile Include="Models\Configuracion.cs" />
