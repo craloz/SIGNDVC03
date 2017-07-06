@@ -155,9 +155,11 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="DataAccess\DAO.cs" />
+    <Compile Include="DataAccess\DaoDireccion.cs" />
     <Compile Include="DataAccess\DAOEmpleado.cs" />
     <Compile Include="DataAccess\Entidad.cs" />
     <Compile Include="DataAccess\IDAO.cs" />
+    <Compile Include="DataAccess\IDAODireccion.cs" />
     <Compile Include="DataAccess\IDAOEmpleado.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Carga.cs" />
@@ -377,6 +379,8 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Pago\ListaNomina.cshtml" />
     <Content Include="Views\Pago\DetallePago.cshtml" />
+    <Content Include="Views\Configuration\Index.cshtml" />
+    <Content Include="Views\Error\UnexpectedError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -19,5 +19,10 @@ namespace ProyectoSIGNDVC.Controllers
             HttpContext.Response.TrySkipIisCustomErrors = true;
             return View();
         }
+
+        public ActionResult UnexpectedError()
+        {
+            return View();
+        }
     }
 }
