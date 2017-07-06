@@ -13,7 +13,6 @@ namespace ProyectoSIGNDVC
     {
         [Key]
         public int EmpleadoID { get; set; }
-        public String cargo { get; set; }
         public int sueldo { get; set; }
         [Column(TypeName = "Date")]
         public DateTime fecha_ingreso { get; set; }

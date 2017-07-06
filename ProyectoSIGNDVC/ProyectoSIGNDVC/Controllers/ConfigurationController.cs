@@ -34,44 +34,47 @@ namespace ProyectoSIGNDVC.Controllers
         [HttpPost]
         public ActionResult RegistroUsuario(FormCollection fc)
         {
-            
-                Usuario usu = new Usuario
+            int fk_dir = Direccion.InsertDireccion(fc.Get("casa"), "Casa",Direccion.InsertDireccion(fc.Get("calle"), "Calle",Direccion.InsertDireccion(fc.Get("ciudad"), "Ciudad",Direccion.GetDireccionID(fc.Get("estado"), "Estado"))));
+            Usuario usu = new Usuario
+            {
+                usuario = fc.Get("usuario"),
+                clave = fc.Get("clave"),
+                email = fc.Get("email"),
+                Empleado = new Empleado
                 {
-                    usuario = fc.Get("usuario"),
-                    clave = fc.Get("clave"),
-                    email = fc.Get("email"),
-                    Empleado = new Empleado
+                    Persona = new Persona
                     {
-                        Persona = new Persona
-                        {
-                            nombre = fc.Get("nombre"),
-                            apellido = fc.Get("apellido"),
-                            fecha_nacimiento = DateTime.Now,
-                            cedula = int.Parse(fc.Get("cedula")),
-                            sexo = fc.Get("sexo")[0]
-                        },
-                        sueldo = int.Parse(fc.Get("sueldo")),
-                        fecha_ingreso = DateTime.Now,
-                        fecha_salida = DateTime.Now,
+                        nombre = fc.Get("nombre"),
+                        apellido = fc.Get("apellido"),
+                        fecha_nacimiento = DateTime.Now,
+                        cedula = int.Parse(fc.Get("cedula")),
+                        sexo = fc.Get("sexo")[0]
+                    },
+                    sueldo = int.Parse(fc.Get("sueldo")),
+                    fecha_ingreso = DateTime.Now,
+                    fecha_salida = DateTime.Now,
+                    Direccion = new Direccion { nombre = fc.Get("direccion"), tipo = "Test", Fk_Direccion = fk_dir },
+                    Fk_Cargo = Cargo.GetCargoID(fc.Get("cargo"));
                     }
+                   
                 };
-                using (var ctx = new AppDbContext())
+            
+         //   int fk_cargo = Cargo.GetCargoID(fc.Get("cargo"));
+            //usu.Empleado.Fk_Cargo = fk_cargo;
+           // usu.Empleado.Direccion =  new Direccion { nombre="cualquier verga",tipo="Calle",Fk_Direccion=fk_dir};
+            using (var ctx = new AppDbContext())
                 {
 
                     //Agregar A
                     ///Agregar Direccion de tipo Estado
                     ///
-                    int fk_dir=Direccion.InsertDireccion(fc.Get("casa"),"Casa",
-                        Direccion.InsertDireccion(fc.Get("calle"),"Calle",
-                        Direccion.InsertDireccion(fc.Get("ciudad"),"Ciudad",Direccion.GetDireccionID(fc.Get("estado"),"Estado"))));
-                    int fk_cargo = Cargo.GetCargoID(fc.Get("cargo"));
+                    
                     //int idEstado = ctx.Direcciones
                     //.Where(dir => dir.nombre == fc.Get("direccion"))
                     //.Select(dir => dir.DireccionID)
                     //.DefaultIfEmpty(0)
                     //.Single();
-                    usu.Empleado.Fk_Cargo=fk_cargo;
-                    usu.Empleado.Fk_Direccion = fk_dir;
+                    
                     ctx.Usuarios.Add(usu);
                     ctx.SaveChanges();
                 }
