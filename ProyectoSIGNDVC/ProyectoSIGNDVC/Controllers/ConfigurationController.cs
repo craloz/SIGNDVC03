@@ -13,21 +13,28 @@ namespace ProyectoSIGNDVC.Controllers
         // GET: Configuration
         public ActionResult Index()
         {
-            Direccion.InsertDireccion("Urb La Nueva Fundacion","Urb",Direccion.InsertDireccion("Catia La Mar","Ciudad",1));
+            ViewModel vm = new ViewModel { direcciones = Direccion.GetAllEstadoDireccion(), cargos = Cargo.GetAllCargo() };
+            return View(vm);
+        }
+        [HttpPost]
+        public ActionResult Index(FormCollection fc)
+        {
+            int  fk_dir = Direccion.InsertDireccion(fc.Get("casa"), "Casa",
+                        Direccion.InsertDireccion(fc.Get("calle"), "Calle",
+                        Direccion.InsertDireccion(fc.Get("ciudad"), "Ciudad", Direccion.GetDireccionID(fc.Get("estado"), "Estado"))));
             return View();
         }
         public ActionResult RegistroUsuario()
         {
             ViewBag.Message = "Your application description page.";
-            ViewModel vm = new ViewModel { direcciones=Direccion.GetAllEstadoDireccion() };
+            ViewModel vm = new ViewModel { direcciones=Direccion.GetAllEstadoDireccion(),cargos=Cargo.GetAllCargo() };
             return View(vm);
         }
 
         [HttpPost]
         public ActionResult RegistroUsuario(FormCollection fc)
         {
-            try
-            {
+            
                 Usuario usu = new Usuario
                 {
                     usuario = fc.Get("usuario"),
@@ -54,23 +61,21 @@ namespace ProyectoSIGNDVC.Controllers
                     //Agregar A
                     ///Agregar Direccion de tipo Estado
                     ///
-                    int idEstado = ctx.Direcciones
-                    .Where(dir => dir.nombre == fc.Get("direccion"))
-                    .Select(dir => dir.DireccionID)
-                    .DefaultIfEmpty(0)
-                    .Single();
+                    int fk_dir=Direccion.InsertDireccion(fc.Get("casa"),"Casa",
+                        Direccion.InsertDireccion(fc.Get("calle"),"Calle",
+                        Direccion.InsertDireccion(fc.Get("ciudad"),"Ciudad",Direccion.GetDireccionID(fc.Get("estado"),"Estado"))));
+                    int fk_cargo = Cargo.GetCargoID(fc.Get("cargo"));
+                    //int idEstado = ctx.Direcciones
+                    //.Where(dir => dir.nombre == fc.Get("direccion"))
+                    //.Select(dir => dir.DireccionID)
+                    //.DefaultIfEmpty(0)
+                    //.Single();
+                    usu.Empleado.Fk_Cargo=fk_cargo;
+                    usu.Empleado.Fk_Direccion = fk_dir;
                     ctx.Usuarios.Add(usu);
                     ctx.SaveChanges();
                 }
-            }
-            catch(ArgumentNullException ex)
-            {
-
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction("UnexpectedError", "Error");
-            }
+        
            
             //String cl = emp.Usuario.clave;
             //String cl = fc.Get("clave");

@@ -17,18 +17,16 @@ namespace ProyectoSIGNDVC.Models
         [ForeignKey("Fk_Direccion")]
         public Direccion direccion { get; set; }
 
-        public Direccion GetDireccion(String nombre, String tipo)
+        public static int GetDireccionID(String nombre, String tipo)
         {
-            using (var context = new AppDbContext())
+            using (var ctx = new AppDbContext())
             {
-                var Query = from dir in context.Direcciones
-                               where dir.tipo == "Estado"
-                               select dir;
-
-                var direccion = Query.FirstOrDefault<Direccion>();
-                return direccion;
+                var Query = (from dir in ctx.Direcciones
+                            where dir.tipo == tipo && dir.nombre==nombre
+                            select dir.DireccionID).SingleOrDefault();
+                return Query;
             }
-            return null;
+            return 0;
         }
 
         public static List<Direccion> GetAllEstadoDireccion()

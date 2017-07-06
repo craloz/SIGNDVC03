@@ -163,6 +163,7 @@
     <Compile Include="DataAccess\IDAOEmpleado.cs" />
     <Compile Include="Models\AppDbContext.cs" />
     <Compile Include="Models\Carga.cs" />
+    <Compile Include="Models\Cargo.cs" />
     <Compile Include="Models\Configuracion.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />

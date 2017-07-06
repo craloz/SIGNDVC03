@@ -41,11 +41,10 @@
                             <label for="fechanac">Fecha de Nacimiento</label>
                             <input id="fechanac" name="fechanac" type="date" autofocus size="0" class="form-control">
                         </div>
-                       
+                       <div class="col-xs-3">
                         <label class="radio-inline"><input type="radio" name="sexo" value="M">Masculino</label>
-
-
                         <label class="radio-inline"><input type="radio" name="sexo" value="F">Femenino</label>
+                        </div>
                     </div>
 
 
@@ -56,7 +55,7 @@
                     <div class="form-group row">
                         <div class="col-xs-3">
                             <label for="sel1">Estado</label>
-                            <select id="sel1" class="form-control">
+                            <select id="sel1" class="form-control" name="estado">
                                 @foreach (var dir in Model.direcciones) {
                                     <option>@dir.nombre</option>
                                 }
@@ -64,15 +63,15 @@
                         </div>
                         <div class="col-xs-3">
                             <label for="ciudad">Ciudad</label>
-                            <input class="form-control" id="ciudad" type="text">
+                            <input class="form-control" id="ciudad" name="ciudad" type="text">
                         </div>
                         <div class="col-xs-3">
                             <label for="calle">Calle</label>
-                            <input class="form-control" id="calle" type="text">
+                            <input class="form-control" id="calle" name="calle" type="text">
                         </div>
                         <div class="col-xs-3">
                             <label for="casa">Casa/Apto</label>
-                            <input class="form-control" id="casa" type="text">
+                            <input class="form-control" id="casa" name="calle" type="text">
                         </div>
                     </div>
 
@@ -116,10 +115,11 @@
                     <div class="form-group row">
                         <div class="col-xs-3">
                             <label for="sel1">Cargo</label>
-                            <select id="sel1" class="form-control">
-                                <option>Administrador</option>
-                                <option>Director</option>
-                                <option>Empleado</option>
+                            <select id="sel1" class="form-control" name="cargo">
+                                @foreach (var car in Model.cargos)
+                                {
+                                    <option>@car.nombre</option>
+                                }
 
                             </select>
                         </div>

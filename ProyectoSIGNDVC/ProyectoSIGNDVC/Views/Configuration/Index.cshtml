@@ -1,1 +1,36 @@
-﻿
+﻿@model ProyectoSIGNDVC.Models.ViewModel
+
+@{ 
+    Layout = "~/Views/Templates/_TemplateIndex.cshtml";
+}
+<form role="form" action="/Configuration/Index" method="post">
+    <div class="form-group row">
+        <div class="col-xs-3">
+            <label for="sel1">Estado</label>
+            <select id="sel1" class="form-control" name="estado">
+                @foreach (var dir in Model.direcciones)
+                {
+                    <option>@dir.nombre</option>
+                }
+            </select>
+        </div>
+        <div class="col-xs-3">
+            <label for="ciudad">Ciudad</label>
+            <input class="form-control" id="ciudad" name="ciudad" type="text">
+        </div>
+        <div class="col-xs-3">
+            <label for="calle">Calle</label>
+            <input class="form-control" id="calle" name="calle" type="text">
+        </div>
+        <div class="col-xs-3">
+            <label for="casa">Casa/Apto</label>
+            <input class="form-control" id="casa" name="calle" type="text">
+        </div>
+    </div>
+
+    <div class="col-lg-15">
+        <input type="submit" class="btn btn-success" value="Registrar">
+        <button type="reset" class="btn btn-danger">Cancelar</button>
+    </div>
+</form>
+

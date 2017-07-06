@@ -18,12 +18,15 @@ namespace ProyectoSIGNDVC
         [Column(TypeName = "Date")]
         public DateTime fecha_ingreso { get; set; }
         public DateTime fecha_salida { get; set; }
-        public int FK_Direccion { get; set; }
-        [ForeignKey("FK_Direccion")]
+        public int Fk_Direccion { get; set; }
+        [ForeignKey("Fk_Direccion")]
         public Direccion Direccion { get; set; }
         public int Fk_Persona { get; set; }
         [ForeignKey("Fk_Persona")]
         public Persona Persona { get; set; }
+        public int Fk_Cargo { get; set; }
+        [ForeignKey("Fk_Cargo")]
+        public Cargo Cargo { get; set; }
         //public int Fk_Usuario { get; set; }
         //[ForeignKey("Fk_Usuario")]
         //public Usuario Usuario { get; set; }
