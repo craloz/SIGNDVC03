@@ -16,19 +16,20 @@ namespace ProyectoSIGNDVC.Controllers
         }
         // GET: Login
         [HttpPost]
-        public ActionResult Login(Usuario usuarioLogin)
+        public ActionResult Login(FormCollection fc)
         {
-            
-            ViewBag.Message = usuarioLogin.usuario;
-            if (ModelState.IsValid)
+
+            if (Usuario.CheckCredencialesUsuarios(fc.Get("usuario"), fc.Get("clave")))
             {
-                using (var ctx = new AppDbContext())
-                {
-                    System.Console.WriteLine("aquiiiiii");
-                    ctx.Usuarios.Add(usuarioLogin);
-                    ctx.SaveChanges();
-                }
-                ModelState.Clear();
+                //ViewBag.Message = "Correcto Redireccionando";
+                Session["usuario"] = fc.Get("usuario");
+                return RedirectToAction("Index", "Home");
+                //Session["UserName"] = obj.UserName.ToString();
+               // return RedirectToAction("UserDashBoard");
+            }
+            else
+            {
+                ViewBag.Message = "Usuario o Clave Incorrecta";
             }
                 return View();
         }
@@ -40,6 +41,11 @@ namespace ProyectoSIGNDVC.Controllers
             return View();
         }
         // GET: Login
+        public ActionResult LogOff()
+        {
+            Session.Clear();
+            return RedirectToAction("Login", "Login");
+        } 
        
     }
 }

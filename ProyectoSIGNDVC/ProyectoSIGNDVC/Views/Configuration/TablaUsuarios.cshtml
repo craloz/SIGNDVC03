@@ -1,4 +1,4 @@
-﻿
+﻿@model ProyectoSIGNDVC.Models.ViewModel
 @{
     ViewBag.Title = "TablaUsuarios";
     Layout = "~/Views/Templates/_TemplateIndex.cshtml";
@@ -39,6 +39,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach (var user in Model.usuarios)
+                        {
+                            <tr class="odd gradeX">
+                                <td>@user.usuarioID</td>
+                                <td>@String.Concat(user.Empleado.Persona.nombre," "+user.Empleado.Persona.apellido)</td>
+                                <td>@user.Empleado.Persona.fecha_nacimiento</td>
+                                <td>@user.usuario</td>
+                                <td>@user.clave</td>
+                                <td></td>
+                            </tr>
+                        }
                         <tr class="odd gradeX">
                             <td>0001</td>
                             <td>José Rodríguez</td>

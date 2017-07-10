@@ -233,13 +233,16 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li>
                             <center>
-                                <header>Carlos Lozano</header>
-                                <small> Usuario <i style="color:red;">E-0001</i></small>
+                                <header>Carlos Lozanisho</header>
+                                <small> Usuario <i style="color:red;">@if (Session["usuario"] != null)
+                                {@Session["usuario"].ToString()  }</i></small>
+                               <!-- <header>Carlos Lozano</header>
+                                <small> Usuario <i style="color:red;">E-0001</i></small>-->
                             </center>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <a href=@Url.Action("LogOff","Login")><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesion</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->

@@ -27,8 +27,8 @@ namespace ProyectoSIGNDVC.Models
                 using (var ctx = new AppDbContext())
                 {
                     var Query = (from car in ctx.Cargos
-                                 where car.nombre =="nombre"
-                                 select car.CargoID).SingleOrDefault();
+                                 where car.nombre ==nombre
+                                 select car.CargoID).FirstOrDefault();
                     return Query;
                 }
                 return 0;

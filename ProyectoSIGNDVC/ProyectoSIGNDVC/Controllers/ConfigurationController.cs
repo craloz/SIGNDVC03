@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ProyectoSIGNDVC.Attributes;
 using ProyectoSIGNDVC.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,12 @@ namespace ProyectoSIGNDVC.Controllers
     public class ConfigurationController : Controller
     {
         // GET: Configuration
+        [HttpPost]
+        public JsonResult Test(FormCollection fc)
+        {
+            return  Json(Usuario.GetAllUsuarios());
+            
+        }
         public ActionResult Index()
         {
             ViewModel vm = new ViewModel { direcciones = Direccion.GetAllEstadoDireccion(), cargos = Cargo.GetAllCargo() };
@@ -24,13 +31,15 @@ namespace ProyectoSIGNDVC.Controllers
                         Direccion.InsertDireccion(fc.Get("ciudad"), "Ciudad", Direccion.GetDireccionID(fc.Get("estado"), "Estado"))));
             return View();
         }
+
+        [SessionExpire]
         public ActionResult RegistroUsuario()
         {
             ViewBag.Message = "Your application description page.";
             ViewModel vm = new ViewModel { direcciones=Direccion.GetAllEstadoDireccion(),cargos=Cargo.GetAllCargo() };
             return View(vm);
         }
-
+        [SessionExpire]
         [HttpPost]
         public ActionResult RegistroUsuario(FormCollection fc)
         {
@@ -54,8 +63,8 @@ namespace ProyectoSIGNDVC.Controllers
                     fecha_ingreso = DateTime.Now,
                     fecha_salida = DateTime.Now,
                     Direccion = new Direccion { nombre = fc.Get("direccion"), tipo = "Test", Fk_Direccion = fk_dir },
-                    Fk_Cargo = Cargo.GetCargoID(fc.Get("cargo"));
-                    }
+                    Fk_Cargo = Cargo.GetCargoID(fc.Get("cargo"))
+                }
                    
                 };
             
@@ -82,7 +91,7 @@ namespace ProyectoSIGNDVC.Controllers
            
             //String cl = emp.Usuario.clave;
             //String cl = fc.Get("clave");
-            return View();
+            return RedirectToAction("AgregarUsuario","Configuration");
         }
 
         [HttpPost]
@@ -93,8 +102,8 @@ namespace ProyectoSIGNDVC.Controllers
 
         public ActionResult TablaUsuarios()
         {
-            ViewBag.Message = "Your application description page.";
-            return View();
+            ViewModel vm = new ViewModel { usuarios = Usuario.GetAllUsuarios() };
+            return View(vm);
         }
     }
 }
