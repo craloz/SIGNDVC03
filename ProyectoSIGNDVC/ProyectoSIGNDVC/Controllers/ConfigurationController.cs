@@ -11,11 +11,17 @@ namespace ProyectoSIGNDVC.Controllers
 {
     public class ConfigurationController : Controller
     {
+        public ActionResult Test()
+        {
+            return View();
+        }
         // GET: Configuration
         [HttpPost]
         public JsonResult Test(FormCollection fc)
         {
-            return  Json(Usuario.GetAllUsuarios());
+            DateTime dt=DateTime.Parse(fc.Get("fechanac"));
+            
+            return  Json(dt);
             
         }
         public ActionResult Index()
@@ -32,7 +38,7 @@ namespace ProyectoSIGNDVC.Controllers
             return View();
         }
 
-        [SessionExpire]
+        //[SessionExpire]
         public ActionResult RegistroUsuario()
         {
             ViewBag.Message = "Your application description page.";
@@ -55,7 +61,7 @@ namespace ProyectoSIGNDVC.Controllers
                     {
                         nombre = fc.Get("nombre"),
                         apellido = fc.Get("apellido"),
-                        fecha_nacimiento = DateTime.Now,
+                        fecha_nacimiento = DateTime.Parse(fc.Get("fechanac")),
                         cedula = int.Parse(fc.Get("cedula")),
                         sexo = fc.Get("sexo")[0]
                     },
@@ -66,7 +72,7 @@ namespace ProyectoSIGNDVC.Controllers
                     Fk_Cargo = Cargo.GetCargoID(fc.Get("cargo"))
                 }
                    
-                };
+             };
             
          //   int fk_cargo = Cargo.GetCargoID(fc.Get("cargo"));
             //usu.Empleado.Fk_Cargo = fk_cargo;
@@ -87,11 +93,12 @@ namespace ProyectoSIGNDVC.Controllers
                     ctx.Usuarios.Add(usu);
                     ctx.SaveChanges();
                 }
-        
-           
+
+
             //String cl = emp.Usuario.clave;
             //String cl = fc.Get("clave");
-            return RedirectToAction("AgregarUsuario","Configuration");
+            ViewModel vm = new ViewModel { direcciones = Direccion.GetAllEstadoDireccion(), cargos = Cargo.GetAllCargo() };
+            return View();
         }
 
         [HttpPost]
