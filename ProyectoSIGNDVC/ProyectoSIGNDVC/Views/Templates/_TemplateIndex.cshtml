@@ -233,7 +233,7 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li>
                             <center>
-                                <header>Carlos Lozanisho</header>
+                                <header>@Usuario.GetUsuarioNombres(Session["usuario"].ToString())</header>
                                 <small> Usuario <i style="color:red;">@if (Session["usuario"] != null)
                                 {@Session["usuario"].ToString()  }</i></small>
                                <!-- <header>Carlos Lozano</header>
@@ -350,7 +350,7 @@
                                     <a href="/Configuration/TablaUsuarios"><i class="fa fa-users fa-fw"></i>Administrar Usuarios</a>
                                 </li>
                                 <li>
-                                    <a href="login.html"><i class="fa fa-cogs fa-fw"></i>Variables del Sistema</a>
+                                    <a href="/Configuration/Variables"><i class="fa fa-cogs fa-fw"></i>Variables del Sistema</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

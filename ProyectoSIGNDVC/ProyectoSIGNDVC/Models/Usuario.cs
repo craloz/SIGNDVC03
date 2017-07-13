@@ -29,6 +29,39 @@ namespace ProyectoSIGNDVC
         public Empleado Empleado { get; set; }
 
 
+        public static Usuario GetUsuario(String usuario)
+        {
+            using (var ctx = new AppDbContext())
+            {
+
+                var query = (from user in ctx.Usuarios
+                             join emp in ctx.Empleados on user.EmpleadoID equals emp.EmpleadoID
+                             join per in ctx.Personas on emp.Fk_Persona equals per.PersonaID
+                             where user.usuario == usuario
+                             select new { per, user, emp });
+                var query2 = query.SingleOrDefault();
+                var usuario2 = query2.user;
+                usuario2.Empleado = query2.emp;
+                usuario2.Empleado.Persona = query2.per;
+                return usuario2;
+            }
+        }
+
+        public static String GetUsuarioNombres(String usuario)
+        {
+            using (var ctx = new AppDbContext())
+            {
+
+                var query = (from user in ctx.Usuarios
+                             join emp in ctx.Empleados on user.EmpleadoID equals emp.EmpleadoID
+                             join per in ctx.Personas on emp.Fk_Persona equals per.PersonaID
+                             where user.usuario == usuario
+                             select per);
+                var query2=query.SingleOrDefault();
+                return  query2.nombre+" "+query2.apellido; 
+            }
+            
+        }
         public static List<Usuario> GetAllUsuarios()
         {
             using (var ctx=new AppDbContext())

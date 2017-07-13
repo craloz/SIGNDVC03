@@ -98,7 +98,7 @@ namespace ProyectoSIGNDVC.Controllers
             //String cl = emp.Usuario.clave;
             //String cl = fc.Get("clave");
             ViewModel vm = new ViewModel { direcciones = Direccion.GetAllEstadoDireccion(), cargos = Cargo.GetAllCargo() };
-            return View();
+            return View(vm);
         }
 
         [HttpPost]
@@ -111,6 +111,11 @@ namespace ProyectoSIGNDVC.Controllers
         {
             ViewModel vm = new ViewModel { usuarios = Usuario.GetAllUsuarios() };
             return View(vm);
+        }
+
+        public ActionResult  Variables()
+        {
+            return View();
         }
     }
 }

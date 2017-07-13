@@ -1,6 +1,6 @@
-﻿function addTr() {    
+﻿function addTr() {
     var table = document.getElementById("tablaCargas");
-    filas = table.rows.lenght;
+    filas = table.rows.length;
     var row = table.insertRow(filas);
     row.setAttribute("id", filas);
     var cell1 = row.insertCell(0);
@@ -8,16 +8,19 @@
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
     cell1.setAttribute("contenteditable", "true");
     cell2.setAttribute("contenteditable", "true");
     cell3.setAttribute("contenteditable", "true");
     cell4.setAttribute("contenteditable", "true");
     cell5.setAttribute("contenteditable", "true");
-    cell1.innerHTML = "Nombre"
-    cell2.innerHTML = "Apellido"
-    cell3.innerHTML = "XXXXXXX"
-    cell4.innerHTML = "<select><option>M</option><option>F</option></select>"
-    cell5.innerHTML = "<input type='date'>"
-    
-}
+    cell6.setAttribute("contenteditable","true");
+    var cont = document.getElementById("tablaCargas").rows.length;
+    cell1.innerHTML = "<input class='form-control' type='text' placeholder='Nombre' name='nombrecarga" + cont + "'>";
+    cell2.innerHTML = "<input class='form-control' type='text' placeholder='Apellido' name='apellidocarga" + cont + "'>";
+    cell3.innerHTML = "<input class='form-control' type='text' placeholder='Cedula' name='cedulacarga" + cont + "'>";
+    cell4.innerHTML = "<select class='form-control' name='sexocarga"+cont+"'><option>Masculino</option><option>Femenino</option></select>";
+    cell5.innerHTML = "<input class='form-control' type='date' name='fechanaccarga" + cont + "'>";
+    cell6.innerHTML = "<input class='form-control 'type='text' placeholder='Monto' name='montocarga" + cont + "'>";
 
+}
