@@ -94,7 +94,14 @@ namespace ProyectoSIGNDVC
              
         }
 
-
+        public static void AddUsuario(Usuario usuario)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                ctx.Usuarios.Add(usuario);
+                ctx.SaveChanges();
+            }
+        }
         //public Empleado Empleado { get; set; }
     }
 }
