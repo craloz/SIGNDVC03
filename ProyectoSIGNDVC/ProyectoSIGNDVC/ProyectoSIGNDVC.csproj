@@ -155,6 +155,7 @@
     <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="DataAccess\DAO.cs" />
     <Compile Include="DataAccess\DaoDireccion.cs" />
     <Compile Include="DataAccess\DAOEmpleado.cs" />
@@ -289,6 +290,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="README.txt.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

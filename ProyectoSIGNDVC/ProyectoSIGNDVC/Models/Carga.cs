@@ -13,14 +13,7 @@ namespace ProyectoSIGNDVC
         [Key]
         public int CargaID{ get; set; }
         public int monto_poliza { get; set; }
-
-        public int Fk_Empleado { get; set; }
-        [ForeignKey("Fk_Empleado")]
-        public Empleado Empleado { get; set;}
-
-        public int Fk_Persona { get; set; }
-        [ForeignKey("Fk_Persona")]
-        public Persona Persona { get; set; }
+        
 
 
     }

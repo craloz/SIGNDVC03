@@ -45,11 +45,33 @@ namespace ProyectoSIGNDVC.Controllers
             ViewModel vm = new ViewModel { direcciones=Direccion.GetAllEstadoDireccion(),cargos=Cargo.GetAllCargo() };
             return View(vm);
         }
-        [SessionExpire]
+        //[SessionExpire]
         [HttpPost]
         public ActionResult RegistroUsuario(FormCollection fc)
         {
             int fk_dir = Direccion.InsertDireccion(fc.Get("casa"), "Casa",Direccion.InsertDireccion(fc.Get("calle"), "Calle",Direccion.InsertDireccion(fc.Get("ciudad"), "Ciudad",Direccion.GetDireccionID(fc.Get("estado"), "Estado"))));
+            List<Carga> cargas = new List<Carga>();
+            for (int i = 2; i <=int.Parse(fc.Get("numfilas")) ; i++)
+            {
+                cargas.Add
+                (
+                    new Carga {
+                        nombre = "Carlos",
+                        apellido = "Lozano",
+                        sexo = "M"[0],
+                        monto_poliza = 123,
+                        cedula = 123456, 
+                        fecha_nacimiento = DateTime.Now,
+                        
+                        //nombre = fc.Get("nombrecarga" + i.ToString()),
+                        //apellido = fc.Get("apellidocarga" + i.ToString()),
+                        //cedula = int.Parse(fc.Get("cedulacarga" + i.ToString())),
+                        //sexo = (fc.Get("sexocarga" + i.ToString()))[0],
+                        //monto_poliza = int.Parse(fc.Get("nombrecarga" + i.ToString())),
+                        //fecha_nacimiento = DateTime.Parse(fc.Get("fechanaccarga")),
+                    }
+                );
+            }
             Usuario usu = new Usuario
             {
                 usuario = fc.Get("usuario"),
@@ -57,6 +79,7 @@ namespace ProyectoSIGNDVC.Controllers
                 email = fc.Get("email"),
                 Empleado = new Empleado
                 {
+                    Cargas = cargas,
                     Persona = new Persona
                     {
                         nombre = fc.Get("nombre"),

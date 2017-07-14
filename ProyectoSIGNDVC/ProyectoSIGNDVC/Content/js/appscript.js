@@ -19,8 +19,14 @@
     cell1.innerHTML = "<input class='form-control' type='text' placeholder='Nombre' name='nombrecarga" + cont + "'>";
     cell2.innerHTML = "<input class='form-control' type='text' placeholder='Apellido' name='apellidocarga" + cont + "'>";
     cell3.innerHTML = "<input class='form-control' type='text' placeholder='Cedula' name='cedulacarga" + cont + "'>";
-    cell4.innerHTML = "<select class='form-control' name='sexocarga"+cont+"'><option>Masculino</option><option>Femenino</option></select>";
+    cell4.innerHTML = "<select class='form-control' name='sexocarga"+cont+"'><option value='M'>Masculino</option><option value='F'>Femenino</option></select>";
     cell5.innerHTML = "<input class='form-control' type='date' name='fechanaccarga" + cont + "'>";
     cell6.innerHTML = "<input class='form-control 'type='text' placeholder='Monto' name='montocarga" + cont + "'>";
+    getRows();
+}
 
+function getRows()
+{
+    var element = document.getElementById("numfilas");
+    element.setAttribute("value", document.getElementById("tablaCargas").rows.length);
 }

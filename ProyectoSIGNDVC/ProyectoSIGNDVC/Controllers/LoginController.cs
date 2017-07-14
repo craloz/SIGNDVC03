@@ -12,7 +12,7 @@ namespace ProyectoSIGNDVC.Controllers
 
         public ActionResult Login()
         {
-            Usuario.AddUsuario(new Usuario());
+            
             return View();
         }
         // GET: Login
