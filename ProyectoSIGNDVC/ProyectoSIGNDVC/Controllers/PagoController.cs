@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoSIGNDVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,7 @@ namespace ProyectoSIGNDVC.Controllers
 
         public ActionResult PagoNomina()
         {
+            ViewModel vm = new ViewModel();
             return View();
         }
 

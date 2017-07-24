@@ -9,19 +9,19 @@
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
     var cell6 = row.insertCell(5);
-    cell1.setAttribute("contenteditable", "true");
-    cell2.setAttribute("contenteditable", "true");
-    cell3.setAttribute("contenteditable", "true");
-    cell4.setAttribute("contenteditable", "true");
-    cell5.setAttribute("contenteditable", "true");
-    cell6.setAttribute("contenteditable","true");
+    //cell1.setAttribute("contenteditable", "true");
+    //cell2.setAttribute("contenteditable", "true");
+    //cell3.setAttribute("contenteditable", "true");
+    //cell4.setAttribute("contenteditable", "true");
+    //cell5.setAttribute("contenteditable", "true");
+    //cell6.setAttribute("contenteditable","true");
     var cont = document.getElementById("tablaCargas").rows.length;
-    cell1.innerHTML = "<input class='form-control' type='text' placeholder='Nombre' name='nombrecarga" + cont + "'>";
-    cell2.innerHTML = "<input class='form-control' type='text' placeholder='Apellido' name='apellidocarga" + cont + "'>";
-    cell3.innerHTML = "<input class='form-control' type='text' placeholder='Cedula' name='cedulacarga" + cont + "'>";
-    cell4.innerHTML = "<select class='form-control' name='sexocarga"+cont+"'><option value='M'>Masculino</option><option value='F'>Femenino</option></select>";
-    cell5.innerHTML = "<input class='form-control' type='date' name='fechanaccarga" + cont + "'>";
-    cell6.innerHTML = "<input class='form-control 'type='text' placeholder='Monto' name='montocarga" + cont + "'>";
+    cell1.innerHTML = "<input required class='form-control' type='text' placeholder='Nombre' name='nombrecarga" + cont + "' >";
+    cell2.innerHTML = "<input required class='form-control' type='text' placeholder='Apellido' name='apellidocarga" + cont + "' >";
+    cell3.innerHTML = "<input required class='form-control' type='text' placeholder='Cedula' name='cedulacarga" + cont + "' >";
+    cell4.innerHTML = "<select required class='form-control' name='sexocarga" + cont +"' ><option value='M'>Masculino</option><option value='F'>Femenino</option></select>";
+    cell5.innerHTML = "<input required class='form-control' type='date' name='fechanaccarga" + cont + "' >";
+    cell6.innerHTML = "<input required class='form-control 'type='text' placeholder='Monto' name='montocarga" + cont + "' >";
     getRows();
 }
 

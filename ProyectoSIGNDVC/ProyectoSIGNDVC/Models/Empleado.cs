@@ -27,7 +27,7 @@ namespace ProyectoSIGNDVC
         public int Fk_Cargo { get; set; }
         [ForeignKey("Fk_Cargo")]
         public Cargo Cargo { get; set; }
-        public List<Carga> Cargas { get; set; }
+        public ICollection<Carga> Cargas { get; set; }
 
         //public int Fk_Usuario { get; set; }
         //[ForeignKey("Fk_Usuario")]

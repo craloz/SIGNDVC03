@@ -12,6 +12,8 @@ namespace ProyectoSIGNDVC.Models
         public List<Cargo> cargos { get; set; }
 
         public List<Usuario> usuarios { get; set; }
+
+        public Configuracion configuracion { get; set; }
         //public Empleado empleado {get; set;}
         //public List<Carga> cargas {get; set;}
         //public Rol rol { get; set; }

@@ -56,19 +56,22 @@ namespace ProyectoSIGNDVC.Controllers
                 cargas.Add
                 (
                     new Carga {
-                        nombre = "Carlos",
-                        apellido = "Lozano",
-                        sexo = "M"[0],
-                        monto_poliza = 123,
-                        cedula = 123456, 
-                        fecha_nacimiento = DateTime.Now,
-                        
-                        //nombre = fc.Get("nombrecarga" + i.ToString()),
-                        //apellido = fc.Get("apellidocarga" + i.ToString()),
-                        //cedula = int.Parse(fc.Get("cedulacarga" + i.ToString())),
-                        //sexo = (fc.Get("sexocarga" + i.ToString()))[0],
+                        Persona = new Persona
+                        {
+
+                            nombre = fc.Get("nombrecarga" + i.ToString()),
+                            apellido = fc.Get("apellidocarga" + i.ToString()),
+                            sexo = (fc.Get("sexocarga" + i.ToString()))[0],
+                            cedula = int.Parse(fc.Get("cedulacarga" + i.ToString())),
+                            fecha_nacimiento = DateTime.Parse(fc.Get("fechanaccarga" + i.ToString()))
+                        },
+                        monto_poliza = int.Parse(fc.Get("montocarga" + i.ToString())),
+                        //
+                        //
+                        //
+                        //
                         //monto_poliza = int.Parse(fc.Get("nombrecarga" + i.ToString())),
-                        //fecha_nacimiento = DateTime.Parse(fc.Get("fechanaccarga")),
+                        //
                     }
                 );
             }
@@ -138,7 +141,30 @@ namespace ProyectoSIGNDVC.Controllers
 
         public ActionResult  Variables()
         {
-            return View();
+            ViewModel vm = new ViewModel { configuracion = Configuracion.GetLastConfiguracion() };
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult Variables(FormCollection fc)
+        {
+            Configuracion cf = new Configuracion
+            {
+                faov_retencion = int.Parse(fc.Get("faov_retencion")),
+                faov_aporte = int.Parse(fc.Get("faov_aporte")),
+                rpe_retencion = int.Parse(fc.Get("rpe_retencion")),
+                rpe_aporte = int.Parse(fc.Get("rpe_aporte")),
+                sso_retencion = int.Parse(fc.Get("sso_retencion")),
+                sso_aporte = int.Parse(fc.Get("sso_aporte")),
+                inces_retencion = int.Parse(fc.Get("inces_retencion")),
+                inces_aporte = int.Parse(fc.Get("inces_aporte")),
+                unid_tributaria = int.Parse(fc.Get("unid_tributaria")),
+                fecha_inicio_config = DateTime.Now,
+
+            };
+            Configuracion.AddConfiguracion(cf);
+            ViewModel vm = new ViewModel { configuracion = Configuracion.GetLastConfiguracion() };
+            return View(vm);
         }
     }
 }

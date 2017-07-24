@@ -1,4 +1,4 @@
-﻿
+﻿@model ProyectoSIGNDVC.Models.ViewModel
 @{
     ViewBag.Title = "Variables";
     Layout = "~/Views/Templates/_TemplateIndex.cshtml";
@@ -9,25 +9,25 @@
             <h1 class="page-header">Variables Del Sistema</h1>
         </div>
         <div class="col-lg-12">           
-            <form role="form"  method="post">
+            <form role="form" action="/Configuration/Variables"  method="post">
                 <fieldset>
                     <div class="row">
                         <div class="col-lg-2">
                             <h4>SSO</h4>
                         </div>
                         <div class="col-lg-offset-10">
-                            <h6>Ultima Actulizacion 12/07/2017</h6>
+                            <h6>Ultima Actualizacion: @if(Model.configuracion!=null){@Model.configuracion.fecha_inicio_config}</h6>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-4">
                             
-                            <label for="riesgo">Trabajador</label>
-                            <input id="riesgo" class="form-control"  name="riesgo" type="text" autofocus />
+                            <label for="riesgo">Aporte</label>
+                            <input id="riesgo" class="form-control"  name="sso_aporte" type="text" autofocus required value="@if (Model.configuracion != null) {@Model.configuracion.sso_aporte}"/>
                         </div>
                         <div class="col-lg-4">
-                            <label for="porcsso">Empresa</label>
-                            <input required id="porcsso" class="form-control" name="porcsso" type="text" autofocus />
+                            <label for="porcsso">Retencion</label>
+                            <input required id="porcsso" class="form-control" name="sso_retencion" type="text" autofocus value="@if (Model.configuracion != null) {@Model.configuracion.sso_retencion}" />
                         </div>
                     </div>
 
@@ -39,12 +39,12 @@
                     <div class="form-group row">
                         <div class="col-lg-4">
 
-                            <label for="riesgo">Trabajador</label>
-                            <input id="riesgo" class="form-control"  name="riesgo" type="text" autofocus />
+                            <label for="riesgo">Aporte</label>
+                            <input id="riesgo" class="form-control"  name="rpe_aporte" type="text" autofocus required value="@if (Model.configuracion != null) {@Model.configuracion.rpe_aporte}"/>
                         </div>
                         <div class="col-lg-4">
-                            <label for="porcsso">Empresa</label>
-                            <input required id="porcsso" class="form-control"  name="porcsso" type="text" autofocus />
+                            <label for="porcsso">Retencion</label>
+                            <input required id="porcsso" class="form-control"  name="rpe_retencion" type="text" autofocus value="@if (Model.configuracion != null) {@Model.configuracion.rpe_retencion}" />
                         </div>
                     </div>
 
@@ -56,12 +56,12 @@
                     <div class="form-group row">
                         <div class="col-lg-4">
 
-                            <label for="riesgo">Trabajador</label>
-                            <input id="riesgo" class="form-control" name="riesgo" type="text" autofocus />
+                            <label for="riesgo">Aporte</label>
+                            <input id="riesgo" class="form-control" name="faov_aporte" type="text" autofocus required value="@if (Model.configuracion != null) {@Model.configuracion.faov_aporte}"/>
                         </div>
                         <div class="col-lg-4">
-                            <label for="porcsso">Empresa</label>
-                            <input required id="porcsso" class="form-control" name="porcsso" type="text" autofocus />
+                            <label for="porcsso">Retencion</label>
+                            <input required id="porcsso" class="form-control" name="faov_retencion" type="text" autofocus value="@if (Model.configuracion != null) {@Model.configuracion.faov_retencion}"/>
                         </div>
                     </div>
 
@@ -73,31 +73,15 @@
                     <div class="form-group row">
                         <div class="col-lg-4">
 
-                            <label for="riesgo">Trabajador</label>
-                            <input id="riesgo" class="form-control" name="riesgo" type="text" autofocus />
+                            <label for="riesgo">Aporte</label>
+                            <input id="riesgo" class="form-control" name="inces_aporte" type="text" autofocus  required value="@if (Model.configuracion != null) {@Model.configuracion.inces_aporte}"/>
                         </div>
                         <div class="col-lg-4">
-                            <label for="porcsso">Empresa</label>
-                            <input required id="porcsso" class="form-control" name="porcsso" type="text" autofocus />
+                            <label for="porcsso">Retencion</label>
+                            <input required id="porcsso" class="form-control" name="inces_retencion" type="text" autofocus value="@if (Model.configuracion != null) {@Model.configuracion.inces_retencion}"/>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <h4>FAOV</h4>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-lg-4">
-
-                            <label for="riesgo">Trabajador</label>
-                            <input id="riesgo" class="form-control" name="riesgo" type="text" autofocus />
-                        </div>
-                        <div class="col-lg-4">
-                            <label for="porcsso">Empresa</label>
-                            <input required id="porcsso" class="form-control" name="porcsso" type="text" autofocus />
-                        </div>
-                    </div>
 
                     <div class="row">
                         <div class="col-lg-2">
@@ -107,10 +91,16 @@
                     <div class="form-group row">
                         <div class="col-lg-4">
                             <label for="porcsso">Valor</label>
-                            <input required id="porcsso" class="form-control" name="porcsso" type="text" autofocus />
+                            <input required id="porcsso" class="form-control" name="unid_tributaria" type="text" autofocus value="@if (Model.configuracion != null) {@Model.configuracion.unid_tributaria}" />
                         </div>
                     </div>
 
+                    <div class="form-group row" >
+                        <div class="col-lg-2">
+                            <label for="idconfig">ID de la Configuracion</label>
+                            <input class="form-control"  type="text" id="idconfig" value="@if (Model.configuracion != null) {@Model.configuracion.ConfiguracionID}" readonly/>
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-success">Guardar</button>
                 </fieldset>
             </form>
