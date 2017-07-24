@@ -392,6 +392,7 @@
     <Content Include="Views\Reporte\Detalle_Abono.cshtml" />
     <Content Include="Views\Reporte\Index.cshtml" />
     <Content Include="Views\Reporte\Nomina_Trabajador.cshtml" />
+    <Content Include="Views\Configuration\EditarUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

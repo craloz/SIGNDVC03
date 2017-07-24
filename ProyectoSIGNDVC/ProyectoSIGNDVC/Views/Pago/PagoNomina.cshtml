@@ -1,4 +1,4 @@
-﻿
+﻿@model ProyectoSIGNDVC.Models.ViewModel
 @{
     ViewBag.Title = "PagoNomina";
     Layout = "~/Views/Templates/_TemplateIndex.cshtml";
@@ -17,9 +17,10 @@
                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                         <tr>
+                            <th>Sel</th>
                             <th>Código de empleado</th>
                             <th>Nombre</th>
-                            <th>Sueldo Base</th>
+                            <th>Sueldo Quincenal</th>
                             <th>Retroactivos</th>
                             <th>Retenciones</th>
                             <th>Cargas</th>
@@ -28,7 +29,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="odd gradeX">                            
+                        @foreach (var user in Model.usuarios)
+                        {
+                            <tr class="odd gradeX">
+                                <td><input type="checkbox" class="form-control" /></td>
+                                <td>@user.usuarioID</td>
+                                <td>@String.Concat(user.Empleado.Persona.nombre, " " + user.Empleado.Persona.apellido)</td>
+                                <td  style="color: green">@(user.Empleado.sueldo/2)</td>
+                                <td>Retroactivos</td>
+                                <td>Retenciones</td>
+                                <td>Cargas</td>
+                                <td>Neto a Pagar</td>
+                                <td>
+                                    <center>
+                                        <a  title="Ver" data-toggle="modal" data-target="#myModal" onclick="@user.usuarioID">
+                                            <i class="fa fa-search fa-fw"></i>
+                                        </a>
+                                    </center>
+                                </td>  
+                            </tr>
+                        }
+                        <tr class="odd gradeX">   
+                            <td>
+                                <input type="checkbox" class="form-control" />
+                            </td>
                             <td>0001</td>
                             <td>José Rodríguez</td>
                             <td><span style="color: green">25.000,00</span></td>
@@ -39,7 +63,7 @@
                             <td>
                                 <center>
 									
-									<a title="Ver" data-toggle="modal" data-target="#myModal">
+									<a title="Ver" data-toggle="modal" data-target="#myModal" onclick="">
 										<i class="fa fa-search fa-fw"></i>
 									</a>                                    
                                 </center>

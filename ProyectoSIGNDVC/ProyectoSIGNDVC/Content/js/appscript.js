@@ -30,3 +30,20 @@ function getRows()
     var element = document.getElementById("numfilas");
     element.setAttribute("value", document.getElementById("tablaCargas").rows.length);
 }
+
+function updateIndex(index) {
+    var element = document.getElementById("index");
+    element.setAttribute("value",index);
+}
+
+function eliminarUsuario(usuario) {
+    if (confirm('Deseas Eliminar al Usuario: ' + usuario))
+    {
+        $.get("/Configuration/BorrarUsuario?"+usuario)
+            .done(function (obj) {
+                "borramos el usuario";
+            });
+    } else {
+        alert("no eliminado")
+    }
+}

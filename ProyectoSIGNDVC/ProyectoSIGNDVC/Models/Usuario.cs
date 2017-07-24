@@ -102,6 +102,16 @@ namespace ProyectoSIGNDVC
                 ctx.SaveChanges();
             }
         }
+
+        public static void DeleteUsuario(string usuario)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                Usuario usuariodelete = ctx.Usuarios.First(x => x.usuario == usuario);
+                ctx.Usuarios.Remove(usuariodelete);
+                ctx.SaveChanges();
+            }
+        }
         //public Empleado Empleado { get; set; }
     }
 }

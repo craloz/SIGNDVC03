@@ -14,7 +14,7 @@ namespace ProyectoSIGNDVC
     {
         [Key]
         public int EmpleadoID { get; set; }
-        public int sueldo { get; set; }
+        public float sueldo { get; set; }
         [Column(TypeName = "Date")]
         public DateTime fecha_ingreso { get; set; }
         public DateTime fecha_salida { get; set; }
@@ -28,6 +28,9 @@ namespace ProyectoSIGNDVC
         [ForeignKey("Fk_Cargo")]
         public Cargo Cargo { get; set; }
         public ICollection<Carga> Cargas { get; set; }
+        public ICollection<Pago> Pagos { get; set; }
+
+    
 
         //public int Fk_Usuario { get; set; }
         //[ForeignKey("Fk_Usuario")]

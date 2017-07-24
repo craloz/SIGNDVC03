@@ -47,7 +47,12 @@
                                 <td>@user.Empleado.Persona.fecha_nacimiento</td>
                                 <td>@user.usuario</td>
                                 <td>@user.clave</td>
-                                <td></td>
+                                <td>
+                                    <center>
+                                        <a href="/Configuration/EditarUsuario?usuario=@user.usuario" title="Editar"><span class="fa fa-pencil fa-fw" aria-hidden="true"></span></a>
+                                        <a href="/Configuration/BorrarUsuario?usuario=@user.usuario" title="Eliminar" onclick="return confirm('Estas seguro de borrar el usuario?')" ><span style="color: red;" class="fa fa-close fa-fw" aria-hidden="true"></span></a>
+                                    </center>
+                                </td>
                             </tr>
                         }
                         <tr class="odd gradeX">
@@ -63,7 +68,6 @@
                                 </center>
                             </td>
                         </tr>
-                        
                     </tbody>
                 </table>
                 <!-- /.table-responsive

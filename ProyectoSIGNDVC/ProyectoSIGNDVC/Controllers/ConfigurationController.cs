@@ -166,5 +166,21 @@ namespace ProyectoSIGNDVC.Controllers
             ViewModel vm = new ViewModel { configuracion = Configuracion.GetLastConfiguracion() };
             return View(vm);
         }
+
+        public ActionResult EditarUsuario(string usuario)
+        {
+            ViewModel vm = new ViewModel {
+                usuario = Usuario.GetUsuario(usuario),
+                direcciones = Direccion.GetAllEstadoDireccion(),
+                cargos = Cargo.GetAllCargo()
+            };
+            return View(vm);
+        }
+
+        public ActionResult BorrarUsuario(string usuario)
+        {
+            Usuario.DeleteUsuario(usuario);
+            return RedirectToAction("TablaUsuarios","Configuration");
+        }
     }
 }
