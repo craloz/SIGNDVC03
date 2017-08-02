@@ -196,7 +196,10 @@
     <Content Include="Content\images\dvclogo.png" />
     <Content Include="Content\images\fondologin.jpg" />
     <Content Include="Content\js\appscript.js" />
+    <Content Include="Content\js\lib\angular.js" />
     <Content Include="Content\js\sb-admin-2.js" />
+    <Content Include="Content\js\scripts\app.js" />
+    <Content Include="Content\js\scripts\controllers\welcome.js" />
     <Content Include="Content\vendor\bootstrap-social\bootstrap-social.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap.min.css" />
@@ -396,6 +399,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\js\scripts\services\" />
     <Folder Include="Scripts\test\" />
     <Folder Include="Views\Templates\templatesbootstrap\" />
   </ItemGroup>
