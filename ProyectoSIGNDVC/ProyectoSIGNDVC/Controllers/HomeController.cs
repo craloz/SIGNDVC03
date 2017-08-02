@@ -31,5 +31,6 @@ namespace ProyectoSIGNDVC.Controllers
         {
             return View();
         }
+
     }
 }

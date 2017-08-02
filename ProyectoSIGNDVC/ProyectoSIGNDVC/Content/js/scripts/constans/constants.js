@@ -1,0 +1,1 @@
+﻿angular.module('DVCApp').constant('BASEURL', 'http://localhost:51997');

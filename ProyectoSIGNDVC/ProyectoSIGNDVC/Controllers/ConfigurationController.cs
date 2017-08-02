@@ -3,6 +3,7 @@ using ProyectoSIGNDVC.Attributes;
 using ProyectoSIGNDVC.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -177,10 +178,21 @@ namespace ProyectoSIGNDVC.Controllers
             return View(vm);
         }
 
-        public ActionResult BorrarUsuario(string usuario)
+        [HttpDelete]
+        public ActionResult DeleteUsuario(string usuario)
         {
             Usuario.DeleteUsuario(usuario);
             return RedirectToAction("TablaUsuarios","Configuration");
+        }
+
+        public JsonResult GetAllUsuarios()
+        {
+            return Json(Usuario.GetAllUsuarios(), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult Prueba(string usuario)
+        {
+            return Json(usuario);
         }
     }
 }

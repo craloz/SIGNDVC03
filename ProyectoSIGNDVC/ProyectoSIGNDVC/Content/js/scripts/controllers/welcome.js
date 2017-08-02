@@ -1,7 +1,8 @@
-﻿/*app.controller('WelcomeCtrl', function ($scope) {
-    $scope.intento = [{ nombre: 'Carlos' }, { nombre: 'Lozano' }];
-});*/
-
-angular.module('DVCApp').controller('WelcomeCtrl', function ($scope) {
-    $scope.intento = [{ nombre: 'Carlos' }, { nombre: 'Lozano' }];
+﻿angular.module('DVCApp').controller('WelcomeCtrl', function ($scope, usuarioService) {
+    
+    usuarioService.all().then(function (response) {
+        console.log(response);
+    }, function (error) {
+        console.log(error);
+    });
 });
