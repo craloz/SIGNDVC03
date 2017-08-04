@@ -200,8 +200,10 @@
     <Content Include="Content\js\sb-admin-2.js" />
     <Content Include="Content\js\scripts\app.js" />
     <Content Include="Content\js\scripts\constans\constants.js" />
+    <Content Include="Content\js\scripts\controllers\nomina.js" />
     <Content Include="Content\js\scripts\controllers\usuario.js" />
     <Content Include="Content\js\scripts\controllers\welcome.js" />
+    <Content Include="Content\js\scripts\services\nomina.js" />
     <Content Include="Content\js\scripts\services\usuario.js" />
     <Content Include="Content\vendor\bootstrap-social\bootstrap-social.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap.css" />

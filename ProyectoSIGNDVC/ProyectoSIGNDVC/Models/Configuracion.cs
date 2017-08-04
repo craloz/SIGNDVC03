@@ -12,15 +12,15 @@ namespace ProyectoSIGNDVC
     public class Configuracion
     {[Key]
         public int ConfiguracionID { get; set; }
-        public int sso_aporte { get; set; }
-        public int sso_retencion { get; set; }
-        public int rpe_aporte { get; set; }
-        public int rpe_retencion { get; set; }
-        public int faov_aporte { get; set; }
-        public int faov_retencion { get; set; }
-        public int inces_aporte { get; set; }
-        public int inces_retencion { get; set; }
-        public int unid_tributaria { get; set; }
+        public float sso_aporte { get; set; }
+        public float sso_retencion { get; set; }
+        public float rpe_aporte { get; set; }
+        public float rpe_retencion { get; set; }
+        public float faov_aporte { get; set; }
+        public float faov_retencion { get; set; }
+        public float inces_aporte { get; set; }
+        public float inces_retencion { get; set; }
+        public float unid_tributaria { get; set; }
         public DateTime fecha_inicio_config { get; set; }
         public int? fecha_fin_config { get; set; }
 
