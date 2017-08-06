@@ -33,6 +33,7 @@ namespace ProyectoSIGNDVC.Controllers
             //ViewBag.message = "Nomina: "+nominaid+"Aprobada";
             
             Models.Nomina.AprobarNomina(int.Parse(nominaid));
+            Notificacion.AddNotificacion("NOMINA", "Nueva Nomina Creada", "Se ha creado una nueva solicitud de nomina", int.Parse(nominaid), 1);
             return RedirectToAction("ListaNomina","Pago");
         }
 
