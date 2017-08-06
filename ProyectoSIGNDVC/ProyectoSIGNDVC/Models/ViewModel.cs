@@ -11,6 +11,7 @@ namespace ProyectoSIGNDVC.Models
         public List<Direccion> direcciones {get; set;}
         public List<Cargo> cargos { get; set; }
         public List<Usuario> usuarios { get; set; }
+        public List<Empleado> empleados { get; set; }
         public int index { get; set; }
         public int nominaId { get; set; }
         public Configuracion configuracion { get; set; }

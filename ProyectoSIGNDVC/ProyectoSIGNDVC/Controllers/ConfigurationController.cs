@@ -151,15 +151,15 @@ namespace ProyectoSIGNDVC.Controllers
         {
             Configuracion cf = new Configuracion
             {
-                faov_retencion = int.Parse(fc.Get("faov_retencion")),
-                faov_aporte = int.Parse(fc.Get("faov_aporte")),
-                rpe_retencion = int.Parse(fc.Get("rpe_retencion")),
-                rpe_aporte = int.Parse(fc.Get("rpe_aporte")),
-                sso_retencion = int.Parse(fc.Get("sso_retencion")),
-                sso_aporte = int.Parse(fc.Get("sso_aporte")),
-                inces_retencion = int.Parse(fc.Get("inces_retencion")),
-                inces_aporte = int.Parse(fc.Get("inces_aporte")),
-                unid_tributaria = int.Parse(fc.Get("unid_tributaria")),
+                faov_retencion = float.Parse(fc.Get("faov_retencion")),
+                faov_aporte = float.Parse(fc.Get("faov_aporte")),
+                rpe_retencion = float.Parse(fc.Get("rpe_retencion")),
+                rpe_aporte = float.Parse(fc.Get("rpe_aporte")),
+                sso_retencion = float.Parse(fc.Get("sso_retencion")),
+                sso_aporte = float.Parse(fc.Get("sso_aporte")),
+                inces_retencion = float.Parse(fc.Get("inces_retencion")),
+                inces_aporte = float.Parse(fc.Get("inces_aporte")),
+                unid_tributaria = float.Parse(fc.Get("unid_tributaria")),
                 fecha_inicio_config = DateTime.Now,
 
             };

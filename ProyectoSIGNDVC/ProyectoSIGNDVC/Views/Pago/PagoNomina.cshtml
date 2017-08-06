@@ -16,12 +16,9 @@
             <div class="panel-body">
                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
-                        <tr>
-                            <th>Sel</th>
-                            <th>Código de empleado</th>
+                        <tr>                            
                             <th>Nombre</th>
-                            <th>Sueldo Quincenal</th>
-                            <th>Retroactivos</th>
+                            <th>Sueldo Quincenal</th>                            
                             <th>Retenciones</th>
                             <th>Cargas</th>
                             <th>Neto a pagar</th>
@@ -29,6 +26,7 @@
                         </tr>
                     </thead>
                     <tbody>
+<<<<<<< HEAD
 
                             <tr class="odd gradeX">
                                 <td><input type="checkbox" class="form-control" /></td>
@@ -37,37 +35,26 @@
                                 <td  style="color: green"></td>
                                 <td>Retroactivos</td>
                                 <td>Retenciones</td>
+=======
+                        @foreach (var user in Model.empleados)
+                        {
+                            <tr class="odd gradeX">                                
+                                <td>@String.Concat(user.Persona.nombre, " " + user.Persona.apellido)</td>
+                                <td  style="color: green">@(user.sueldo/2)</td>                                
+                                <td style="color: red">- @(user.Retenciones/2)</td>
+>>>>>>> 14f417a42ecae564d2c758960e8da4459fe75148
                                 <td>Cargas</td>
-                                <td>Neto a Pagar</td>
+                                <td>@((user.sueldo / 2)-(user.Retenciones/2))</td>
                                 <td>
                                     <center>
                                         <a  title="Ver" data-toggle="modal" data-target="#myModal" onclick="">
                                             <i class="fa fa-search fa-fw"></i>
+
                                         </a>
                                     </center>
                                 </td>  
                             </tr>
-                        }
-                        <tr class="odd gradeX">   
-                            <td>
-                                <input type="checkbox" class="form-control" />
-                            </td>
-                            <td>0001</td>
-                            <td>José Rodríguez</td>
-                            <td><span style="color: green">25.000,00</span></td>
-                            <td><span style="color: green">2.543,18</span></td>
-                            <td ><span style="color: red">- 3.456,27</span></td>
-                            <td >0</td>
-                            <td><span style="color: green">24.086,91</span></td>
-                            <td>
-                                <center>
-									
-									<a title="Ver" data-toggle="modal" data-target="#myModal" onclick="">
-										<i class="fa fa-search fa-fw"></i>
-									</a>                                    
-                                </center>
-                            </td>
-                        </tr>
+                        }                        
 
                     </tbody>
                 </table>
