@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -175,7 +177,6 @@ namespace ProyectoSIGNDVC.Controllers
                 cargos = Cargo.GetAllCargo(),
                 usuario = Usuario.GetUsuario(usuario)
             };
-            var prueba = vm.usuario;
             return View(vm);
         }
         public ActionResult DeleteUsuario(String usuario)
@@ -192,6 +193,33 @@ namespace ProyectoSIGNDVC.Controllers
         public JsonResult GetUsuario(string usuario)
         {
             return Json(Usuario.GetUsuario(usuario),JsonRequestBehavior.AllowGet);
+        }
+
+        public async System.Threading.Tasks.Task<JsonResult> pruebaAsync()
+        {
+
+            var body = "<p>Email This is test</p>";
+            var message = new MailMessage();
+            message.To.Add(new MailAddress("carlos.elp94@gmail.com"));  // replace with valid value 
+            message.From = new MailAddress("carlosenriquelozanoperez@hotmail.com");  // replace with valid value
+            message.Subject = "Your Email Subject TEST";
+            message.Body = string.Format(body);
+            message.IsBodyHtml = true;
+
+            using (var smtp = new SmtpClient())
+            {
+                var credential = new NetworkCredential
+                {
+                    UserName = Properties.Resources.EmailDVC,  // replace with valid value
+                    Password = Properties.Resources.PasswordDVC // replace with valid value
+                };
+                smtp.Credentials = credential;
+                smtp.Host = "smtp-mail.outlook.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                await smtp.SendMailAsync(message);
+                return Json("Sent",JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }
