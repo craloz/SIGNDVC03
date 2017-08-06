@@ -21,6 +21,7 @@ namespace ProyectoSIGNDVC
         public float inces_aporte { get; set; }
         public float inces_retencion { get; set; }
         public float unid_tributaria { get; set; }
+        public float bonoalimentacion { get; set; }
         public DateTime fecha_inicio_config { get; set; }
         public int? fecha_fin_config { get; set; }
 

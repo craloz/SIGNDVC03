@@ -17,41 +17,13 @@ namespace ProyectoSIGNDVC.Controllers
 
         public ActionResult PagoNomina()
         {
-
-            return View();
-
                        
             var nomina = new Nomina
             {
                 fecha_emision = DateTime.Now,
                 Pagos = new List<Pago>(),
 
-            };
-            /*using (var ctx = new AppDbContext())
-            {
-                var empleado = (from emp in ctx.Empleados
-                                select emp);
-                foreach (var empl in empleado.ToList())
-                {
-                    if (empl.Pagos == null)
-                    {
-                        empl.Pagos = new List<Pago>();
-                    }
-                    Pago pago = new Pago
-                    {
-                        monto = empl.sueldo / 2,
-                        aprobado = false,
-                        f_pago = DateTime.Now,
-                        numero_ref = 1234
-                    };
-                    empl.Pagos.Add(pago);
-                    ctx.Nominas.Add(nomina);
-                    nomina.Pagos.Add(pago);
-                    ctx.SaveChanges();
-                }
-                ViewModel vm = new ViewModel {  nominaId = nomina.NominaID, usuarios = Usuario.GetAllUsuarios() };
-                return View(vm);
-            }*/
+            };            
             ViewModel vm = new ViewModel { nominaId = nomina.NominaID, usuarios = Usuario.GetAllUsuarios(), empleados = Empleado.calcularSalario() };
             return View(vm);            
         }

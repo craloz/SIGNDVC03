@@ -162,6 +162,7 @@ namespace ProyectoSIGNDVC.Controllers
                 inces_retencion = float.Parse(fc.Get("inces_retencion")),
                 inces_aporte = float.Parse(fc.Get("inces_aporte")),
                 unid_tributaria = float.Parse(fc.Get("unid_tributaria")),
+                bonoalimentacion = float.Parse(fc.Get("bonoalimentacion")),
                 fecha_inicio_config = DateTime.Now,
 
             };
