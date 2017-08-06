@@ -40,9 +40,7 @@ INSERT INTO [dbo].[Cargoes]
 INSERT INTO [dbo].[Cargoes]
            ([nombre])
      VALUES
-           ('Asistente de Administración');
-		   
-		   
+           ('Asistente de Administración');	   
 GO
 
 

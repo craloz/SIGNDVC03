@@ -62,7 +62,7 @@ namespace ProyectoSIGNDVC.Controllers
 
                             nombre = fc.Get("nombrecarga" + i.ToString()),
                             apellido = fc.Get("apellidocarga" + i.ToString()),
-                            sexo = (fc.Get("sexocarga" + i.ToString()))[0],
+                            sexo = fc.Get("sexocarga" + i.ToString()),
                             cedula = int.Parse(fc.Get("cedulacarga" + i.ToString())),
                             fecha_nacimiento = DateTime.Parse(fc.Get("fechanaccarga" + i.ToString()))
                         },
@@ -90,7 +90,7 @@ namespace ProyectoSIGNDVC.Controllers
                         apellido = fc.Get("apellido"),
                         fecha_nacimiento = DateTime.Parse(fc.Get("fechanac")),
                         cedula = int.Parse(fc.Get("cedula")),
-                        sexo = fc.Get("sexo")[0]
+                        sexo = fc.Get("sexo")
                     },
                     sueldo = int.Parse(fc.Get("sueldo")),
                     fecha_ingreso = DateTime.Now,
@@ -168,31 +168,30 @@ namespace ProyectoSIGNDVC.Controllers
             return View(vm);
         }
 
-        public ActionResult EditarUsuario(string usuario)
+        public ActionResult EditarUsuario(String usuario)
         {
             ViewModel vm = new ViewModel {
-                usuario = Usuario.GetUsuario(usuario),
                 direcciones = Direccion.GetAllEstadoDireccion(),
-                cargos = Cargo.GetAllCargo()
+                cargos = Cargo.GetAllCargo(),
+                usuario = Usuario.GetUsuario(usuario)
             };
+            var prueba = vm.usuario;
             return View(vm);
         }
-
-        [HttpDelete]
-        public ActionResult DeleteUsuario(string usuario)
+        public ActionResult DeleteUsuario(String usuario)
         {
             Usuario.DeleteUsuario(usuario);
-            return RedirectToAction("TablaUsuarios","Configuration");
+            return new HttpStatusCodeResult(200);
         }
 
         public JsonResult GetAllUsuarios()
         {
             return Json(Usuario.GetAllUsuarios(), JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
-        public JsonResult Prueba(string usuario)
+
+        public JsonResult GetUsuario(string usuario)
         {
-            return Json(usuario);
+            return Json(Usuario.GetUsuario(usuario),JsonRequestBehavior.AllowGet);
         }
     }
 }

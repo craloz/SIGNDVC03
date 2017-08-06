@@ -33,7 +33,6 @@ namespace ProyectoSIGNDVC
         {
             using (var ctx = new AppDbContext())
             {
-
                 var query = (from user in ctx.Usuarios
                              join emp in ctx.Empleados on user.EmpleadoID equals emp.EmpleadoID
                              join per in ctx.Personas on emp.Fk_Persona equals per.PersonaID
@@ -43,6 +42,23 @@ namespace ProyectoSIGNDVC
                 var usuario2 = query2.user;
                 usuario2.Empleado = query2.emp;
                 usuario2.Empleado.Persona = query2.per;
+
+                var query3 = (from carga in ctx.Cargas
+                              where carga.Fk_Empleado == usuario2.Empleado.EmpleadoID
+                              join per in ctx.Personas on carga.Fk_Persona equals per.PersonaID
+                              select new { carga, per });
+                usuario2.Empleado.Cargas = new List<Carga>();
+                foreach (var item in query3.ToList())
+                {
+                    item.carga.Persona = item.per;
+                    usuario2.Empleado.Cargas.Add(item.carga);
+                }
+
+                var query4 = (from cargo in ctx.Cargos
+                              where cargo.CargoID == usuario2.Empleado.Fk_Cargo
+                              select cargo
+                    );
+                usuario2.Empleado.Cargo = query4.FirstOrDefault();
                 return usuario2;
             }
         }

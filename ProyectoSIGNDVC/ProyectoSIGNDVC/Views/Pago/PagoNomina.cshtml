@@ -29,20 +29,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var user in Model.usuarios)
-                        {
+
                             <tr class="odd gradeX">
                                 <td><input type="checkbox" class="form-control" /></td>
-                                <td>@user.usuarioID</td>
-                                <td>@String.Concat(user.Empleado.Persona.nombre, " " + user.Empleado.Persona.apellido)</td>
-                                <td  style="color: green">@(user.Empleado.sueldo/2)</td>
+                                <td></td>
+                                <td></td>
+                                <td  style="color: green"></td>
                                 <td>Retroactivos</td>
                                 <td>Retenciones</td>
                                 <td>Cargas</td>
                                 <td>Neto a Pagar</td>
                                 <td>
                                     <center>
-                                        <a  title="Ver" data-toggle="modal" data-target="#myModal" onclick="@user.usuarioID">
+                                        <a  title="Ver" data-toggle="modal" data-target="#myModal" onclick="">
                                             <i class="fa fa-search fa-fw"></i>
                                         </a>
                                     </center>
