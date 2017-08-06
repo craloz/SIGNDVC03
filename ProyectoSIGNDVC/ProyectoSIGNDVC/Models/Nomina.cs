@@ -43,9 +43,42 @@ namespace ProyectoSIGNDVC.Models
                 ctx.Nominas.Add(nom);
                 ctx.SaveChanges();
             };
-        
-        
-            
+        }
+
+        public static List<Nomina> GetAllNominas()
+        {
+            using (var ctx = new AppDbContext())
+            {
+                var query = (from nomina in ctx.Nominas
+                             orderby nomina.fecha_emision ascending
+                             select nomina);
+                var nominas = new List<Nomina>();
+                nominas = query.ToList();
+                return nominas;
+            }
+        }
+
+        public static Nomina GetNomina(int nominaid)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                
+                var query = (from nomina in ctx.Nominas
+                            where nomina.NominaID == nominaid
+                             select nomina);
+                return query.FirstOrDefault();
+            }
+        }
+
+        public static void AprobarNomina(int nominaid)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                var nomina = GetNomina(nominaid);
+                nomina.fecha_aprobacion = DateTime.Now;
+                ctx.Entry(nomina).State = System.Data.Entity.EntityState.Modified;
+                ctx.SaveChanges();
+            }
         }
     }
 }

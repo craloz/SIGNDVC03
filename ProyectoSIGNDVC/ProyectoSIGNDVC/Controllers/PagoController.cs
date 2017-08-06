@@ -28,9 +28,12 @@ namespace ProyectoSIGNDVC.Controllers
             return View(vm);            
         }
 
-        public ActionResult AprobarNomina()
+        public ActionResult AprobarNomina(String nominaid)
         {
-            return View();
+            //ViewBag.message = "Nomina: "+nominaid+"Aprobada";
+            
+            Models.Nomina.AprobarNomina(int.Parse(nominaid));
+            return RedirectToAction("ListaNomina","Pago");
         }
 
         public ActionResult Nomina()
@@ -40,7 +43,8 @@ namespace ProyectoSIGNDVC.Controllers
 
         public ActionResult ListaNomina()
         {
-            return View();
+            ViewModel vm = new ViewModel { nominas = Models.Nomina.GetAllNominas() };
+            return View(vm);
         }
 
         public ActionResult DetallePago()
@@ -54,7 +58,7 @@ namespace ProyectoSIGNDVC.Controllers
             
             DateTime fechaefectivo = DateTime.Parse(fc.Get("fechaefectiva"));
             Pago.GenerarNomina(fechaefectivo);
-            return View();
+            return RedirectToAction("ListaNomina","Pago");
         }
     }
 }

@@ -38,8 +38,6 @@ namespace ProyectoSIGNDVC
         {
             using (var ctx = new AppDbContext())
             {
-
-
                 var Query = (from conf in ctx.Configuraciones
                              where conf.fecha_fin_config == null
                              orderby conf.fecha_inicio_config descending
