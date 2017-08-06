@@ -17,9 +17,9 @@ namespace ProyectoSIGNDVC.Controllers
 
         public ActionResult PagoNomina()
         {
-<<<<<<< HEAD
+
             return View();
-=======
+
                        
             var nomina = new Nomina
             {
@@ -54,7 +54,6 @@ namespace ProyectoSIGNDVC.Controllers
             }*/
             ViewModel vm = new ViewModel { nominaId = nomina.NominaID, usuarios = Usuario.GetAllUsuarios(), empleados = Empleado.calcularSalario() };
             return View(vm);            
->>>>>>> 14f417a42ecae564d2c758960e8da4459fe75148
         }
 
         public ActionResult AprobarNomina()
