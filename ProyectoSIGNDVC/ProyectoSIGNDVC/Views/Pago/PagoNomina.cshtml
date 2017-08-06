@@ -20,31 +20,22 @@
                             <th>Nombre</th>
                             <th>Sueldo Quincenal</th>                            
                             <th>Retenciones</th>
+                            <th>Bono de Alimentación</th>
                             <th>Cargas</th>
                             <th>Neto a pagar</th>
                             <th>Detalle</th>
                         </tr>
                     </thead>
                     <tbody>
-<<<<<<< HEAD
-
-                            <tr class="odd gradeX">
-                                <td><input type="checkbox" class="form-control" /></td>
-                                <td></td>
-                                <td></td>
-                                <td  style="color: green"></td>
-                                <td>Retroactivos</td>
-                                <td>Retenciones</td>
-=======
                         @foreach (var user in Model.empleados)
                         {
                             <tr class="odd gradeX">                                
                                 <td>@String.Concat(user.Persona.nombre, " " + user.Persona.apellido)</td>
                                 <td  style="color: green">@(user.sueldo/2)</td>                                
-                                <td style="color: red">- @(user.Retenciones/2)</td>
->>>>>>> 14f417a42ecae564d2c758960e8da4459fe75148
-                                <td>Cargas</td>
-                                <td>@((user.sueldo / 2)-(user.Retenciones/2))</td>
+                                <td style="color: red">- @(user.Retenciones/2)</td>                                
+                                <td style="color: green">@(user.BonoAlimentacion)</td>
+                                <td style="color: red">- @(user.costoCargas)</td>
+                                <td>@((user.sueldo / 2)-(user.Retenciones/2)-(user.costoCargas)+(user.BonoAlimentacion))</td>
                                 <td>
                                     <center>
                                         <a  title="Ver" data-toggle="modal" data-target="#myModal" onclick="">

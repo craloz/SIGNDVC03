@@ -42,15 +42,45 @@ namespace ProyectoSIGNDVC
         public float Retenciones { get; set; }
         [NotMapped]
         public float BonoAlimentacion { get; set; }
+        [NotMapped]
+        public float costoCargas { get; set; }
 
-        public static float calcularBonoAlimentacion() {
-            return 0;
+
+
+
+
+
+        public static float getCostoCargas(int idEmpleado)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                float total = 0;
+                List<Carga> listCarga = new List<Carga>();
+                var query3 = (from carga in ctx.Cargas
+                              where carga.Fk_Empleado == idEmpleado
+                              join per in ctx.Personas on carga.Fk_Persona equals per.PersonaID
+                              select new { carga, per });
+                
+                foreach (var item in query3.ToList())
+                {                    
+                    listCarga.Add(item.carga);
+                }
+                foreach (var carga in listCarga)
+                {
+                    total = carga.monto_poliza + total;
+                }
+
+
+                return total;
+            }
+            
         }
 
         public static int calcularLunes()
         {
             DateTime thisMonth= DateTime.Now;
             int mondays = 0;
+            int day = thisMonth.Day;
             int month = thisMonth.Month;
             int year = thisMonth.Year;
             int daysThisMonth = DateTime.DaysInMonth(year, month);
@@ -71,7 +101,8 @@ namespace ProyectoSIGNDVC
         public static List<Empleado> calcularSalario() {
             using (var ctx = new AppDbContext())
             {
-                
+                DateTime today = DateTime.Now;                
+                int day = today.Day;                
                 List<Empleado> listEmp = new List<Empleado>();
                 Configuracion conf = new Configuracion();
                 conf = Configuracion.GetLastConfiguracion();
@@ -87,7 +118,16 @@ namespace ProyectoSIGNDVC
                     em.RPE = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_retencion / 100)) * calcularLunes());
                     em.FAOV = ( calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion/100) );
                     em.INCES = (((empl.emp.sueldo * (60 / 360))*12)*(conf.inces_retencion/100));
+                    if (day > 25)
+                    {
+                        em.BonoAlimentacion = (conf.bonoalimentacion * conf.unid_tributaria * 30);
+                    }
+                    else
+                    {
+                        em.BonoAlimentacion = 0;
+                    }                    
                     em.Retenciones = em.SSO + em.RPE + em.FAOV + em.INCES;
+                    em.costoCargas = (float) ((getCostoCargas(empl.emp.EmpleadoID) * (0.3))/12);
                     listEmp.Add(em);
 
                 }
