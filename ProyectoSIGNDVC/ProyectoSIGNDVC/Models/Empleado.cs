@@ -112,6 +112,7 @@ namespace ProyectoSIGNDVC
                 foreach (var empl in empleado.ToList())
                 {
                     Empleado em = new Empleado();
+                    em.EmpleadoID = empl.emp.EmpleadoID;
                     em.Persona = empl.per;
                     em.sueldo = empl.emp.sueldo;
                     em.SSO =( (((empl.emp.sueldo*12)/ 52) * (conf.sso_retencion/100)) * calcularLunes());
