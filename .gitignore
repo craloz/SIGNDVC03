@@ -289,4 +289,4 @@ __pycache__/
 *.xsd.cs
 
 # WEBCONFIG
-/ProyectoSIGNDVC/ProyectoSIGNDVC/Web.config
+ProyectoSIGNDVC/ProyectoSIGNDVC/Web.config
