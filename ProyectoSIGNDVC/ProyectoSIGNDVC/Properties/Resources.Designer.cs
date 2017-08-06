@@ -79,7 +79,7 @@ namespace ProyectoSIGNDVC.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to carlosenriquelozanoperez@hotmail.com.
         /// </summary>
         internal static string EmailDVC {
             get {

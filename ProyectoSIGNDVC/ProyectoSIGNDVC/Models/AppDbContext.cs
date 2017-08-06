@@ -22,5 +22,6 @@ namespace ProyectoSIGNDVC.Models
         public DbSet<Pago> Pagos { get; set; }
         public DbSet<Nomina> Nominas { get; set; }
         public DbSet<Configuracion> Configuraciones { get; set; }
+        public DbSet<Notificacion> Notificaciones { get; set; }
     }
 }

@@ -126,7 +126,7 @@
     <comment>Email body para empleados</comment>
   </data>
   <data name="EmailDVC" xml:space="preserve">
-    <value />
+    <value>carlosenriquelozanoperez@hotmail.com</value>
     <comment>Cuenta Email desde donde sera enviado el correo</comment>
   </data>
   <data name="PasswordDVC" xml:space="preserve">
