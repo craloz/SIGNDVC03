@@ -35,7 +35,7 @@
                                 <td style="color: red">- @(user.Retenciones/2)</td>                                
                                 <td style="color: green">@(user.BonoAlimentacion)</td>
                                 <td style="color: red">- @(user.costoCargas)</td>
-                                <td>@((user.sueldo / 2)-(user.Retenciones/2)-(user.costoCargas)+(user.BonoAlimentacion))</td>
+                                <td>@(user.MontoTotal)</td>
                                 <td>
                                     <center>
                                         <a  title="Ver" data-toggle="modal" data-target="#myModal" onclick="">
@@ -117,7 +117,6 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-
 							</div>
 						</div>
 						<!-- /.modal-content -->
@@ -131,20 +130,24 @@
                         <h3>Total Nomina: <strong>24.086,91</strong></h3>
                     </div>
                 </div>
-
-                <div class="row">                    
-                    <div class="col-md-offset-6 col-md-6">
-                        <button class="btn btn-success pull-right">Pagar</button>
-                    </div>                    
-                </div>
-                <!-- /.table-responsive
-                <div class="well">
-                    <h4>DataTables Usage Information</h4>
-                    <p>DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at <a target="_blank" href="https://datatables.net/">https://datatables.net/</a>.</p>
-                    <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a>
-                </div>
-                -->
-            </div>        
+                <form role="form" action="/Pago/GenerarNomina" method="post">
+                    <div class="row">
+                        <div class="col-md-offset-7 col-md-4">
+                            <input required id="fechaefectiva" name="fechaefectiva" type="date" autofocus size="0" class="pull-right form-control">
+                        </div>
+                        <div class="col-md-1">
+                            <input type="submit" class="btn btn-success pull-right" value="Pagar">
+                        </div>
+                    </div>
+                </form>
+                    <!-- /.table-responsive
+        <div class="well">
+            <h4>DataTables Usage Information</h4>
+            <p>DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at <a target="_blank" href="https://datatables.net/">https://datatables.net/</a>.</p>
+            <a class="btn btn-default btn-lg btn-block" target="_blank" href="https://datatables.net/">View DataTables Documentation</a>
+        </div>
+        -->
+</div>        
         <!-- /.panel-body -->
     </div>
     <!-- /.panel -->

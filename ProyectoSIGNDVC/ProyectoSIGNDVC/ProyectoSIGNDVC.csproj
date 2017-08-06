@@ -411,6 +411,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\test\" />
+    <Folder Include="Views\Nomina\" />
     <Folder Include="Views\Templates\templatesbootstrap\" />
   </ItemGroup>
   <ItemGroup>

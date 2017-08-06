@@ -47,5 +47,14 @@ namespace ProyectoSIGNDVC.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult GenerarNomina(FormCollection fc)
+        {
+            
+            DateTime fechaefectivo = DateTime.Parse(fc.Get("fechaefectiva"));
+            Pago.GenerarNomina(fechaefectivo);
+            return View();
+        }
     }
 }

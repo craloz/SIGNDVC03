@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using ProyectoSIGNDVC.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectoSIGNDVC
 {
@@ -17,6 +19,14 @@ namespace ProyectoSIGNDVC
         public DateTime f_pago { get; set; }
         public float monto { get; set; }
         public Boolean aprobado { get; set; }
+        public int Fk_Empleado { get; set; }
+        [ForeignKey("Fk_Empleado")]
+        public Empleado Empleado { get; set; }
+        public int Fk_Nomina { get; set; }
+        [ForeignKey("Fk_Nomina")]
+        public Persona Persona { get; set; }
+
+
         public static List<Pago> CreatePagos(List<Usuario> usuarios)
         {
             List<Pago> listaPagos = new List<Pago>();
@@ -32,6 +42,37 @@ namespace ProyectoSIGNDVC
             }
             return listaPagos;
         }
+
+
+        public static void GenerarNomina(DateTime fechaefectiva)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                Nomina.AddNomina(fechaefectiva);                
+                int idnom = Nomina.GetLastNominaID();
+                List<Empleado> listEmp = Empleado.calcularSalario();
+                DateTime today = DateTime.Now;
+                int year = today.Year;
+                int month = today.Month;
+                foreach (var emp in listEmp)
+                {
+                    int cont = 1;
+                    Pago pago = new Pago()
+                    {
+                        numero_ref = int.Parse(month.ToString() + year.ToString() + cont.ToString().PadLeft(4, '0')),
+                        f_pago = today,
+                        monto = emp.MontoTotal,
+                        aprobado = false,
+                        Fk_Empleado = emp.EmpleadoID,
+                        Fk_Nomina = idnom
+                    };
+                    ctx.Pagos.Add(pago);
+                    ctx.SaveChanges();
+
+                }
+            }
+        }
+
     }
 
     

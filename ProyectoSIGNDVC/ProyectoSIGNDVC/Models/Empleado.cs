@@ -44,6 +44,8 @@ namespace ProyectoSIGNDVC
         public float BonoAlimentacion { get; set; }
         [NotMapped]
         public float costoCargas { get; set; }
+        [NotMapped]
+        public float MontoTotal { get; set; }
 
 
 
@@ -129,6 +131,7 @@ namespace ProyectoSIGNDVC
                     }                    
                     em.Retenciones = em.SSO + em.RPE + em.FAOV + em.INCES;
                     em.costoCargas = (float) ((getCostoCargas(empl.emp.EmpleadoID) * (0.3))/12);
+                    em.MontoTotal = ((em.sueldo / 2) - (em.Retenciones / 2) - (em.costoCargas) + (em.BonoAlimentacion));
                     listEmp.Add(em);
 
                 }
