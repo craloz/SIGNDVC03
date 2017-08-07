@@ -1,4 +1,4 @@
-﻿
+﻿@model ProyectoSIGNDVC.Models.ViewModel
 @{
     ViewBag.Title = "TablaPagos";
     Layout = "~/Views/Templates/_TemplateIndex.cshtml";
@@ -17,44 +17,39 @@
                 Historial de recibos
             </div>
             <!-- /.panel-heading -->
-            <center class="panel-body">
-                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <div class="panel-body">
+                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                         <tr>
-                            <th>Código de empleado</th>
-                            <th>Nombre</th>
+                            <th>Numero Ref</th>
                             <th>Fecha</th>
+                            <th>Monto</th>
                             <th>Confirmación</th>
-                            <th>Opciones</th>
+                            <th>Ver</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="odd gradeX">
-                            <td>0001</td>
-                            <td>José Rodríguez</td>
-                            <td>05/05/2017</td>
-                            <td class="center">Confirmado</td>
-                            <td>
-                                <center>
-                                    <a href="detalle.html" title="Ver Pago"><span class="fa fa-search fa-fw" aria-hidden="true"></span></a>
-                                    <a href="" title="Confirmar"><span style="color: green;" class="fa fa-check fa-fw" aria-hidden="true"></span></a>
-                                </center>
-                            </td>
-                        </tr>
-                        <tr class="odd gradeX">
-                            <td>0001</td>
-                            <td>José Rodríguez</td>
-                            <td>05/05/2017</td>
-                            <td class="center">Confirmado</td>
-                            <td>
-                                <center>
-                                    <a href="detalle.html" title="Ver Pago"><span class="fa fa-search fa-fw" aria-hidden="true"></span></a>
-                                    <a href="" title="Confirmar"><span style="color: green;" class="fa fa-check fa-fw" aria-hidden="true"></span></a>
-                                </center>
-                            </td>
-                        </tr>
+                        @foreach (var pago in Model.pagos)
+                        {
+                            <tr class="odd gradeX">
+                                <td>@pago.numero_ref</td>
+                                <td>@pago.f_pago</td>
+                                <td>@pago.monto</td>
+                                <td>
+                                    <center>
+                                        <a href="#" style="color:#5cb85c" class="fa fa-check fa-fw"></a>
+                                    </center>
+                                </td>
+                                <td>
+                                    <center>
+                                        <a href="/Pago/VerPago?pago=@pago.PagoID" class="fa fa-search"></a>
+                                    </center>
+                                </td>                                
+                            </tr>
+                        }
                     </tbody>
-                </table>
+                 </table>
+                </div>
                 <!-- /.table-responsive
                 <div class="well">
                     <h4>DataTables Usage Information</h4>
@@ -67,4 +62,4 @@
         </div>
         <!-- /.panel -->
     </div>
-</div>
+

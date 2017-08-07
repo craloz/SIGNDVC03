@@ -71,9 +71,11 @@ namespace ProyectoSIGNDVC
             {
                 var query = ( from notif in ctx.Notificaciones
                               where notif.Fk_Usuario == usuarioid
+                              orderby notif.f_enviado descending
                               select notif
                     );
-                return query.ToList();
+                return query.Take(5).ToList();
+                //return query.ToList();
             }
         }
    

@@ -88,11 +88,47 @@ namespace ProyectoSIGNDVC.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to smtp-mail.outlook.com.
+        /// </summary>
+        internal static string Host {
+            get {
+                return ResourceManager.GetString("Host", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nueva Nomina.
+        /// </summary>
+        internal static string NuevaNomina {
+            get {
+                return ResourceManager.GetString("NuevaNomina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nuevo Pago.
+        /// </summary>
+        internal static string NuevoPago {
+            get {
+                return ResourceManager.GetString("NuevoPago", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
         internal static string PasswordDVC {
             get {
                 return ResourceManager.GetString("PasswordDVC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 587.
+        /// </summary>
+        internal static string Puerto {
+            get {
+                return ResourceManager.GetString("Puerto", resourceCulture);
             }
         }
     }

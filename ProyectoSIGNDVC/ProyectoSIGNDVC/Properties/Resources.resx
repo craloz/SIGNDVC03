@@ -129,8 +129,22 @@
     <value>carlosenriquelozanoperez@hotmail.com</value>
     <comment>Cuenta Email desde donde sera enviado el correo</comment>
   </data>
+  <data name="Host" xml:space="preserve">
+    <value>smtp-mail.outlook.com</value>
+  </data>
+  <data name="NuevaNomina" xml:space="preserve">
+    <value>Nueva Nomina</value>
+    <comment>Texto para la notificacion de Nueva Nomina</comment>
+  </data>
+  <data name="NuevoPago" xml:space="preserve">
+    <value>Nuevo Pago</value>
+    <comment>Texto para la notificacion de Nuevo Pago</comment>
+  </data>
   <data name="PasswordDVC" xml:space="preserve">
     <value />
     <comment>Password de la cuenta Email</comment>
+  </data>
+  <data name="Puerto" xml:space="preserve">
+    <value>587</value>
   </data>
 </root>

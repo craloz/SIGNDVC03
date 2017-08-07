@@ -12,7 +12,8 @@ namespace ProyectoSIGNDVC.Controllers
         // GET: Pago
         public ActionResult TablaPagos()
         {
-            return View();
+            ViewModel vm = new ViewModel {pagos = Pago.GetPagos(1) };
+            return View(vm);
         }
 
         public ActionResult PagoNomina()

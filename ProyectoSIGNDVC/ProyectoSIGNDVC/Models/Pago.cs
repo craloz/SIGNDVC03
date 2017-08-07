@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using ProyectoSIGNDVC.Models;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace ProyectoSIGNDVC
 {
@@ -71,6 +72,19 @@ namespace ProyectoSIGNDVC
 
                 }
             }
+        }
+
+        public static List<Pago> GetPagos(int empleadoId)
+        {
+            using(var ctx = new AppDbContext())
+            {
+                var query = ( from pago in ctx.Pagos
+                              where pago.Fk_Empleado == empleadoId
+                              select pago
+                    );
+                return query.ToList();
+            }
+                
         }
 
     }
