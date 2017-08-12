@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using ProyectoSIGNDVC.Models;
 using System.Linq;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectoSIGNDVC
 {
@@ -18,14 +19,11 @@ namespace ProyectoSIGNDVC
         [Required]
         [Display(Name = "Username")]
         public String usuario { get; set; }
-
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public String clave { get; set; }
-        
         public int EmpleadoID { get; set; }
-
         public Empleado Empleado { get; set; }
 
 

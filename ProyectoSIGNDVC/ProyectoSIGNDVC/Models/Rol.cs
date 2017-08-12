@@ -13,6 +13,5 @@ namespace ProyectoSIGNDVC
         [Key]
         public int RolID{get;set;}
         public String nombre { get; set; }
-        public List<String> url { get; set; }
     }
 }

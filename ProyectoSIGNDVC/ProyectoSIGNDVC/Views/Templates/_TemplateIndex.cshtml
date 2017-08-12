@@ -175,7 +175,7 @@
                         <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
-                        @foreach (var notif in Notificacion.GetAllNotificaciones(1))
+                        @foreach (var notif in Notificacion.GetAllNotificaciones(Usuario.GetUsuario(Session["usuario"].ToString()).usuarioID))
                         {
                             <li>
                                 <a href="#">
@@ -187,7 +187,8 @@
                             </li>
                             <li class="divider"></li>
                         }
-                        <!--<li>
+                        <!--
+                        <li>
                             <a href="#">
                                 <div>
                                     <i class="fa fa-comment fa-fw"></i> New Comment
@@ -249,7 +250,20 @@
                     <ul class="dropdown-menu dropdown-user">
                         <li>
                             <center>
-                                <!--AQUI VA EL README-->
+                              @if (Session["usuario"] != null)
+                              {
+                                <header>@Usuario.GetUsuarioNombres(Session["usuario"].ToString())</header>
+                                    <small>
+                                        Usuario <i style="color:red;">
+                                            @if (Session["usuario"] != null)
+                                            {@Session["usuario"].ToString()  }
+                                        </i>
+                                    </small>
+                              }  
+                                
+                                            <!-- <header>Carlos Lozano</header>
+                 <small> Usuario <i style="color:red;">E-0001</i></small>-->
+
                             </center>
                         </li>
                         <li class="divider"></li>

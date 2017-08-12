@@ -14,11 +14,13 @@ namespace ProyectoSIGNDVC.Controllers
 {
     public class ConfigurationController : Controller
     {
+        [SessionExpire]
         public ActionResult Test()
         {
             return View();
         }
         // GET: Configuration
+        [SessionExpire]
         [HttpPost]
         public JsonResult Test(FormCollection fc)
         {
@@ -27,12 +29,14 @@ namespace ProyectoSIGNDVC.Controllers
             return  Json(dt);
             
         }
+        [SessionExpire]
         public ActionResult Index()
         {
             ViewModel vm = new ViewModel { direcciones = Direccion.GetAllEstadoDireccion(), cargos = Cargo.GetAllCargo() };
             return View(vm);
         }
         [HttpPost]
+        [SessionExpire]
         public ActionResult Index(FormCollection fc)
         {
             int  fk_dir = Direccion.InsertDireccion(fc.Get("casa"), "Casa",
@@ -40,15 +44,12 @@ namespace ProyectoSIGNDVC.Controllers
                         Direccion.InsertDireccion(fc.Get("ciudad"), "Ciudad", Direccion.GetDireccionID(fc.Get("estado"), "Estado"))));
             return View();
         }
-
-        //[SessionExpire]
         public ActionResult RegistroUsuario()
         {
             ViewBag.Message = "Your application description page.";
             ViewModel vm = new ViewModel { direcciones=Direccion.GetAllEstadoDireccion(),cargos=Cargo.GetAllCargo() };
             return View(vm);
         }
-        //[SessionExpire]
         [HttpPost]
         public ActionResult RegistroUsuario(FormCollection fc)
         {
@@ -131,23 +132,26 @@ namespace ProyectoSIGNDVC.Controllers
         }
 
         [HttpPost]
+        [SessionExpire]
         public ActionResult AgregarUsuario()
         {
             return View();
         }
 
+        [SessionExpire]
         public ActionResult TablaUsuarios()
         {
             ViewModel vm = new ViewModel { usuarios = Usuario.GetAllUsuarios() };
             return View(vm);
         }
-
+        [SessionExpire]
         public ActionResult  Variables()
         {
             ViewModel vm = new ViewModel { configuracion = Configuracion.GetLastConfiguracion() };
             return View(vm);
         }
 
+        [SessionExpire]
         [HttpPost]
         public ActionResult Variables(FormCollection fc)
         {
@@ -171,6 +175,7 @@ namespace ProyectoSIGNDVC.Controllers
             return View(vm);
         }
 
+        [SessionExpire]
         public ActionResult EditarUsuario(String usuario)
         {
             ViewModel vm = new ViewModel {
@@ -180,22 +185,27 @@ namespace ProyectoSIGNDVC.Controllers
             };
             return View(vm);
         }
+
+        [SessionExpire]
         public ActionResult DeleteUsuario(String usuario)
         {
             Usuario.DeleteUsuario(usuario);
             return new HttpStatusCodeResult(200);
         }
 
+        [SessionExpire]
         public JsonResult GetAllUsuarios()
         {
             return Json(Usuario.GetAllUsuarios(), JsonRequestBehavior.AllowGet);
         }
 
+        [SessionExpire]
         public JsonResult GetUsuario(string usuario)
         {
             return Json(Usuario.GetUsuario(usuario),JsonRequestBehavior.AllowGet);
         }
 
+        [SessionExpire]
         public async System.Threading.Tasks.Task<JsonResult> pruebaAsync()
         {
             var body = "<div style='margin-left: 30%; margin-right: 30%; border: 2px solid black !important; padding-left: 10px; padding-right: 10px; '> <div style='overflow: hidden;padding-left: 15px;padding-top: 15px;'> <div style='float: left;width: 50%;'> <div > <img width='100%' height='60px' src='/ProyectoSIGNDVC/ProyectoSIGNDVC/Content/images/dvclogo.png'> <p>DIVIDENDO VOLUNTARIO<br> PARA LA COMUNIDAD AC</p> </div> </div> <div style='float: left;width: 50%'> <div style='text-align: right;'> <strong>NOMBRE DEL TRABAJADOR</strong> <p>C.I N#: xxxxxxx:</p> <p>Codigo: xxxxxxx:</p> </div> </div> </div> <p style='background-color: #45454;text-align: center'>Ha Recibido del <span style='font-weight: bold'>DIVIDENDO VOLUNTARIADO PARA LA COMUNIDAD</span>, por concepto de salario correspondiente a la 1era. Quincena de NOVIEMBRE 2016.</p> <div style='overflow: hidden;text-align: right;' width='100%'> <div style='float: left; width: 50% !important; ' width='50%' height='100px'> <p>SALARIO</p> <p>RETROACTIVO</p> <p style='text-decoration: underline;font-weight: bold'>DEDUCCIONES</p> <p>S.S.O</p> <pR.P.E<p> <p>F.A.O.V<p> <p>I.N.C.E.S</p> <p>PRESTAMOS</p> <p>I.S.L.R</p> <p style='margin-bottom:0px'>POLIZA HCM</p> <p style='font-weight: bold;margin-top:0px'>TOTAL DEDUCCIONES</p> <p>NETO</p> </div> <div style='float: left; text-align: center; width: 50% !important;' width='50%' height='100px' > <div style='width: 50% !important;margin-left: 10px;'> <p>1.000.000</p> <p>0,00</p> <p>0,00</p> <p>0,00</p> <p>0,00</p> <p>0,00</p> <p>0,00</p> <p>0,00</p> <p style='border-bottom: 1px solid black;margin-bottom:0px'>0,00</p> <p style='margin-top: 0px'>0,00</p> <p style='border-top: 1px solid black;'>0,00</p> </div> </div> </div> <p style='text-align: center'>Este monto fue abonado en la cuenta del BANCO VENEZOLANO DE CREDITO N# <span style='font-weight: bold'>xxxx-xxxx-xxxx</span></p> <p style='text-align: center;font-weight: bold'>Fecha: 11/11/2016</p> </div>";

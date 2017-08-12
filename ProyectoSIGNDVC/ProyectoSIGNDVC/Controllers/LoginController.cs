@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProyectoSIGNDVC.Models;
+using ProyectoSIGNDVC.Attributes;
 
 namespace ProyectoSIGNDVC.Controllers
 {
     public class LoginController : Controller
     {
-
+        
         public ActionResult Login()
         {
             
@@ -35,13 +36,8 @@ namespace ProyectoSIGNDVC.Controllers
                 return View();
         }
 
-
-        public ActionResult Prueba()
-        {
-            
-            return View();
-        }
         // GET: Login
+        [SessionExpire]
         public ActionResult LogOff()
         {
             Session.Clear();

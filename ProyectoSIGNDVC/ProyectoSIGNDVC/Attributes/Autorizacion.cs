@@ -7,21 +7,66 @@ using System.Web.Routing;
 
 namespace ProyectoSIGNDVC.Attributes
 {
-    public class Autorizacion : AuthorizeAttribute
+    public class AutorizacionDirectorAttribute : AuthorizeAttribute
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)       
         {
+            
+            var usuario = httpContext.Session["usuario"];
+            
+            if (usuario == null)
+            {
+                return false;
+            }
+            else
+            {
+                var temp = Usuario.GetUsuario(usuario.ToString());
+                if (temp != null && temp.Empleado.Cargo.nombre == "Director Ejecutivo")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            };
+        }
+    }
+
+    public class AutorizacionAdministradorAttribute : AuthorizeAttribute
+    {
+        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        {
+
             var usuario = httpContext.Session["usuario"];
 
             if (usuario == null)
-            { 
+            {
                 return false;
             }
-            return true;
+            else
+            {
+                var temp = Usuario.GetUsuario(usuario.ToString());
+                if (temp != null && temp.Empleado.Cargo.nombre == "Asistente de Administración")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            };
         }
+    }
 
-
-
+    public class Auth: AuthorizeAttribute
+    {
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            base.HandleUnauthorizedRequest(filterContext);
+            var usuario = filterContext.HttpContext.Session["usuario"];
+            filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "xxx", action = "xxx"}));
+        }
     }
 
     public class SessionExpireAttribute : ActionFilterAttribute

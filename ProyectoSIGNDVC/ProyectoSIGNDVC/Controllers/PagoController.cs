@@ -1,4 +1,5 @@
-﻿using ProyectoSIGNDVC.Models;
+﻿using ProyectoSIGNDVC.Attributes;
+using ProyectoSIGNDVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,15 @@ namespace ProyectoSIGNDVC.Controllers
     public class PagoController : Controller
     {
         // GET: Pago
+        [SessionExpire]
         public ActionResult TablaPagos()
         {
-            ViewModel vm = new ViewModel {pagos = Pago.GetPagos(1) };
+            
+            ViewModel vm = new ViewModel {pagos = Pago.GetPagos(Usuario.GetUsuario(Session["usuario"].ToString()).usuarioID) };
             return View(vm);
         }
 
+        [SessionExpire]
         public ActionResult PagoNomina()
         {
                        
@@ -29,6 +33,7 @@ namespace ProyectoSIGNDVC.Controllers
             return View(vm);            
         }
 
+        [SessionExpire]
         public ActionResult AprobarNomina(String nominaid)
         {
             //ViewBag.message = "Nomina: "+nominaid+"Aprobada";
@@ -38,22 +43,26 @@ namespace ProyectoSIGNDVC.Controllers
             return RedirectToAction("ListaNomina","Pago");
         }
 
+        [SessionExpire]
         public ActionResult Nomina()
         {
             return View();
         }
 
+        [SessionExpire]
         public ActionResult ListaNomina()
         {
             ViewModel vm = new ViewModel { nominas = Models.Nomina.GetAllNominas() };
             return View(vm);
         }
 
+        [SessionExpire]
         public ActionResult DetallePago()
         {
             return View();
         }
 
+        [SessionExpire]
         [HttpPost]
         public ActionResult GenerarNomina(FormCollection fc)
         {
