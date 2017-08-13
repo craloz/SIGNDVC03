@@ -31,7 +31,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand">SISTEMA PARA LA GESTION DE NOMINA S.I.G.N. DVC</a>
+                <a class="navbar-brand">S.I.G.N. DVC</a>
                 <a class="navbar-brand" href="index.html"><img src=""></a>
             </div>
             <!-- /.navbar-header -->
@@ -181,7 +181,7 @@
                                 <a href="#">
                                     <div>
                                         <i class="fa fa-comment fa-fw"></i>@notif.titulo
-                                        <span class="pull-right text-muted small">@notif.f_enviado</span>
+                                        <span class="pull-right text-muted small" style="font-size:xx-small;">@notif.f_enviado</span>
                                     </div>
                                 </a>
                             </li>
@@ -268,7 +268,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href=@Url.Action("LogOff","Login")><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesion</a>
+                            <a href=@Url.Action("LogOff", "Login")><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesion</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -287,11 +287,15 @@
                         <li>
                             <a href="/Pago/TablaPagos"><i class="fa fa-archive fa-fw"></i>Recibos</a>
                         </li>
-                        <li>
-                            <a href="/Pago/ListaNomina"><i class="fa fa-book fa-fw"></i>Nomina</a>
-                         
-                            <!-- /.nav-second-level -->
-                        </li>
+                        @if (Usuario.GetUsuario(Session["usuario"].ToString()).Empleado.Cargo.nombre == "Director Ejecutivo" || Usuario.GetUsuario(Session["usuario"].ToString()).Empleado.Cargo.nombre == "Ejecutiva de Cuentas")
+                        {
+                            <li>
+                                <a href="/Pago/ListaNomina"><i class="fa fa-book fa-fw"></i>Nomina</a>
+
+                                <!-- /.nav-second-level -->
+                            </li>
+
+
                         <li>
                             <a href="index.html"><i class="fa fa-bar-chart fa-fw"></i>Reportes</a>
                         </li>
@@ -307,6 +311,7 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        }
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
