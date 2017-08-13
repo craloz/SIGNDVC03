@@ -175,7 +175,8 @@
                         <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
-                        @foreach (var notif in Notificacion.GetAllNotificaciones(Usuario.GetUsuario(Session["usuario"].ToString()).usuarioID))
+                    @if (Session["usuario"] != null) { 
+                        foreach (var notif in Notificacion.GetAllNotificaciones(Usuario.GetUsuario(Session["usuario"].ToString()).usuarioID))
                         {
                             <li>
                                 <a href="#">
@@ -187,6 +188,7 @@
                             </li>
                             <li class="divider"></li>
                         }
+                    }
                         <!--
                         <li>
                             <a href="#">
@@ -287,7 +289,8 @@
                         <li>
                             <a href="/Pago/TablaPagos"><i class="fa fa-archive fa-fw"></i>Recibos</a>
                         </li>
-                        @if (Usuario.GetUsuario(Session["usuario"].ToString()).Empleado.Cargo.nombre == "Director Ejecutivo" || Usuario.GetUsuario(Session["usuario"].ToString()).Empleado.Cargo.nombre == "Ejecutiva de Cuentas")
+                    @if (Session["usuario"] != null) { 
+                        if (Usuario.GetUsuario(Session["usuario"].ToString()).Empleado.Cargo.nombre == "Director Ejecutivo" || Usuario.GetUsuario(Session["usuario"].ToString()).Empleado.Cargo.nombre == "Ejecutiva de Cuentas")
                         {
                             <li>
                                 <a href="/Pago/ListaNomina"><i class="fa fa-book fa-fw"></i>Nomina</a>
@@ -312,6 +315,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         }
+                    }
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
