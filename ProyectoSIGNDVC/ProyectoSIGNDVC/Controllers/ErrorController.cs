@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoSIGNDVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,6 +23,11 @@ namespace ProyectoSIGNDVC.Controllers
 
         public ActionResult UnexpectedError()
         {
+            return View();
+        }
+
+        public ActionResult Status() {
+            Direccion.GetAllEstadoDireccion();
             return View();
         }
     }

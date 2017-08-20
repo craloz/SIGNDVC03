@@ -58,24 +58,35 @@
                             <div class="col-xs-3">
                                 <label for="sel1">Estado</label>
                                 <select id="sel1" class="form-control" name="estado">
+                                    @foreach (var dir in Model.direcciones2)
+                                    {
+                                        if (dir.nombre == Model.direcciones[4].nombre)
+                                        {
+                                            <option selected>@dir.nombre</option>
+                                        }
+                                        else
+                                        {
+                                            <option>@dir.nombre</option>
+                                        }
+                                    }
                                 </select>
                             </div>
                             <div class="col-xs-3">
                                 <label for="ciudad">Ciudad</label>
-                                <input required class="form-control" id="ciudad" name="ciudad" type="text">
+                                <input required class="form-control" id="ciudad" name="ciudad" type="text" value="@Model.direcciones[3].nombre">
                             </div>
                             <div class="col-xs-3">
                                 <label for="calle">Calle</label>
-                                <input required class="form-control" id="calle" name="calle" type="text">
+                                <input required class="form-control" id="calle" name="calle" type="text" value="@Model.direcciones[2].nombre">
                             </div>
                             <div class="col-xs-3">
                                 <label for="casa">Casa/Apto</label>
-                                <input required class="form-control" id="casa" name="casa" type="text">
+                                <input required class="form-control" id="casa" name="casa" type="text" value="@Model.direcciones[1].nombre">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="dir">Direccion</label>
-                            <textarea id="dir" class="form-control" name="direccion" col="5" rows="5" value=""></textarea>
+                            <textarea id="dir" class="form-control" name="direccion" col="5" rows="5">@Model.direcciones[0].nombre</textarea>
                         </div>
 
                         <div class="form-group row">

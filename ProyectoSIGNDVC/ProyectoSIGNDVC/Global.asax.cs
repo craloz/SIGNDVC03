@@ -1,6 +1,8 @@
-﻿using System;
+﻿using ProyectoSIGNDVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -16,6 +18,10 @@ namespace ProyectoSIGNDVC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //Daemon daemon = new Daemon();
+            //Thread thread = new Thread(daemon.CheckNominas);
+            //thread.Start();
         }
     }
 }

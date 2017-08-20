@@ -1,4 +1,4 @@
-﻿
+﻿@model ProyectoSIGNDVC.Models.ViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/templates/_TemplateIndex.cshtml";
@@ -17,7 +17,7 @@
                         <i class="fa fa-archive fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">100</div>
+                        <div class="huge">@Notificacion.GetAllNotificaciones(Usuario.GetUsuario(Session["usuario"].ToString()).usuarioID).Count</div>
                         <div>Nuevos Pagos!</div>
                     </div>
                 </div>
@@ -31,8 +31,9 @@
             </a>
         </div>
     </div>
-
-    <div class="col-lg-4 col-md-7">
+    
+@if (Usuario.UsuarioIsDirectorEjecutivo(Session["usuario"].ToString()))
+{    <div class="col-lg-4 col-md-7">
         <div class="panel panel-green">
             <div class="panel-heading">
                 <div class="row">
@@ -52,6 +53,56 @@
                     <div class="clearfix"></div>
                 </div>
             </a>
+        </div>
+    </div>
+}
+
+</div>
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <label>Notificaciones</label>
+            </div>
+            <div class="panel-body">
+                <div class="table table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+
+
+                                <th>Titulo</th>
+                                <th>Notificacion</th>
+                                <th>Ver</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var notif in Model.notificaciones)
+            {
+                                <tr>
+                                    <td>@notif.titulo</td>
+                                    <td>@notif.descripcion</td>
+                                    @if (notif.Fk_Pago != null)
+                                    {
+                                        <td>
+                                            <a href="/@notif.Fk_Pago">Ver Pago</a>
+                                        </td>
+
+                                    }
+                                    else if (notif.Fk_Nomina != null)
+                                    {
+                                        <td>
+                                            <a href="/@notif.Fk_Nomina">Ver Nomina</a>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

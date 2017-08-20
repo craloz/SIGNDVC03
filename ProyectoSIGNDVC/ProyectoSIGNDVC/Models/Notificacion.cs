@@ -65,7 +65,7 @@ namespace ProyectoSIGNDVC
             }
         }
 
-        public static List<Notificacion> GetAllNotificaciones(int usuarioid)
+        public static List<Notificacion> GetTop5Notificaciones(int usuarioid)
         {
             using (var ctx = new AppDbContext())
             {
@@ -78,6 +78,20 @@ namespace ProyectoSIGNDVC
                 //return query.ToList();
             }
         }
-   
+
+        public static List<Notificacion> GetAllNotificaciones(int usuarioid)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                var query = (from notif in ctx.Notificaciones
+                             where notif.Fk_Usuario == usuarioid && notif.f_leido == null
+                             orderby notif.f_enviado descending
+                             select notif
+                    );
+                return query.ToList();
+                //return query.ToList();
+            }
+        }
+
     }
 }

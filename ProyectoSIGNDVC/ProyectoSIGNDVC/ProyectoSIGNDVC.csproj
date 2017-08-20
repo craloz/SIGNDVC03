@@ -170,6 +170,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Models\Correo.cs" />
+    <Compile Include="Models\Daemon.cs" />
     <Compile Include="Models\Direccion.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Global.asax.cs">
@@ -408,6 +409,7 @@
     <Content Include="Views\Reporte\Index.cshtml" />
     <Content Include="Views\Reporte\Nomina_Trabajador.cshtml" />
     <Content Include="Views\Configuration\EditarUsuario.cshtml" />
+    <Content Include="Views\Error\Status.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

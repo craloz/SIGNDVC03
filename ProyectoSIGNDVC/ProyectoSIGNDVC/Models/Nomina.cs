@@ -13,6 +13,7 @@ namespace ProyectoSIGNDVC.Models
         public DateTime fecha_emision { get; set; }
         public DateTime? fecha_aprobacion { get; set; }
         public DateTime? fecha_efectivo { get; set; }
+        public bool enviado { get; set; } = false;
         public ICollection<Pago> Pagos { get; set; }
 
         public static int GetLastNominaID()
@@ -80,5 +81,18 @@ namespace ProyectoSIGNDVC.Models
                 ctx.SaveChanges();
             }
         }
+
+        public static void CambiarStatusEnviadoNomina (int nominaId)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                var nomina = GetNomina(nominaId);
+                nomina.enviado = true;
+                ctx.Entry(nomina).State = System.Data.Entity.EntityState.Modified;
+            }
+        }
+
+
+
     }
 }

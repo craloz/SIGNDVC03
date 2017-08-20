@@ -121,9 +121,11 @@
     <value>"ashkaskanjkbnsjas"</value>
     <comment>Email body para director ejecutivo aprobar pagos</comment>
   </data>
-  <data name="BodyEmailPagoEmpleado" xml:space="preserve">
-    <value>"asasdifjdfgnksdvjn"</value>
-    <comment>Email body para empleados</comment>
+  <data name="DescripcionNomina" xml:space="preserve">
+    <value>Se ha creado una nueva solicitud de nomina</value>
+  </data>
+  <data name="DescripcionPago" xml:space="preserve">
+    <value>Su pago se ha hecho efectivo</value>
   </data>
   <data name="EmailDVC" xml:space="preserve">
     <value>carlosenriquelozanoperez@hotmail.com</value>
@@ -132,19 +134,25 @@
   <data name="Host" xml:space="preserve">
     <value>smtp-mail.outlook.com</value>
   </data>
-  <data name="NuevaNomina" xml:space="preserve">
-    <value>Nueva Nomina</value>
-    <comment>Texto para la notificacion de Nueva Nomina</comment>
-  </data>
-  <data name="NuevoPago" xml:space="preserve">
-    <value>Nuevo Pago</value>
-    <comment>Texto para la notificacion de Nuevo Pago</comment>
-  </data>
   <data name="PasswordDVC" xml:space="preserve">
     <value />
     <comment>Password de la cuenta Email</comment>
   </data>
   <data name="Puerto" xml:space="preserve">
     <value>587</value>
+  </data>
+  <data name="TipoNotificacionNomina" xml:space="preserve">
+    <value>NOMINA</value>
+  </data>
+  <data name="TipoNotificacionPago" xml:space="preserve">
+    <value>PAGO</value>
+  </data>
+  <data name="TituloNuevaNomina" xml:space="preserve">
+    <value>Nueva Nomina</value>
+    <comment>Texto para la notificacion de Nueva Nomina</comment>
+  </data>
+  <data name="TituloNuevoPago" xml:space="preserve">
+    <value>Nuevo Pago</value>
+    <comment>Texto para la notificacion de Nuevo Pago</comment>
   </data>
 </root>

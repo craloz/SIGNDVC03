@@ -126,6 +126,26 @@ namespace ProyectoSIGNDVC
                 ctx.SaveChanges();
             }
         }
+
+        public static Usuario GetUsuario(int empleadoId) {
+            using (var ctx = new AppDbContext())
+            {
+                var query = ( from user in ctx.Usuarios
+                              where user.EmpleadoID == empleadoId
+                              select user
+                            );
+                return query.FirstOrDefault();
+            }
+        }
+
+        public static bool UsuarioIsDirectorEjecutivo(String usuario)
+        {
+            if (Usuario.GetUsuario(usuario).Empleado.Cargo.nombre == "Director Ejecutivo")
+            {
+                return true;
+            }
+            return false;
+        }
         //public Empleado Empleado { get; set; }
     }
 }

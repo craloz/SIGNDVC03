@@ -70,11 +70,20 @@ namespace ProyectoSIGNDVC.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;asasdifjdfgnksdvjn&quot;.
+        ///   Looks up a localized string similar to Se ha creado una nueva solicitud de nomina.
         /// </summary>
-        internal static string BodyEmailPagoEmpleado {
+        internal static string DescripcionNomina {
             get {
-                return ResourceManager.GetString("BodyEmailPagoEmpleado", resourceCulture);
+                return ResourceManager.GetString("DescripcionNomina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Su pago se ha hecho efectivo.
+        /// </summary>
+        internal static string DescripcionPago {
+            get {
+                return ResourceManager.GetString("DescripcionPago", resourceCulture);
             }
         }
         
@@ -97,24 +106,6 @@ namespace ProyectoSIGNDVC.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nueva Nomina.
-        /// </summary>
-        internal static string NuevaNomina {
-            get {
-                return ResourceManager.GetString("NuevaNomina", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Nuevo Pago.
-        /// </summary>
-        internal static string NuevoPago {
-            get {
-                return ResourceManager.GetString("NuevoPago", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
         internal static string PasswordDVC {
@@ -129,6 +120,42 @@ namespace ProyectoSIGNDVC.Properties {
         internal static string Puerto {
             get {
                 return ResourceManager.GetString("Puerto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NOMINA.
+        /// </summary>
+        internal static string TipoNotificacionNomina {
+            get {
+                return ResourceManager.GetString("TipoNotificacionNomina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PAGO.
+        /// </summary>
+        internal static string TipoNotificacionPago {
+            get {
+                return ResourceManager.GetString("TipoNotificacionPago", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nueva Nomina.
+        /// </summary>
+        internal static string TituloNuevaNomina {
+            get {
+                return ResourceManager.GetString("TituloNuevaNomina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nuevo Pago.
+        /// </summary>
+        internal static string TituloNuevoPago {
+            get {
+                return ResourceManager.GetString("TituloNuevoPago", resourceCulture);
             }
         }
     }

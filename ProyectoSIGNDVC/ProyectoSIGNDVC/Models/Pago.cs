@@ -87,6 +87,18 @@ namespace ProyectoSIGNDVC
                 
         }
 
+        public static List<Pago> GetAllPagosNomina(int nominaid)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                var query = (from pag in ctx.Pagos
+                             where pag.Fk_Nomina == nominaid
+                             select pag
+                            );
+                return query.ToList();
+            }
+        }
+
     }
 
     

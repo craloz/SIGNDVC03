@@ -31,13 +31,14 @@
                     <tbody>
                         @foreach (var pago in Model.pagos)
                         {
+                            if (pago.aprobado) { 
                             <tr class="odd gradeX">
                                 <td>@pago.numero_ref</td>
                                 <td>@pago.f_pago</td>
                                 <td>@pago.monto</td>
                                 <td>
                                     <center>
-                                        <a href="#" style="color:#5cb85c" class="fa fa-check fa-fw"></a>
+                                        <a href="/Pago/AprobarPago?pagoid=@pago.PagoID" onclick="return confirm('Estas seguro de aprobar el pago?')" style="color:#5cb85c" class="fa fa-check fa-fw"></a>
                                     </center>
                                 </td>
                                 <td>
@@ -46,6 +47,7 @@
                                     </center>
                                 </td>                                
                             </tr>
+                            }
                         }
                     </tbody>
                  </table>

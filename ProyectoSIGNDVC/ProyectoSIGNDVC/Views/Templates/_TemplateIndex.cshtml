@@ -176,7 +176,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
                     @if (Session["usuario"] != null) { 
-                        foreach (var notif in Notificacion.GetAllNotificaciones(Usuario.GetUsuario(Session["usuario"].ToString()).usuarioID))
+                        foreach (var notif in Notificacion.GetTop5Notificaciones(Usuario.GetUsuario(Session["usuario"].ToString()).usuarioID))
                         {
                             <li>
                                 <a href="#">

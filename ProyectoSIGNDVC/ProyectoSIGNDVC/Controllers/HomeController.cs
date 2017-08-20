@@ -1,4 +1,5 @@
 ﻿using ProyectoSIGNDVC.Attributes;
+using ProyectoSIGNDVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,10 @@ namespace ProyectoSIGNDVC.Controllers
         [SessionExpire]
         public ActionResult Index()
         {
-            return View();
+            ViewModel vm = new ViewModel {
+                notificaciones = Notificacion.GetAllNotificaciones(Usuario.GetUsuario(Session["usuario"].ToString()).usuarioID)
+            };
+            return View(vm);
         }
 
         [SessionExpire]

@@ -44,6 +44,8 @@ namespace ProyectoSIGNDVC.Controllers
                         Direccion.InsertDireccion(fc.Get("ciudad"), "Ciudad", Direccion.GetDireccionID(fc.Get("estado"), "Estado"))));
             return View();
         }
+
+        [SessionExpire]
         public ActionResult RegistroUsuario()
         {
             ViewBag.Message = "Your application description page.";
@@ -51,6 +53,7 @@ namespace ProyectoSIGNDVC.Controllers
             return View(vm);
         }
         [HttpPost]
+        [SessionExpire]
         public ActionResult RegistroUsuario(FormCollection fc)
         {
             int fk_dir = Direccion.InsertDireccion(fc.Get("casa"), "Casa",Direccion.InsertDireccion(fc.Get("calle"), "Calle",Direccion.InsertDireccion(fc.Get("ciudad"), "Ciudad",Direccion.GetDireccionID(fc.Get("estado"), "Estado"))));
@@ -179,10 +182,12 @@ namespace ProyectoSIGNDVC.Controllers
         public ActionResult EditarUsuario(String usuario)
         {
             ViewModel vm = new ViewModel {
-                direcciones = Direccion.GetAllEstadoDireccion(),
+                direcciones2 = Direccion.GetAllEstadoDireccion(),
                 cargos = Cargo.GetAllCargo(),
                 usuario = Usuario.GetUsuario(usuario)
+                
             };
+            vm.direcciones = Direccion.GetAllDireccionPersona(vm.usuario.Empleado.Fk_Direccion);
             return View(vm);
         }
 

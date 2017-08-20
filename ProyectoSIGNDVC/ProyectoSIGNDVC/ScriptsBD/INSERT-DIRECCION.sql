@@ -145,6 +145,30 @@ INSERT INTO [dbo].[Direccions]
            ,[Fk_Direccion])
      VALUES
            ('Zulia','Estado',null);
+INSERT INTO [dbo].[Direccions]
+           ([nombre]
+           ,[tipo]
+           ,[Fk_Direccion])
+     VALUES
+           ('Ciudad Test','Ciudad',1);
+INSERT INTO [dbo].[Direccions]
+           ([nombre]
+           ,[tipo]
+           ,[Fk_Direccion])
+     VALUES
+           ('Calle Test','Calle',25);
+INSERT INTO [dbo].[Direccions]
+           ([nombre]
+           ,[tipo]
+           ,[Fk_Direccion])
+     VALUES
+           ('Casa Test','Casa',26);
+INSERT INTO [dbo].[Direccions]
+           ([nombre]
+           ,[tipo]
+           ,[Fk_Direccion])
+     VALUES
+           ('Urb COlinas de Test Ciudad Test Calle Test Casa Test','Add',27);
 
 GO
 
