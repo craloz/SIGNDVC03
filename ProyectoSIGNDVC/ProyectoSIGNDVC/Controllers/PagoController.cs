@@ -1,7 +1,10 @@
-﻿using ProyectoSIGNDVC.Attributes;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using ProyectoSIGNDVC.Attributes;
 using ProyectoSIGNDVC.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -151,6 +154,42 @@ namespace ProyectoSIGNDVC.Controllers
 
             return Json("Hola",JsonRequestBehavior.AllowGet);
             /////////////////////////////////////////////////////////////////////////////////////
+        }
+
+        public ActionResult VerPago(String pago)
+        {
+            ViewModel vm = new ViewModel {
+                pago = Pago.GetPago(int.Parse(pago))
+            };
+            return View(vm);
+        }
+
+        public FileStreamResult VerPagoPdf(String pago)
+        {
+            Pago p = Pago.GetPago(int.Parse(pago));
+            Usuario u = Usuario.GetUsuario(Usuario.GetUsuario(p.Fk_Empleado).usuario);
+            MemoryStream workStream = new MemoryStream();
+            Document document = new Document();
+            PdfWriter.GetInstance(document, workStream).CloseStream = false;
+            string imageFilePath = Server.MapPath("/Content/images/dvclogo.png");
+            Image dvcLogo = Image.GetInstance(imageFilePath);
+            dvcLogo.ScaleToFit(140f, 120f);
+            dvcLogo.SpacingBefore = 10f;
+            dvcLogo.SpacingAfter = 1f;
+            dvcLogo.Alignment = Element.ALIGN_CENTER;
+
+            document.Open();
+            document.Add(dvcLogo);
+            document.Add(new Paragraph("Usuario: "+u.usuario));
+            document.Add(new Paragraph("Nombre: " + u.Empleado.Persona.nombre +" "+u.Empleado.Persona.apellido +" CI:"+ u.Empleado.Persona.cedula ));
+            document.Close();
+
+
+            byte[] byteInfo = workStream.ToArray();
+            workStream.Write(byteInfo, 0, byteInfo.Length);
+            workStream.Position = 0;
+        
+            return new FileStreamResult(workStream, "application/pdf");
         }
     }
 }

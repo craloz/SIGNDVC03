@@ -31,7 +31,6 @@
                     <tbody>
                         @foreach (var pago in Model.pagos)
                         {
-                            if (pago.aprobado) { 
                             <tr class="odd gradeX">
                                 <td>@pago.numero_ref</td>
                                 <td>@pago.f_pago</td>
@@ -47,7 +46,6 @@
                                     </center>
                                 </td>                                
                             </tr>
-                            }
                         }
                     </tbody>
                  </table>

@@ -9,6 +9,11 @@ using System.Collections.Generic;
 using ProyectoSIGNDVC.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Web.Mvc;
+using System.IO;
+using iTextSharp.text;
+
+using iTextSharp.text.pdf;
 
 namespace ProyectoSIGNDVC
 {
@@ -97,6 +102,19 @@ namespace ProyectoSIGNDVC
                             );
                 return query.ToList();
             }
+        }
+
+        public static Pago GetPago(int pagoId)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                var query = (from pag in ctx.Pagos
+                             where pag.PagoID == pagoId
+                             select pag
+                    );
+                return query.FirstOrDefault();
+            }
+
         }
 
     }
