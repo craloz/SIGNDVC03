@@ -1,4 +1,5 @@
 ﻿using ProyectoSIGNDVC.Attributes;
+using ProyectoSIGNDVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,20 @@ namespace ProyectoSIGNDVC.Controllers
         {
             return View();
         }
-
+        [HttpPost]
         [SessionExpire]
-        public ActionResult Nomina_Trabajador()
+        public ActionResult Nomina_Trabajador(FormCollection fc)
         {
-            return View();
+            Usuario usuario = Usuario.GetUsuario(fc.Get("usuario"));
+            DateTime desde = DateTime.Parse(fc.Get("desde"));
+            DateTime hasta = DateTime.Parse(fc.Get("hasta"));
+            ViewModel vm = new ViewModel {
+                pagos = Pago.GetPagos(usuario, desde, hasta),
+                usuario = usuario,
+                desde = desde,
+                hasta = hasta
+             };
+            return View(vm);
         }
 
         [SessionExpire]

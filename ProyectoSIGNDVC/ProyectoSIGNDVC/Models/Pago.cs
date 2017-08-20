@@ -117,6 +117,19 @@ namespace ProyectoSIGNDVC
 
         }
 
+        public static List<Pago> GetPagos(Usuario usuario, DateTime desde, DateTime hasta)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                
+                var query = (from pago in ctx.Pagos
+                             where pago.Fk_Empleado == usuario.EmpleadoID && pago.f_pago <= hasta && pago.f_pago >= desde
+                             select pago
+                   );
+                return query.ToList();
+            }
+        }
+
     }
 
     
