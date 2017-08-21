@@ -1,0 +1,16 @@
+﻿@model ProyectoSIGNDVC.Models.ViewModel
+@{
+    ViewBag.Title = "VerPago";
+    Layout = "~/Views/Templates/_TemplateIndex.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <h4>Monto: </h4>
+            <h5>@Model.pago.monto</h5>
+        </div>
+        <div class="col-md-offset-8 col-md-2">
+            Ver en PDF <a href="/Pago/VerPagoPdf/?pago=@Model.pago.PagoID"><i class="fa fa-file-pdf-o"></i></a>
+        </div>
+    </div>
+</div>

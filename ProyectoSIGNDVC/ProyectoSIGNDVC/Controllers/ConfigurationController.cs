@@ -101,7 +101,7 @@ namespace ProyectoSIGNDVC.Controllers
                     sueldo = int.Parse(fc.Get("sueldo")),
                     fecha_ingreso = DateTime.Now,
                     fecha_salida = DateTime.Now,
-                    Direccion = new Direccion { nombre = fc.Get("direccion"), tipo = "Test", Fk_Direccion = fk_dir },
+                    Direccion = new Direccion { nombre = fc.Get("direccion"), tipo = "Direccion", Fk_Direccion = fk_dir },
                     Fk_Cargo = Cargo.GetCargoID(fc.Get("cargo"))
                 }
                    
