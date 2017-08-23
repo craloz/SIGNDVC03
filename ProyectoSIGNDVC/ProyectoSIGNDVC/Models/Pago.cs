@@ -30,7 +30,7 @@ namespace ProyectoSIGNDVC
         public Empleado Empleado { get; set; }
         public int Fk_Nomina { get; set; }
         [ForeignKey("Fk_Nomina")]
-        public Persona Persona { get; set; }
+        public Nomina Nomina { get; set; }
 
 
         public static List<Pago> CreatePagos(List<Usuario> usuarios)

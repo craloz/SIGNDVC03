@@ -20,6 +20,7 @@ namespace ProyectoSIGNDVC.Models
         public Usuario usuario { get; set; }
         public List<Nomina> nominas { get; set; }
         public List<Notificacion> notificaciones { get; set; }
+        public float totalNomina { get; set; }
         public Pago pago { get; set;}
         //public Empleado empleado {get; set;}
         //public List<Carga> cargas {get; set;}

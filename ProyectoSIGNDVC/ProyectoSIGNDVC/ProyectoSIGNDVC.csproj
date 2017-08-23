@@ -53,8 +53,9 @@
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="itextsharp">
-      <HintPath>..\..\..\..\itextsharp.dll</HintPath>
+    <Reference Include="itextsharp, Version=5.5.11.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.11\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -182,6 +183,7 @@
     <Compile Include="Models\Nomina.cs" />
     <Compile Include="Models\Notificacion.cs" />
     <Compile Include="Models\Pago.cs" />
+    <Compile Include="Models\PDF.cs" />
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -418,6 +420,7 @@
     <Content Include="Views\Configuration\EditarUsuario.cshtml" />
     <Content Include="Views\Error\Status.cshtml" />
     <Content Include="Views\Pago\VerPago.cshtml" />
+    <Content Include="Views\Pago\VerNomina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

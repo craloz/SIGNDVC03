@@ -34,8 +34,14 @@ namespace ProyectoSIGNDVC.Controllers
                 fecha_emision = DateTime.Now,
                 Pagos = new List<Pago>(),
 
-            };            
-            ViewModel vm = new ViewModel { nominaId = nomina.NominaID, usuarios = Usuario.GetAllUsuarios(), empleados = Empleado.calcularSalario() };
+            };
+            float total = 0;
+            List<Empleado> listemp = Empleado.calcularSalario();
+            foreach (var emp in listemp)
+            {
+                total += emp.MontoTotal;
+            }
+            ViewModel vm = new ViewModel { nominaId = nomina.NominaID, usuarios = Usuario.GetAllUsuarios(), empleados = listemp, totalNomina = total };
             return View(vm);            
         }
 
@@ -75,9 +81,25 @@ namespace ProyectoSIGNDVC.Controllers
         }
 
         [SessionExpire]
+        public ActionResult VerNomina( int nominaid)
+        {
+            float total = 0;
+            List<Empleado> listemp = Empleado.calcularSalarioByNomina(nominaid);
+            foreach(var emp in listemp)
+            {
+                total += emp.MontoTotal;
+            }
+
+            ViewModel vm = new ViewModel { empleados = listemp, totalNomina = total };
+            return View(vm);
+        }
+
+
+        [SessionExpire]
         public ActionResult DetallePago()
         {
-            return View();
+
+            return RedirectToAction("VerNomina","Pago" );
         }
 
         [SessionExpire]
@@ -166,9 +188,11 @@ namespace ProyectoSIGNDVC.Controllers
 
         public FileStreamResult VerPagoPdf(String pago)
         {
+            MemoryStream workStream = new MemoryStream();
+
             Pago p = Pago.GetPago(int.Parse(pago));
             Usuario u = Usuario.GetUsuario(Usuario.GetUsuario(p.Fk_Empleado).usuario);
-            MemoryStream workStream = new MemoryStream();
+            
             Document document = new Document();
             PdfWriter.GetInstance(document, workStream).CloseStream = false;
             string imageFilePath = Server.MapPath("/Content/images/dvclogo.png");
