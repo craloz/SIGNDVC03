@@ -37,7 +37,12 @@ namespace ProyectoSIGNDVC
                              where user.usuario == usuario
                              select new { per, user, emp });
                 var query2 = query.SingleOrDefault();
+                if (query2 == null)
+                {
+                    return null;
+                }
                 var usuario2 = query2.user;
+
                 usuario2.Empleado = query2.emp;
                 usuario2.Empleado.Persona = query2.per;
 

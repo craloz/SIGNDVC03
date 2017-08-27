@@ -99,6 +99,9 @@ namespace ProyectoSIGNDVC.Controllers
                         sexo = fc.Get("sexo")
                     },
                     sueldo = int.Parse(fc.Get("sueldo")),
+                    Codigo = "E-"+fc.Get("codempleado"),
+                    Banco = fc.Get("banco"),
+                    N_Cuenta = fc.Get("cuenta"),
                     fecha_ingreso = DateTime.Now,
                     fecha_salida = DateTime.Now,
                     Direccion = new Direccion { nombre = fc.Get("direccion"), tipo = "Direccion", Fk_Direccion = fk_dir },

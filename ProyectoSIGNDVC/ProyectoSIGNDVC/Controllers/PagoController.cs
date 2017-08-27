@@ -160,7 +160,7 @@ namespace ProyectoSIGNDVC.Controllers
                 var credential = new NetworkCredential
                 {
                     UserName = "carlosenriquelozanoperez@hotmail.com",  // replace with valid value
-                    Password = "tibiapl" // replace with valid value
+                    Password = "" // replace with valid value
                 };
                 smtp.Credentials = credential;
                 smtp.Host = Properties.Resources.Host;

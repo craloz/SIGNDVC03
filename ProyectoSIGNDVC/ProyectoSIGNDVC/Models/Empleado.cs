@@ -15,10 +15,13 @@ namespace ProyectoSIGNDVC
     {
         [Key]
         public int EmpleadoID { get; set; }
+        public String Codigo { get; set; }
         public float sueldo { get; set; }
         [Column(TypeName = "Date")]
         public DateTime fecha_ingreso { get; set; }
         public DateTime fecha_salida { get; set; }
+        public String Banco { get; set; }
+        public String N_Cuenta { get; set; }
         public int Fk_Direccion { get; set; }
         [ForeignKey("Fk_Direccion")]
         public Direccion Direccion { get; set; }

@@ -12,8 +12,9 @@ namespace ProyectoSIGNDVC.Controllers
     {
         // GET: Reporte
         [SessionExpire]
-        public ActionResult Index()
+        public ActionResult Index(String error)
         {
+            var e = error;
             return View();
         }
         [HttpPost]

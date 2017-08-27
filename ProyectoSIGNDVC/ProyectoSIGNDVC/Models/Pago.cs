@@ -83,11 +83,14 @@ namespace ProyectoSIGNDVC
         {
             using(var ctx = new AppDbContext())
             {
-                var query = ( from pago in ctx.Pagos
-                              where pago.Fk_Empleado == empleadoId
-                              select pago
+                var query = (   from pago in ctx.Pagos
+                            join nom in ctx.Nominas on pago.Fk_Nomina equals nom.NominaID
+                            where pago.Fk_Empleado == empleadoId && nom.fecha_aprobacion != null && nom.fecha_efectivo <= DateTime.Now
+                            select pago
                     );
                 return query.ToList();
+
+                
             }
                 
         }
@@ -120,7 +123,7 @@ namespace ProyectoSIGNDVC
 
 
 
-        public static List<Pago> CreatePagos(List<Usuario> usuarios)
+        /*public static List<Pago> CreatePagos(List<Usuario> usuarios)
         {
             List<Pago> listaPagos = new List<Pago>();
             foreach (var usuario in usuarios)
@@ -202,7 +205,7 @@ namespace ProyectoSIGNDVC
                 return query.FirstOrDefault();
             }
 
-        }
+        }*/
 
         public static List<Pago> GetPagos(Usuario usuario, DateTime desde, DateTime hasta)
         {

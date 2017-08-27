@@ -4,6 +4,8 @@ SET IDENTITY_INSERT [dbo].[Empleadoes] ON
 INSERT INTO [dbo].[Empleadoes]
            ([EmpleadoID]
 		   ,[sueldo]
+		   ,[Banco]
+		   ,[N_Cuenta]
            ,[fecha_ingreso]
            ,[fecha_salida]
            ,[Fk_Direccion]
@@ -12,6 +14,8 @@ INSERT INTO [dbo].[Empleadoes]
      VALUES
            (1
 		   ,300000
+		   ,'Banco De Venezuela'
+		   , '0000-00000-000000-00000000'
            ,'2017-08-02 00:00:00.000'
            ,'2017-08-02 00:00:00.000'
            ,28

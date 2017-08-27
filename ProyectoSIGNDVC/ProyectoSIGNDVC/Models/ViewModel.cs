@@ -8,7 +8,7 @@ namespace ProyectoSIGNDVC.Models
     public class ViewModel
     {
         //public Usuario usuario{get;set;}
-        public List<Direccion> direcciones {get; set;}
+        public List<Direccion> direcciones { get; set; }
         public List<Direccion> direcciones2 { get; set; }
         public List<Cargo> cargos { get; set; }
         public List<Usuario> usuarios { get; set; }
@@ -21,10 +21,11 @@ namespace ProyectoSIGNDVC.Models
         public List<Nomina> nominas { get; set; }
         public List<Notificacion> notificaciones { get; set; }
         public float totalNomina { get; set; }
-        public Pago pago { get; set;}
-        public DateTime desde { get; set;}
+        public Pago pago { get; set; }
+        public DateTime desde { get; set; }
         public DateTime hasta { get; set; }
         //public Empleado empleado {get; set;}
         //public List<Carga> cargas {get; set;}
         //public Rol rol { get; set; }
     }
+}
