@@ -83,4 +83,76 @@ namespace ProyectoSIGNDVC.Attributes
             base.OnActionExecuting(filterContext);
         }
     }
+
+    public class AutorizarDirector : AuthorizeAttribute
+    {
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            var session = HttpContext.Current.Session["usuario"];
+            if (session != null)
+            {
+                if (!Usuario.UsuarioIsDirectorEjecutivo(session.ToString()))
+                {
+                    filterContext.Result = new RedirectToRouteResult(new
+                    RouteValueDictionary(new { controller = "Error", action = "Unauthorized" }));
+                }
+                
+            }
+            else
+            {
+                filterContext.Result = new RedirectToRouteResult(new
+                    RouteValueDictionary(new { controller = "Error" , action = "Unauthorized" }));
+            }
+        }
+    }
+
+    public class AutorizarCoordinadoraAdm : AuthorizeAttribute
+    {
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            var session = HttpContext.Current.Session["usuario"];
+            if (session != null)
+            {
+                if (!Usuario.UsuarioIsCoordinadoraAdm(session.ToString()))
+                {
+                    filterContext.Result = new RedirectToRouteResult(new
+                    RouteValueDictionary(new { controller = "Error", action = "Unauthorized" }));
+                }
+
+            }
+            else
+            {
+                filterContext.Result = new RedirectToRouteResult(new
+                    RouteValueDictionary(new { controller = "Error", action = "Unauthorized" }));
+            }
+        }
+    }
+
+    public class AutorizarRol : AuthorizeAttribute
+    {
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            var session = HttpContext.Current.Session["usuario"];
+            if (session != null)
+            {
+                var i = !Usuario.UsuarioIsCoordinadoraAdm(session.ToString());
+                var j = !Usuario.UsuarioIsDirectorEjecutivo(session.ToString());
+                if (Usuario.UsuarioIsCoordinadoraAdm(session.ToString()) || Usuario.UsuarioIsDirectorEjecutivo(session.ToString()))
+                {
+
+                }
+                else
+                {
+                    filterContext.Result = new RedirectToRouteResult(new
+                    RouteValueDictionary(new { controller = "Error", action = "Unauthorized" }));
+                }
+
+            }
+            else
+            {
+                filterContext.Result = new RedirectToRouteResult(new
+                    RouteValueDictionary(new { controller = "Error", action = "Unauthorized" }));
+            }
+        }
+    }
 }

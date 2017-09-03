@@ -51,12 +51,10 @@ namespace ProyectoSIGNDVC
                               join per in ctx.Personas on carga.Fk_Persona equals per.PersonaID
                               select new { carga, per });
                 usuario2.Empleado.Cargas = new List<Carga>();
-                foreach (var item in query3.ToList())
-                {
-                    item.carga.Persona = item.per;
-                    usuario2.Empleado.Cargas.Add(item.carga);
-                }
+                query3.ToList();
+                
 
+                
                 var query4 = (from cargo in ctx.Cargos
                               where cargo.CargoID == usuario2.Empleado.Fk_Cargo
                               select cargo
@@ -122,6 +120,7 @@ namespace ProyectoSIGNDVC
             }
         }
 
+       
         public static void DeleteUsuario(string usuario)
         {
             using (var ctx = new AppDbContext())
@@ -145,11 +144,36 @@ namespace ProyectoSIGNDVC
 
         public static bool UsuarioIsDirectorEjecutivo(String usuario)
         {
-            if (Usuario.GetUsuario(usuario).Empleado.Cargo.nombre == "Director Ejecutivo")
+            if (Usuario.GetUsuario(usuario).Empleado.Cargo.CargoID == 1)
             {
                 return true;
             }
             return false;
+        }
+
+        public static bool UsuarioIsCoordinadoraAdm(String usuario)
+        {
+            if (Usuario.GetUsuario(usuario).Empleado.Cargo.CargoID == 7)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static Usuario GetUsuarioDirector()
+        {
+            var usuarios = GetAllUsuarios();
+            foreach (var user in usuarios)
+            {
+                if (user.Empleado.Fk_Cargo == 1)
+                { 
+                    return user;
+                }
+            }
+                return null;
         }
         //public Empleado Empleado { get; set; }
     }

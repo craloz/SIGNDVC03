@@ -72,23 +72,23 @@ namespace ProyectoSIGNDVC.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Se ha creado una nueva solicitud de nomina.
         /// </summary>
-        internal static string DescripcionNomina {
+        internal static string DescripcionNuevaNomina {
             get {
-                return ResourceManager.GetString("DescripcionNomina", resourceCulture);
+                return ResourceManager.GetString("DescripcionNuevaNomina", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Su pago se ha hecho efectivo.
         /// </summary>
-        internal static string DescripcionPago {
+        internal static string DescripcionNuevoPago {
             get {
-                return ResourceManager.GetString("DescripcionPago", resourceCulture);
+                return ResourceManager.GetString("DescripcionNuevoPago", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to carlosenriquelozanoperez@hotmail.com.
+        ///   Looks up a localized string similar to dvc.serviciocomunitario@dividendovoluntario.org.
         /// </summary>
         internal static string EmailDVC {
             get {
@@ -97,7 +97,7 @@ namespace ProyectoSIGNDVC.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to smtp-mail.outlook.com.
+        ///   Looks up a localized string similar to smtp.gmail.com.
         /// </summary>
         internal static string Host {
             get {
@@ -106,7 +106,7 @@ namespace ProyectoSIGNDVC.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to comunitario2017.
         /// </summary>
         internal static string PasswordDVC {
             get {

@@ -34,7 +34,7 @@ namespace ProyectoSIGNDVC.Models
         public static void AddNomina(DateTime fechaefectivo)
         {
             
-                using (var ctx = new AppDbContext())
+            using (var ctx = new AppDbContext())
             {
                 Nomina nom = new Nomina()
                 {
@@ -43,6 +43,7 @@ namespace ProyectoSIGNDVC.Models
                 };
                 ctx.Nominas.Add(nom);
                 ctx.SaveChanges();
+                Notificacion.AddNotificacion("NOMINA", Properties.Resources.TituloNuevaNomina, Properties.Resources.DescripcionNuevaNomina, nom.NominaID, Usuario.GetUsuarioDirector().usuarioID);
             };
         }
 
@@ -89,6 +90,7 @@ namespace ProyectoSIGNDVC.Models
                 var nomina = GetNomina(nominaId);
                 nomina.enviado = true;
                 ctx.Entry(nomina).State = System.Data.Entity.EntityState.Modified;
+                ctx.SaveChanges();
             }
         }
 

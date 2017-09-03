@@ -21,7 +21,7 @@ INSERT INTO [dbo].[Cargoes]
 INSERT INTO [dbo].[Cargoes]
            ([nombre])
      VALUES
-           ('Asistente de Direcci�n Ejecutiva');
+           ('Asistente de Direccion Ejecutiva');
 
 INSERT INTO [dbo].[Cargoes]
            ([nombre])
@@ -31,7 +31,7 @@ INSERT INTO [dbo].[Cargoes]
 INSERT INTO [dbo].[Cargoes]
            ([nombre])
      VALUES
-           ('Coordinadora de Administraci�n');
+           ('Coordinadora de Administracion');
 
 INSERT INTO [dbo].[Cargoes]
            ([nombre])
@@ -40,7 +40,7 @@ INSERT INTO [dbo].[Cargoes]
 INSERT INTO [dbo].[Cargoes]
            ([nombre])
      VALUES
-           ('Asistente de Administraci�n');	   
+           ('Asistente de Administracion');	   
 GO
 
 
@@ -58,7 +58,7 @@ INSERT INTO [dbo].[Direccions]
            ,[tipo]
            ,[Fk_Direccion])
      VALUES
-           ('Anzo�tegui','Estado',null);
+           ('Anzoategui','Estado',null);
 INSERT INTO [dbo].[Direccions]
            ([nombre]
            ,[tipo]
@@ -112,13 +112,13 @@ INSERT INTO [dbo].[Direccions]
            ,[tipo]
            ,[Fk_Direccion])
      VALUES
-           ('Falc�n','Estado',null);
+           ('Falcon','Estado',null);
 INSERT INTO [dbo].[Direccions]
            ([nombre]
            ,[tipo]
            ,[Fk_Direccion])
      VALUES
-           ('Gu�rico','Estado',null);
+           ('Guarico','Estado',null);
 INSERT INTO [dbo].[Direccions]
            ([nombre]
            ,[tipo]
@@ -130,7 +130,7 @@ INSERT INTO [dbo].[Direccions]
            ,[tipo]
            ,[Fk_Direccion])
      VALUES
-           ('M�rida','Estado',null);
+           ('Merida','Estado',null);
 INSERT INTO [dbo].[Direccions]
            ([nombre]
            ,[tipo]
@@ -166,7 +166,7 @@ INSERT INTO [dbo].[Direccions]
            ,[tipo]
            ,[Fk_Direccion])
      VALUES
-           ('T�chira','Estado',null);
+           ('Tachira','Estado',null);
 INSERT INTO [dbo].[Direccions]
            ([nombre]
            ,[tipo]

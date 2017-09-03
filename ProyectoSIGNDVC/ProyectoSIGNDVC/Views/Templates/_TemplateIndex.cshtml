@@ -176,16 +176,31 @@
                         <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
-                    @if (Session["usuario"] != null) { 
+                    @if (Session["usuario"] != null) {
                         foreach (var notif in Notificacion.GetTop5Notificaciones(Usuario.GetUsuario(Session["usuario"].ToString()).usuarioID))
                         {
+
                             <li>
-                                <a href="#">
-                                    <div>
-                                        <i class="fa fa-comment fa-fw"></i>@notif.titulo
-                                        <span class="pull-right text-muted small" style="font-size:xx-small;">@notif.f_enviado</span>
-                                    </div>
-                                </a>
+                                
+                                    @if (notif.tipo == "NOMINA")
+                                    {
+                                        <a href="/Pago/VerNomina?nominaid=@notif.Fk_Nomina">
+                                            <div>
+                                                <i class="fa fa-comment fa-fw"></i>@notif.titulo
+                                                <span class="pull-right text-muted small" style="font-size:xx-small;">@notif.f_enviado</span>
+                                            </div>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="/Pago/VerPago?pago=@notif.Fk_Pago">
+                                            <div>
+                                                <i class="fa fa-comment fa-fw"></i>@notif.titulo
+                                                <span class="pull-right text-muted small" style="font-size:xx-small;">@notif.f_enviado</span>
+                                            </div>
+                                        </a>
+                                    }
+                                            
                             </li>
                             <li class="divider"></li>
                         }
@@ -291,7 +306,7 @@
                             <a href="/Pago/TablaPagos"><i class="fa fa-archive fa-fw"></i>Recibos</a>
                         </li>
                     @if (Session["usuario"] != null) { 
-                        if (Usuario.GetUsuario(Session["usuario"].ToString()).Empleado.Cargo.nombre == "Director Ejecutivo" || Usuario.GetUsuario(Session["usuario"].ToString()).Empleado.Cargo.nombre == "Ejecutiva de Cuentas")
+                        if (Usuario.UsuarioIsCoordinadoraAdm(Session["usuario"].ToString()) || Usuario.UsuarioIsDirectorEjecutivo(Session["usuario"].ToString()))
                         {
                             <li>
                                 <a href="/Pago/ListaNomina"><i class="fa fa-book fa-fw"></i>Nomina</a>

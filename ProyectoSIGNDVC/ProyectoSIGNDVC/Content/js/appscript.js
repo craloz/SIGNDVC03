@@ -19,7 +19,7 @@
     cell1.innerHTML = "<input required class='form-control' type='text' placeholder='Nombre' name='nombrecarga" + cont + "' >";
     cell2.innerHTML = "<input required class='form-control' type='text' placeholder='Apellido' name='apellidocarga" + cont + "' >";
     cell3.innerHTML = "<input required class='form-control' type='text' placeholder='Cedula' name='cedulacarga" + cont + "' >";
-    cell4.innerHTML = "<select required class='form-control' name='sexocarga" + cont +"' ><option value='M'>Masculino</option><option value='F'>Femenino</option></select>";
+    cell4.innerHTML = "<select required class='form-control' name='sexocarga" + cont +"' ><option value='Masculino'>Masculino</option><option value='Femenino'>Femenino</option></select>";
     cell5.innerHTML = "<input required class='form-control' type='date' name='fechanaccarga" + cont + "' >";
     cell6.innerHTML = "<input required class='form-control 'type='text' placeholder='Monto' name='montocarga" + cont + "' >";
     getRows();
@@ -46,4 +46,10 @@ function eliminarUsuario(usuario) {
     } else {
         alert("no eliminado")
     }
+}
+
+function eliminarCarga() {
+    var table = document.getElementById("tablaCargas");
+    filas = table.rows.length;
+    debugger;
 }

@@ -121,21 +121,21 @@
     <value>"ashkaskanjkbnsjas"</value>
     <comment>Email body para director ejecutivo aprobar pagos</comment>
   </data>
-  <data name="DescripcionNomina" xml:space="preserve">
+  <data name="DescripcionNuevaNomina" xml:space="preserve">
     <value>Se ha creado una nueva solicitud de nomina</value>
   </data>
-  <data name="DescripcionPago" xml:space="preserve">
+  <data name="DescripcionNuevoPago" xml:space="preserve">
     <value>Su pago se ha hecho efectivo</value>
   </data>
   <data name="EmailDVC" xml:space="preserve">
-    <value>carlosenriquelozanoperez@hotmail.com</value>
+    <value>dvc.serviciocomunitario@dividendovoluntario.org</value>
     <comment>Cuenta Email desde donde sera enviado el correo</comment>
   </data>
   <data name="Host" xml:space="preserve">
-    <value>smtp-mail.outlook.com</value>
+    <value>smtp.gmail.com</value>
   </data>
   <data name="PasswordDVC" xml:space="preserve">
-    <value />
+    <value>comunitario2017</value>
     <comment>Password de la cuenta Email</comment>
   </data>
   <data name="Puerto" xml:space="preserve">

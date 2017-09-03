@@ -216,6 +216,7 @@ namespace ProyectoSIGNDVC
                              where pago.Fk_Empleado == usuario.EmpleadoID && pago.f_pago <= hasta && pago.f_pago >= desde
                              select pago
                    );
+             
                 return query.ToList();
             }
         }

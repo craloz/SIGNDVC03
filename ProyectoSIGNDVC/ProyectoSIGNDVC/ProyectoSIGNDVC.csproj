@@ -418,6 +418,7 @@
     <Content Include="Views\Configuration\EditarUsuario.cshtml" />
     <Content Include="Views\Error\Status.cshtml" />
     <Content Include="Views\Pago\VerPago.cshtml" />
+    <Content Include="Views\Error\Unauthorized.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

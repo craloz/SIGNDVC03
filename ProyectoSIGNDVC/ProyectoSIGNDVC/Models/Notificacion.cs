@@ -70,7 +70,7 @@ namespace ProyectoSIGNDVC
             using (var ctx = new AppDbContext())
             {
                 var query = ( from notif in ctx.Notificaciones
-                              where notif.Fk_Usuario == usuarioid
+                              where notif.Fk_Usuario == usuarioid && notif.f_leido == null
                               orderby notif.f_enviado descending
                               select notif
                     );
@@ -84,7 +84,7 @@ namespace ProyectoSIGNDVC
             using (var ctx = new AppDbContext())
             {
                 var query = (from notif in ctx.Notificaciones
-                             where notif.Fk_Usuario == usuarioid && notif.f_leido == null
+                             where notif.Fk_Usuario == usuarioid 
                              orderby notif.f_enviado descending
                              select notif
                     );

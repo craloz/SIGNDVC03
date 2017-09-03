@@ -30,5 +30,10 @@ namespace ProyectoSIGNDVC.Controllers
             Direccion.GetAllEstadoDireccion();
             return View();
         }
+
+        public ActionResult Unauthorized()
+        {
+            return View();
+        }
     }
 }

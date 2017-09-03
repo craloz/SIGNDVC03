@@ -48,16 +48,7 @@ namespace ProyectoSIGNDVC.Controllers
         [SessionExpire]
         public ActionResult AprobarNomina(String nominaid)
         {
-            //ViewBag.message = "Nomina: "+nominaid+"Aprobada";
-            
             Models.Nomina.AprobarNomina(int.Parse(nominaid));
-           /* Alpha oAlpha = new Alpha();
-            Thread oThread = new Thread(new ThreadStart(oAlpha.Beta));
-            oThread.Start();*/
-            //Correo c = new Correo(Pago.GetAllPagosNomina(int.Parse(nominaid)));
-            //Thread thread = new Thread(new ThreadStart(c.EnviarCorreoPagosAsync));
-            //thread.Start();
-            Notificacion.AddNotificacion("NOMINA", "Nueva Nomina Creada", "Se ha creado una nueva solicitud de nomina", int.Parse(nominaid), 1);
             return RedirectToAction("ListaNomina","Pago");
         }
 
@@ -109,9 +100,11 @@ namespace ProyectoSIGNDVC.Controllers
             
             DateTime fechaefectivo = DateTime.Parse(fc.Get("fechaefectiva"));
             Pago.GenerarNomina(fechaefectivo);
+            
             return RedirectToAction("ListaNomina","Pago");
         }
 
+        [AutorizarCoordinadoraAdm]
         public JsonResult Prueba()
         {
 
@@ -159,15 +152,16 @@ namespace ProyectoSIGNDVC.Controllers
             {
                 var credential = new NetworkCredential
                 {
-                    UserName = "carlosenriquelozanoperez@hotmail.com",  // replace with valid value
-                    Password = "" // replace with valid value
+                    UserName = Properties.Resources.EmailDVC,  // replace with valid value
+                    Password = Properties.Resources.PasswordDVC // replace with valid value
                 };
                 smtp.Credentials = credential;
-                smtp.Host = Properties.Resources.Host;
+                smtp.Host = Properties.Resources.EmailDVC;
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
                 try { 
                 smtp.Send(message);
+                    var i = 1; 
                 }catch(Exception e)
                 {
 

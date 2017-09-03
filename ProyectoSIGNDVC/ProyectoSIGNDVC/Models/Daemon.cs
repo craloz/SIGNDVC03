@@ -20,7 +20,7 @@ namespace ProyectoSIGNDVC.Models
                 {                  
                     foreach (var nomina in Nomina.GetAllNominas())
                     {
-                        if (nomina.fecha_efectivo <= DateTime.Now && !nomina.enviado /*&& nomina.fecha_aprobacion != null*/)
+                        if (nomina.fecha_efectivo <= DateTime.Now && !nomina.enviado && nomina.fecha_aprobacion != null)
                         {
                             Correo c = new Correo(Pago.GetAllPagosNomina(nomina.NominaID));
                             c.EnviarCorreoPagos();

@@ -11,7 +11,7 @@
         </div>
 
         <div class="col-lg-12">
-            <form role="form" action="/Configuration/RegistroUsuario" method="post">
+            <form role="form" action="/Configuration/EditarUsuario" method="post">
                 <div>
                     <fieldset >
                         <div class="row">
@@ -44,8 +44,20 @@
                             </div>
                             <div class="col-xs-3">
                                 <label for="fechanac">Sexo</label>
-                                <label class="radio-inline"><input required type="radio" name="sexo" value="M" >Masculino</label>
-                                <label class="radio-inline"><input required type="radio" name="sexo" value="F" >Femenino</label>
+                                <select name="sexo" id="sexo" class="form-control">
+                                    @if (Model.usuario.Empleado.Persona.sexo == "Masculino")
+                                    {
+                                        <option selected>Masculino</option>
+                                        <option >Femenino</option>
+                                    }
+                                    else
+                                    {
+                                        <option >Masculino</option>
+                                        <option selected>Femenino</option>
+                                    }
+                                    
+                                    
+                                </select>
                             </div>
                         </div>
 
@@ -154,22 +166,23 @@
                                     <th>Sexo</th>
                                     <th>Fecha De Nacimiento</th>
                                     <th>Monto</th>
+                                    <th></th>
                                 </tr>
                                 
                                     @foreach (var carga in Model.usuario.Empleado.Cargas)
                                     {
                                         <tr>
                                             
-                                            <td><input required class="form-control" type="text" placeholder="Nombre" name="nombrecarga" value="@carga.Persona.nombre"></td>
-                                            <td><input required class="form-control" type="text" placeholder="Apellido" name="apellidocarga" value="@carga.Persona.apellido"></td>
-                                            <td><input required class="form-control" type="text" placeholder="Cedula" name="cedulacarga" value="@carga.Persona.cedula"></td>
-                                            <td><select required class="form-control" name="sexocarga"><option value="M">Masculino</option><option value="F">Femenino</option></select></td>
-                                            <td><input required class="form-control" type="date" name="fechanaccarga" value="@String.Format("{0:yyyy-MM-dd}",carga.Persona.fecha_nacimiento)"></td>
-                                            <td><input required class="form-control" type="text" placeholder="Monto" name="montocarga" value="@carga.monto_poliza"></td>
-                                            
+                                            <td><input required class="form-control" type="text" placeholder="Nombre" name="@("nombrecarga" + Model.usuario.Empleado.Cargas.ToList().IndexOf(carga))" value="@carga.Persona.nombre"></td>
+                                            <td><input required class="form-control" type="text" placeholder="Apellido" name="@("apellidocarga" + Model.usuario.Empleado.Cargas.ToList().IndexOf(carga))" value="@carga.Persona.apellido"></td>
+                                            <td><input required class="form-control" type="text" placeholder="Cedula" name="@("cedulacarga" + Model.usuario.Empleado.Cargas.ToList().IndexOf(carga))" value="@carga.Persona.cedula"></td>
+                                            <td><select required class="form-control" name=@("sexocarga" + Model.usuario.Empleado.Cargas.ToList().IndexOf(carga))><option value="M">Masculino</option><option value="F">Femenino</option></select></td>
+                                            <td><input required class="form-control" type="date" name=@("fechanaccarga" + Model.usuario.Empleado.Cargas.ToList().IndexOf(carga)) value="@String.Format("{0:yyyy-MM-dd}",carga.Persona.fecha_nacimiento)"></td>
+                                            <td><input required class="form-control" type="text" placeholder="Monto" name=@("montocarga" + Model.usuario.Empleado.Cargas.ToList().IndexOf(carga)) value="@carga.monto_poliza"></td>
+                                            <td><a href="" onclick=@("eliminarCarga("+Model.usuario.Empleado.Cargas.ToList().IndexOf(carga)+ ")") class="fa fa-close"></a></td>
                                         </tr>
                                     }
-
+                                
 
                             </table>
                         </div>
@@ -180,8 +193,6 @@
                             <input type="submit" class="btn btn-success" value="Registrar">
                             <button type="reset" class="btn btn-danger">Cancelar</button>
                         </div>
-                        <input type="hidden" name="numfilas" id="numfilas" value="0" />
-
                     </fieldset>
                 </div>
                 <input type="hidden" name="numfilas" id="numfilas" value="@Model.usuario.Empleado.Cargas.Count()" />

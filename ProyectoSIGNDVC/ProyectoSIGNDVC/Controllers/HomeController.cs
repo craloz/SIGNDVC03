@@ -14,6 +14,7 @@ namespace ProyectoSIGNDVC.Controllers
         public ActionResult Index()
         {
             ViewModel vm = new ViewModel {
+
                 notificaciones = Notificacion.GetAllNotificaciones(Usuario.GetUsuario(Session["usuario"].ToString()).usuarioID)
             };
             return View(vm);
