@@ -144,10 +144,24 @@
                                 </select>
                             </div>
                             <div class="col-xs-3">
-                                <label required for="sueldo">Sueldo</label>
-                                <input type="text" id="sueldo" name="sueldo" class="form-control" value="@Model.usuario.Empleado.sueldo">
+                                <label  for="sueldo">Sueldo</label>
+                                <input type="text" id="sueldo" name="sueldo" class="form-control" value="@Model.usuario.Empleado.sueldo" required>
                             </div>
 
+                            <div class="col-xs-3">
+                                <label>Banco</label>
+                                <input type="text" id="banco" name="banco" class="form-control" value="@Model.usuario.Empleado.Banco" required>
+                            </div>
+                            <div class="col-xs-3">
+                                <label>N. Cuenta</label>
+                                <input type="text" id="cuenta" name="cuenta" class="form-control" value="@Model.usuario.Empleado.N_Cuenta" required />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-3">
+                                <label for="codempleado">Codigo de Empleado</label>
+                                <input type="text" id="codempleado" name="codempleado" placeholder="000001" class="form-control" value="@Model.usuario.Empleado.Codigo" required/>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-5">
@@ -156,8 +170,9 @@
                             </div>
                         </div>
                         <div class="col-lg-12">
+                                <button type="button" onclick="addTr()" class="btn btn-success boton-tabla">Agregar</button>
+                                <button type="button" onclick="eliminarCargas()" class="btn btn-danger boton-tabla">Borrar</button>
 
-                            <button type="button" onclick="addTr()" class="btn btn-success boton-tabla">Agregar</button>
                             <table class="table table-striped table-bordered table-hover" id="tablaCargas">
                                 <tr>
                                     <th>Nombre</th>
@@ -166,20 +181,18 @@
                                     <th>Sexo</th>
                                     <th>Fecha De Nacimiento</th>
                                     <th>Monto</th>
-                                    <th></th>
                                 </tr>
                                 
                                     @foreach (var carga in Model.usuario.Empleado.Cargas)
                                     {
                                         <tr>
                                             
-                                            <td><input required class="form-control" type="text" placeholder="Nombre" name="@("nombrecarga" + Model.usuario.Empleado.Cargas.ToList().IndexOf(carga))" value="@carga.Persona.nombre"></td>
-                                            <td><input required class="form-control" type="text" placeholder="Apellido" name="@("apellidocarga" + Model.usuario.Empleado.Cargas.ToList().IndexOf(carga))" value="@carga.Persona.apellido"></td>
-                                            <td><input required class="form-control" type="text" placeholder="Cedula" name="@("cedulacarga" + Model.usuario.Empleado.Cargas.ToList().IndexOf(carga))" value="@carga.Persona.cedula"></td>
-                                            <td><select required class="form-control" name=@("sexocarga" + Model.usuario.Empleado.Cargas.ToList().IndexOf(carga))><option value="M">Masculino</option><option value="F">Femenino</option></select></td>
-                                            <td><input required class="form-control" type="date" name=@("fechanaccarga" + Model.usuario.Empleado.Cargas.ToList().IndexOf(carga)) value="@String.Format("{0:yyyy-MM-dd}",carga.Persona.fecha_nacimiento)"></td>
-                                            <td><input required class="form-control" type="text" placeholder="Monto" name=@("montocarga" + Model.usuario.Empleado.Cargas.ToList().IndexOf(carga)) value="@carga.monto_poliza"></td>
-                                            <td><a href="" onclick=@("eliminarCarga("+Model.usuario.Empleado.Cargas.ToList().IndexOf(carga)+ ")") class="fa fa-close"></a></td>
+                                            <td><input required class="form-control" type="text" placeholder="Nombre" name="@("nombrecarga" + (Model.usuario.Empleado.Cargas.ToList().IndexOf(carga)+2))" value="@carga.Persona.nombre"></td>
+                                            <td><input required class="form-control" type="text" placeholder="Apellido" name="@("apellidocarga" + (Model.usuario.Empleado.Cargas.ToList().IndexOf(carga)+2))" value="@carga.Persona.apellido"></td>
+                                            <td><input required class="form-control" type="text" placeholder="Cedula" name="@("cedulacarga" + (Model.usuario.Empleado.Cargas.ToList().IndexOf(carga)+2))" value="@carga.Persona.cedula"></td>
+                                            <td><select required class="form-control" name=@("sexocarga" + (Model.usuario.Empleado.Cargas.ToList().IndexOf(carga)+2))><option value="M">Masculino</option><option value="F">Femenino</option></select></td>
+                                            <td><input required class="form-control" type="date" name=@("fechanaccarga" + (Model.usuario.Empleado.Cargas.ToList().IndexOf(carga)+2)) value="@String.Format("{0:yyyy-MM-dd}",carga.Persona.fecha_nacimiento)"></td>
+                                            <td><input required class="form-control" type="text" placeholder="Monto" name=@("montocarga" + (Model.usuario.Empleado.Cargas.ToList().IndexOf(carga)+2)) value="@carga.monto_poliza"></td>
                                         </tr>
                                     }
                                 
@@ -190,12 +203,13 @@
                         <!-- Change this to a button or input when using this as a form -->
 
                         <div class="col-lg-15">
-                            <input type="submit" class="btn btn-success" value="Registrar">
-                            <button type="reset" class="btn btn-danger">Cancelar</button>
+                            <input type="submit" class="btn btn-success" value="Guardar">
+                            <a href="/Configuration/TablaUsuarios" class="btn btn-danger">Cancelar</a>
                         </div>
                     </fieldset>
                 </div>
-                <input type="hidden" name="numfilas" id="numfilas" value="@Model.usuario.Empleado.Cargas.Count()" />
+                <input type="hidden" name="numfilas" id="numfilas" value="@((Model.usuario.Empleado.Cargas.Count()+1).ToString())" />
+                <input type="hidden" name="idUsuario" id="idUsuario" value="@Model.usuario.usuarioID"/>
             </form>
         </div>
 

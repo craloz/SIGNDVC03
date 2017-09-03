@@ -294,7 +294,7 @@ INSERT INTO [dbo].[Empleadoes]
            ,[Fk_Cargo])
      VALUES
            (1
-		   ,'E-000001'
+		   ,'000001'
 		   ,300000
 		   ,'Banco De Venezuela'
 		   , '0000-00000-000000-00000000'

@@ -64,7 +64,7 @@ namespace ProyectoSIGNDVC.Controllers
                         sexo = fc.Get("sexo")
                     },
                     sueldo = int.Parse(fc.Get("sueldo")),
-                    Codigo = "E-"+fc.Get("codempleado"),
+                    Codigo = fc.Get("codempleado"),
                     Banco = fc.Get("banco"),
                     N_Cuenta = fc.Get("cuenta"),
                     fecha_ingreso = DateTime.Now,
@@ -131,7 +131,8 @@ namespace ProyectoSIGNDVC.Controllers
             return View(vm);
         }
 
-        
+        [IniciarSesion]
+        [AutorizarRol]
         public ActionResult EditarUsuario(String usuario)
         {
             ViewModel vm = new ViewModel {
@@ -144,9 +145,86 @@ namespace ProyectoSIGNDVC.Controllers
             vm.direcciones = Direccion.GetAllDireccionPersona(vm.usuario.Empleado.Fk_Direccion);
             return View(vm);
         }
+
+
         [HttpPost]
         public ActionResult EditarUsuario(FormCollection fc)
         {
+            Usuario usuario = Usuario.GetUsuario(Usuario.GetUsuario(int.Parse(fc.Get("idUsuario"))).usuario);
+            Carga.DeleteCargasUsuario(usuario.usuario);
+            usuario.Empleado.Cargas = null;
+            Usuario.EditUsuario(usuario);
+
+            var dir = Direccion.GetDireccion(usuario.Empleado.Fk_Direccion);
+            dir.nombre = fc.Get("direccion");
+
+            var casa = Direccion.GetDireccion(dir.Fk_Direccion.Value);
+            casa.nombre = fc.Get("casa");
+
+            var calle = Direccion.GetDireccion(casa.Fk_Direccion.Value);
+            calle.nombre = fc.Get("calle");
+
+            var ciudad = Direccion.GetDireccion(calle.Fk_Direccion.Value);
+            ciudad.nombre = fc.Get("ciudad");
+            ciudad.Fk_Direccion = Direccion.GetDireccionID(fc.Get("estado"), "Estado");
+
+
+            Direccion.EditDireccion(casa);
+            Direccion.EditDireccion(calle);
+            Direccion.EditDireccion(ciudad);
+            Direccion.EditDireccion(dir);
+
+
+
+            int fk_dir = Direccion.InsertDireccion(fc.Get("casa"), "Casa", Direccion.InsertDireccion(fc.Get("calle"), "Calle", Direccion.InsertDireccion(fc.Get("ciudad"), "Ciudad", Direccion.GetDireccionID(fc.Get("estado"), "Estado"))));
+
+
+            ///////////////////////////
+            //////////////////////////
+            List<Carga> cargas = new List<Carga>();
+            for (int i = 2; i <= int.Parse(fc.Get("numfilas")); i++)
+            {
+                var carga = new Carga
+                {
+                    Persona = new Persona
+                    {
+
+                        nombre = fc.Get("nombrecarga" + i.ToString()),
+                        apellido = fc.Get("apellidocarga" + i.ToString()),
+                        sexo = fc.Get("sexocarga" + i.ToString()),
+                        cedula = int.Parse(fc.Get("cedulacarga" + i.ToString())),
+                        fecha_nacimiento = DateTime.Parse(fc.Get("fechanaccarga" + i.ToString()))
+                    },
+                    monto_poliza = int.Parse(fc.Get("montocarga" + i.ToString())),
+                    Fk_Empleado = usuario.Empleado.EmpleadoID
+                };
+                Carga.AddCarga(carga);
+                cargas.Add(carga);
+            };
+            //Direccion.GetDireccion("");
+            usuario = Usuario.GetUsuario(Usuario.GetUsuario(int.Parse(fc.Get("idUsuario"))).usuario);
+            usuario.usuario = fc.Get("usuario");
+            usuario.clave = fc.Get("clave");
+            usuario.email = fc.Get("email");
+
+            Cargo cargo = Cargo.GetCargo(Cargo.GetCargoID(fc.Get("cargo")));
+            usuario.Empleado.Fk_Cargo = cargo.CargoID;
+            usuario.Empleado.Cargo = cargo;
+
+            usuario.Empleado.Banco = fc.Get("banco");
+            usuario.Empleado.N_Cuenta = fc.Get("cuenta");
+            usuario.Empleado.sueldo = int.Parse(fc.Get("sueldo"));
+            usuario.Empleado.Codigo = fc.Get("codempleado");
+            usuario.Empleado.Persona.nombre = fc.Get("nombre");
+            usuario.Empleado.Persona.apellido = fc.Get("apellido");
+            usuario.Empleado.Persona.cedula = int.Parse(fc.Get("cedula"));
+            usuario.Empleado.Persona.fecha_nacimiento = DateTime.Parse(fc.Get("fechanac"));
+            usuario.Empleado.Persona.sexo = fc.Get("sexo");
+            usuario.Empleado.Cargas = cargas;
+            //
+            Usuario.EditUsuario(usuario);
+            Empleado.EditEmpleado(usuario.Empleado);
+            Persona.EditPersona(usuario.Empleado.Persona);
             return RedirectToAction("TablaUsuarios", "Configuration");
         }
 

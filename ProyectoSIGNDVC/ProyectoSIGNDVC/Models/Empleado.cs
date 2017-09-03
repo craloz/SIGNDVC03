@@ -260,6 +260,15 @@ namespace ProyectoSIGNDVC
 
         }
 
+        public static void EditEmpleado(Empleado empleado)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                ctx.Entry(empleado).State = System.Data.Entity.EntityState.Modified;
+                ctx.SaveChanges();
+            }
+        }
+
 
 
         //public int Fk_Usuario { get; set; }

@@ -155,4 +155,21 @@ namespace ProyectoSIGNDVC.Attributes
             }
         }
     }
+
+
+
+    public class IniciarSesion : AuthorizeAttribute
+    {
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            if (HttpContext.Current.Session["usuario"] == null)
+            {
+                filterContext.Result = new RedirectToRouteResult(new
+                    RouteValueDictionary(new { controller = "Login", action = "Login" }));
+            }
+        }
+    }
+
+
+
 }

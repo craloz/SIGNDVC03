@@ -1,4 +1,6 @@
-﻿function addTr() {
+﻿//var max = 0;
+
+function addTr() {
     var table = document.getElementById("tablaCargas");
     filas = table.rows.length;
     var row = table.insertRow(filas);
@@ -48,8 +50,54 @@ function eliminarUsuario(usuario) {
     }
 }
 
-function eliminarCarga() {
+/*function reOrder()
+{
+    var table = document.getElementById("tablaCargas");
+    for (var i = 4; i <= max; i++)
+    {
+        
+    }
+}*/
+
+function eliminarCargas() {
     var table = document.getElementById("tablaCargas");
     filas = table.rows.length;
-    debugger;
+    console.log(filas);
+    for (var i = filas - 1; i > 0; i--)
+    {
+        table.deleteRow(i);
+    }
+    getRows();
 }
+
+
+function addTr2() {
+   // setMaxfilas();
+    var table = document.getElementById("tablaCargas");
+    filas = table.rows.length;
+    var row = table.insertRow(filas);
+    row.setAttribute("id", filas);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
+    var cont = document.getElementById("tablaCargas").rows.length;
+    cell1.innerHTML = "<input required class='form-control' type='text' placeholder='Nombre' name='nombrecarga" + cont + "' >";
+    cell2.innerHTML = "<input required class='form-control' type='text' placeholder='Apellido' name='apellidocarga" + cont + "' >";
+    cell3.innerHTML = "<input required class='form-control' type='text' placeholder='Cedula' name='cedulacarga" + cont + "' >";
+    cell4.innerHTML = "<select required class='form-control' name='sexocarga" + cont + "' ><option value='Masculino'>Masculino</option><option value='Femenino'>Femenino</option></select>";
+    cell5.innerHTML = "<input required class='form-control' type='date' name='fechanaccarga" + cont + "' >";
+    cell6.innerHTML = "<input required class='form-control 'type='text' placeholder='Monto' name='montocarga" + cont + "' >";
+    getRows();
+}
+
+/*function setMaxfilas() {
+    if (max <= document.getElementById("numfilas").value)
+    {
+       max = document.getElementById("numfilas").value;
+    }
+     
+}*/

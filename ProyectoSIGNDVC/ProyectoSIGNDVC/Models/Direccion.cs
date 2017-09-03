@@ -82,6 +82,15 @@ namespace ProyectoSIGNDVC.Models
             }
         }
 
+        public static void EditDireccion(Direccion direccion)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                ctx.Entry(direccion).State = System.Data.Entity.EntityState.Modified;
+                ctx.SaveChanges();
+            }
+        }
+
 
     }
 }

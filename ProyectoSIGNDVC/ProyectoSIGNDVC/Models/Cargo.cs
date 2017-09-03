@@ -23,7 +23,7 @@ namespace ProyectoSIGNDVC.Models
         }
 
         public static int GetCargoID(String nombre)       
-            {
+        {
                 using (var ctx = new AppDbContext())
                 {
                     var Query = (from car in ctx.Cargos
@@ -32,6 +32,19 @@ namespace ProyectoSIGNDVC.Models
                     return Query;
                 }
                 return 0;
-            }  
+        }
+        
+        public static Cargo GetCargo(int cargoId)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                var query = (from cargo in ctx.Cargos
+                             where cargo.CargoID == cargoId
+                             select cargo
+                            );
+                return query.FirstOrDefault();
+            }
+            
+        }
     }  
 }
