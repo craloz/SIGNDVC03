@@ -16,20 +16,25 @@ namespace ProyectoSIGNDVC.Models
         {
             while (true)
             {
-                using (var ctx = new AppDbContext())
-                {                  
-                    foreach (var nomina in Nomina.GetAllNominas())
-                    {
-                        if (nomina.fecha_efectivo <= DateTime.Now && !nomina.enviado && nomina.fecha_aprobacion != null)
+                try { 
+                    using (var ctx = new AppDbContext())
+                    {                  
+                        foreach (var nomina in Nomina.GetAllNominas())
                         {
-                            Correo c = new Correo(Pago.GetAllPagosNomina(nomina.NominaID));
-                            c.EnviarCorreoPagos();
-                            Nomina.CambiarStatusEnviadoNomina(nomina.NominaID);
+                            if (nomina.fecha_efectivo <= DateTime.Now && !nomina.enviado && nomina.fecha_aprobacion != null)
+                            {
+                                Correo c = new Correo(Pago.GetAllPagosNomina(nomina.NominaID));
+                                c.EnviarCorreoPagos();
+                                Nomina.CambiarStatusEnviadoNomina(nomina.NominaID);
+                            }
                         }
                     }
-                }
 
-                Thread.Sleep(1000*5);
+                    Thread.Sleep(1000*5);
+                }
+                catch (Exception)
+                {
+                }
             }
         }
     }

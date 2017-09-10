@@ -22,6 +22,9 @@ namespace ProyectoSIGNDVC.Models
         public List<Notificacion> notificaciones { get; set; }
         public float totalNomina { get; set; }
         public Pago pago { get; set; }
+
+        public Empleado empleado { get; set; }
+
         public DateTime desde { get; set; }
         public DateTime hasta { get; set; }
         //public Empleado empleado {get; set;}

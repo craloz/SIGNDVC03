@@ -20,69 +20,127 @@ namespace ProyectoSIGNDVC.Controllers
         [SessionExpire]
         public ActionResult TablaPagos()
         {
-            
-            ViewModel vm = new ViewModel {pagos = Pago.GetPagos(Usuario.GetUsuario(Session["usuario"].ToString()).usuarioID) };
-            return View(vm);
+
+            try
+            {
+                ViewModel vm = new ViewModel { pagos = Pago.GetPagos(Usuario.GetUsuario(Session["usuario"].ToString()).usuarioID) };
+                return View(vm);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("UnexpectedError", "Error");
+            }
+
         }
 
         [SessionExpire]
         public ActionResult PagoNomina()
         {
-                       
-            var nomina = new Nomina
-            {
-                fecha_emision = DateTime.Now,
-                Pagos = new List<Pago>(),
 
-            };
-            float total = 0;
-            List<Empleado> listemp = Empleado.calcularSalario();
-            foreach (var emp in listemp)
+            try
             {
-                total += emp.MontoTotal;
+                var nomina = new Nomina
+                {
+                    fecha_emision = DateTime.Now,
+                    Pagos = new List<Pago>(),
+
+                };
+                float total = 0;
+                List<Empleado> listemp = Empleado.calcularSalario();
+                foreach (var emp in listemp)
+                {
+                    total += emp.MontoTotal;
+                }
+                ViewModel vm = new ViewModel { nominaId = nomina.NominaID, usuarios = Usuario.GetAllUsuarios(), empleados = listemp, totalNomina = total };
+                return View(vm);
             }
-            ViewModel vm = new ViewModel { nominaId = nomina.NominaID, usuarios = Usuario.GetAllUsuarios(), empleados = listemp, totalNomina = total };
-            return View(vm);            
+            catch (Exception)
+            {
+                return RedirectToAction("UnexpectedError", "Error");
+            }
+            
         }
 
         [SessionExpire]
         public ActionResult AprobarNomina(String nominaid)
         {
-            Models.Nomina.AprobarNomina(int.Parse(nominaid));
-            return RedirectToAction("ListaNomina","Pago");
+
+            try
+            {
+                Models.Nomina.AprobarNomina(int.Parse(nominaid));
+                return RedirectToAction("ListaNomina", "Pago");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("UnexpectedError", "Error");
+            }
+
         }
 
         [SessionExpire]
         public ActionResult AprobarPago(String pagoid)
         {
-            return RedirectToAction("TablaPagos", "Pago");
+            try
+            {
+                return RedirectToAction("TablaPagos", "Pago");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("UnexpectedError", "Error");
+            }
+            
         }
 
         [SessionExpire]
         public ActionResult Nomina()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("UnexpectedError", "Error");
+            }
+            
         }
 
         [SessionExpire]
         public ActionResult ListaNomina()
         {
-            ViewModel vm = new ViewModel { nominas = Models.Nomina.GetAllNominas() };
-            return View(vm);
+            try
+            {
+                ViewModel vm = new ViewModel { nominas = Models.Nomina.GetAllNominas() };
+                return View(vm);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("UnexpectedError", "Error");
+            }
+
         }
 
         [SessionExpire]
         public ActionResult VerNomina( int nominaid)
         {
-            float total = 0;
-            List<Empleado> listemp = Empleado.calcularSalarioByNomina(nominaid);            
-            foreach(var emp in listemp)
-            {
-                total += emp.MontoTotal;
-            }
 
-            ViewModel vm = new ViewModel { empleados = listemp, totalNomina = total };
-            return View(vm);
+            try
+            {
+                float total = 0;
+                List<Empleado> listemp = Empleado.calcularSalarioByNomina(nominaid);
+                foreach (var emp in listemp)
+                {
+                    total += emp.MontoTotal;
+                }
+
+                ViewModel vm = new ViewModel { empleados = listemp, totalNomina = total };
+                return View(vm);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("UnexpectedError", "Error");
+            }
+            
         }
 
 
@@ -90,90 +148,161 @@ namespace ProyectoSIGNDVC.Controllers
         public ActionResult DetallePago()
         {
 
-            return RedirectToAction("VerNomina","Pago" );
+            try
+            {
+                return RedirectToAction("VerNomina", "Pago");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("UnexpectedError", "Error");
+            }
+
+            
         }
 
         [SessionExpire]
         [HttpPost]
         public ActionResult GenerarNomina(FormCollection fc)
         {
-            
-            DateTime fechaefectivo = DateTime.Parse(fc.Get("fechaefectiva"));
-            Pago.GenerarNomina(fechaefectivo);
-            
-            return RedirectToAction("ListaNomina","Pago");
+
+            try
+            {
+                DateTime fechaefectivo = DateTime.Parse(fc.Get("fechaefectiva"));
+                Pago.GenerarNomina(fechaefectivo);
+
+                return RedirectToAction("ListaNomina", "Pago");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("UnexpectedError", "Error");
+            }
+
+           
         }
 
-        [AutorizarCoordinadoraAdm]
-        public JsonResult Prueba()
+        [HttpPost]
+        public ActionResult EditarPagoByEmp(FormCollection fc)
         {
 
-            /*
+            try
+            {
+                DateTime fechaefectivo = DateTime.Parse(fc.Get("fechaefectiva"));
+                Pago.GenerarNomina(fechaefectivo);
+
+                return RedirectToAction("ListaNomina", "Pago");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("UnexpectedError", "Error");
+            }
+        }
+
+
+        [SessionExpire]
+        public ActionResult EditarPago(String empleado)
+        {
+
+            try
+            {
+                ViewModel vm = new ViewModel
+                {
+                    empleado = Empleado.calcularSalarioByEmp(int.Parse(empleado))
+                };
+                return View(vm);
+                
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("UnexpectedError", "Error");
+            }
+
+
+        }
+
+
+
+
+        [AutorizarCoordinadoraAdm]
+        public ActionResult Prueba()
+        {
+            try
+            {
+                /*
             Correo c = new Correo(Pago.GetAllPagosNomina(int.Parse(nominaid)));
             Thread thread = new Thread(new ThreadStart(c.EnviarCorreoPagos));
             thread.Start()*/
 
-            //Correo c = new Correo("Body", "carlos.elp94@gmail.com", "carlosenriquelozanoperez@hotmail.com", "Asunto");
-            //c.EnviarCorreoAsync("carlosenriquelozanoperez@hotmail.com");
-            //return Json("hola", JsonRequestBehavior.AllowGet);
+                //Correo c = new Correo("Body", "carlos.elp94@gmail.com", "carlosenriquelozanoperez@hotmail.com", "Asunto");
+                //c.EnviarCorreoAsync("carlosenriquelozanoperez@hotmail.com");
+                //return Json("hola", JsonRequestBehavior.AllowGet);
 
 
 
-            //////////////////////////////////////////////////////////////////////////////////////
-            /*string to = "carlos.elp94@gmail.com";
-            string from = "carlosenriquelozanoperez@contoso.com";
-            MailMessage message = new MailMessage(from, to);
-            message.Subject = "Using the new SMTP client.";
-            message.Body = @"Using this new feature, you can send an e-mail message from an application very easily.";
-            SmtpClient client = new SmtpClient(server);
-            // Credentials are necessary if the server requires the client 
-            // to authenticate before it will send e-mail on the client's behalf.
-            client.UseDefaultCredentials = true;
+                //////////////////////////////////////////////////////////////////////////////////////
+                /*string to = "carlos.elp94@gmail.com";
+                string from = "carlosenriquelozanoperez@contoso.com";
+                MailMessage message = new MailMessage(from, to);
+                message.Subject = "Using the new SMTP client.";
+                message.Body = @"Using this new feature, you can send an e-mail message from an application very easily.";
+                SmtpClient client = new SmtpClient(server);
+                // Credentials are necessary if the server requires the client 
+                // to authenticate before it will send e-mail on the client's behalf.
+                client.UseDefaultCredentials = true;
 
-            try
-            {
-                client.Send(message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception caught in CreateTestMessage2(): {0}",
-                            ex.ToString());
-            }*/
-
-
-            var message = new MailMessage();
-            message.To.Add(new MailAddress("carlos.elp94@gmail.com"));  // replace with valid value 
-            message.From = new MailAddress("carlosenriquelozanoperez@hotmail.com");  // replace with valid value
-            message.Subject = "Your Email Subject TEST";
-            message.Body = string.Format("Body");
-            message.IsBodyHtml = true;
-
-            using (var smtp = new SmtpClient())
-            {
-                var credential = new NetworkCredential
+                try
                 {
-                    UserName = Properties.Resources.EmailDVC,  // replace with valid value
-                    Password = Properties.Resources.PasswordDVC // replace with valid value
-                };
-                smtp.Credentials = credential;
-                smtp.Host = Properties.Resources.EmailDVC;
-                smtp.Port = 587;
-                smtp.EnableSsl = true;
-                try { 
-                smtp.Send(message);
-                    var i = 1; 
-                }catch(Exception e)
-                {
-
+                    client.Send(message);
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception caught in CreateTestMessage2(): {0}",
+                                ex.ToString());
+                }*/
+
+
+                var message = new MailMessage();
+                message.To.Add(new MailAddress("carlos.elp94@gmail.com"));  // replace with valid value 
+                message.From = new MailAddress("carlosenriquelozanoperez@hotmail.com");  // replace with valid value
+                message.Subject = "Your Email Subject TEST";
+                message.Body = string.Format("Body");
+                message.IsBodyHtml = true;
+
+                using (var smtp = new SmtpClient())
+                {
+                    var credential = new NetworkCredential
+                    {
+                        UserName = Properties.Resources.EmailDVC,  // replace with valid value
+                        Password = Properties.Resources.PasswordDVC // replace with valid value
+                    };
+                    smtp.Credentials = credential;
+                    smtp.Host = Properties.Resources.EmailDVC;
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    try
+                    {
+                        smtp.Send(message);
+                        var i = 1;
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+
+                return Json("Hola", JsonRequestBehavior.AllowGet);
+                /////////////////////////////////////////////////////////////////////////////////////
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("UnexpectedError", "Error");
             }
 
-            return Json("Hola",JsonRequestBehavior.AllowGet);
-            /////////////////////////////////////////////////////////////////////////////////////
+            
         }
 
         public ActionResult VerPago(String pago)
         {
+
             PDF pd = new PDF();
             Byte[] pdf = pd.generarPDF(int.Parse(pago)).ToArray();
             ViewModel vm = new ViewModel {
@@ -220,6 +349,7 @@ namespace ProyectoSIGNDVC.Controllers
             workStream.Position = 0;
         
             return new FileStreamResult(workStream, "application/pdf");
+
         }
     }
 

@@ -88,6 +88,7 @@ namespace ProyectoSIGNDVC.Models
                         using (var srHtml = new StringReader(body))
                         {
                             //Parse the HTML
+                            
                             iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, doc, srHtml);
                         }
 
