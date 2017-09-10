@@ -188,7 +188,8 @@ namespace ProyectoSIGNDVC.Controllers
 
             Pago p = Pago.GetPago(int.Parse(pago));
             Usuario u = Usuario.GetUsuario(Usuario.GetUsuario(p.Fk_Empleado).usuario);
-            
+
+            /*
             Document document = new Document();
             PdfWriter.GetInstance(document, workStream).CloseStream = false;
             string imageFilePath = Server.MapPath("/Content/images/dvclogo.png");
@@ -204,6 +205,7 @@ namespace ProyectoSIGNDVC.Controllers
             document.Add(new Paragraph("Nombre: " + u.Empleado.Persona.nombre +" "+u.Empleado.Persona.apellido +" CI:"+ u.Empleado.Persona.cedula ));
             document.Close();
 
+            */
             PDF pdf = new PDF();
             //byte[] byteInfo = workStream.ToArray();
             byte[] byteInfo = pdf.generarPDF(int.Parse(pago));
