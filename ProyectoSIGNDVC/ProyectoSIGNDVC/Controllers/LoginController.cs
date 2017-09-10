@@ -14,36 +14,58 @@ namespace ProyectoSIGNDVC.Controllers
         public ActionResult Login()
         {
 
+            try
+            {
+                return View();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Unexpected","Error");
+            }
             
             
-            return View();
         }
         // GET: Login
         [HttpPost]
         public ActionResult Login(FormCollection fc)
         {
 
-            if (Usuario.CheckCredencialesUsuarios(fc.Get("usuario"), fc.Get("clave")))
+            try
             {
-                //ViewBag.Message = "Correcto Redireccionando";
-                Session["usuario"] = fc.Get("usuario");
-                return RedirectToAction("Index", "Home");
-                //Session["UserName"] = obj.UserName.ToString();
-               // return RedirectToAction("UserDashBoard");
-            }
-            else
-            {
-                ViewBag.Message = "Usuario o Clave Incorrecta";
-            }
+                if (Usuario.CheckCredencialesUsuarios(fc.Get("usuario"), fc.Get("clave")))
+                {
+                    Session["usuario"] = fc.Get("usuario");
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewBag.Message = "Usuario o Clave Incorrecta";
+                }
                 return View();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Unexpected", "Error");
+            }
+
+           
         }
 
         // GET: Login
         [SessionExpire]
         public ActionResult LogOff()
         {
-            Session.Clear();
-            return RedirectToAction("Login", "Login");
+
+            try
+            {
+                Session.Clear();
+                return RedirectToAction("Login", "Login");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Unexpected", "Error");
+            }
+            
         } 
        
     }

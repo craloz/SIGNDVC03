@@ -14,35 +14,67 @@ namespace ProyectoSIGNDVC.Controllers
         [SessionExpire]
         public ActionResult Index(String error)
         {
-            var e = error;
-            return View();
+            try
+            {
+                var e = error;
+                return View();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Unexpected", "Error");
+            }
+           
         }
         [HttpPost]
         [SessionExpire]
         public ActionResult Nomina_Trabajador(FormCollection fc)
         {
-            Usuario usuario = Usuario.GetUsuario(fc.Get("usuario"));
-            DateTime desde = DateTime.Parse(fc.Get("desde"));
-            DateTime hasta = DateTime.Parse(fc.Get("hasta"));
-            ViewModel vm = new ViewModel {
-                pagos = Pago.GetPagos(usuario, desde, hasta),
-                usuario = usuario,
-                desde = desde,
-                hasta = hasta
-             };
-            return View(vm);
+            try
+            {
+                Usuario usuario = Usuario.GetUsuario(fc.Get("usuario"));
+                DateTime desde = DateTime.Parse(fc.Get("desde"));
+                DateTime hasta = DateTime.Parse(fc.Get("hasta"));
+                ViewModel vm = new ViewModel
+                {
+                    pagos = Pago.GetPagos(usuario, desde, hasta),
+                    usuario = usuario,
+                    desde = desde,
+                    hasta = hasta
+                };
+                return View(vm);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Unexpected", "Error");
+            }
+            
         }
 
         [SessionExpire]
         public ActionResult Aprobacion_Quincenal()
         {
-            return View();
+
+            try
+            {
+                return View();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Unexpected", "Error");
+            }
         }
 
         [SessionExpire]
         public ActionResult Detalle_Abono()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Unexpected", "Error");
+            }
         }
     }
 

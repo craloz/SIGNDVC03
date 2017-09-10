@@ -13,33 +13,68 @@ namespace ProyectoSIGNDVC.Controllers
         [SessionExpire]
         public ActionResult Index()
         {
-            ViewModel vm = new ViewModel {
+            try
+            {
+                ViewModel vm = new ViewModel
+                {
 
-                notificaciones = Notificacion.GetAllNotificaciones(Usuario.GetUsuario(Session["usuario"].ToString()).usuarioID)
-            };
-            return View(vm);
+                    notificaciones = Notificacion.GetAllNotificaciones(Usuario.GetUsuario(Session["usuario"].ToString()).usuarioID)
+                };
+                return View(vm);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Unexpected", "Error");
+            }
+            
         }
 
         [SessionExpire]
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
+            try
+            {
+                ViewBag.Message = "Your application description page.";
+
+                return View();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Unexpected", "Error");
+            }
+           
         }
 
         [SessionExpire]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            try
+            {
+                ViewBag.Message = "Your contact page.";
 
-            return View();
+                return View();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Unexpected", "Error");
+            }
+            
         }
 
         [SessionExpire]
         public ActionResult Error()
         {
-            return View();
+
+            try
+            {
+                return View();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Unexpected", "Error");
+            }
+            
         }
 
     }

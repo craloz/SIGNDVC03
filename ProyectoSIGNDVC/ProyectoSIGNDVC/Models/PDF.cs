@@ -92,6 +92,7 @@ namespace ProyectoSIGNDVC.Models
                         {
 
                             //Parse the HTML
+                            
                             iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, doc, srHtml);
                         }
 
