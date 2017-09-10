@@ -175,11 +175,18 @@ namespace ProyectoSIGNDVC.Controllers
         public ActionResult VerPago(String pago)
         {
             PDF pd = new PDF();
-            Byte[] pdf = pd.generarPDF(int.Parse(pago));
+            Byte[] pdf = pd.generarPDF(int.Parse(pago)).ToArray();
             ViewModel vm = new ViewModel {
                 pago = Pago.GetPago(int.Parse(pago))
             };
             return View(vm);
+        }
+
+        public ActionResult DownloadPdf(String pago)
+        {
+            PDF pdf = new PDF();
+            MemoryStream stream = pdf.generarPDF(int.Parse(pago));
+            return File(stream, "application/pdf", "DownloadName.pdf");
         }
 
         public FileStreamResult VerPagoPdf(String pago)
@@ -208,11 +215,13 @@ namespace ProyectoSIGNDVC.Controllers
             */
             PDF pdf = new PDF();
             //byte[] byteInfo = workStream.ToArray();
-            byte[] byteInfo = pdf.generarPDF(int.Parse(pago));
+            byte[] byteInfo = pdf.generarPDF(int.Parse(pago)).ToArray();
             workStream.Write(byteInfo, 0, byteInfo.Length);
             workStream.Position = 0;
         
             return new FileStreamResult(workStream, "application/pdf");
         }
     }
+
+
 }

@@ -39,10 +39,11 @@ namespace ProyectoSIGNDVC.Models
         }
 
 
-        public Byte[] generarPDF(int pagoid)
+        public MemoryStream generarPDF(int pagoid)
         {
             //Create a byte array that will eventually hold our final PDF
             Byte[] bytes;
+            MemoryStream mss = new MemoryStream();
 
             //Boilerplate iTextSharp setup here
             //Create a stream that we can write to, in this case a MemoryStream
@@ -60,9 +61,7 @@ namespace ProyectoSIGNDVC.Models
                         //Open the document for writing
                         doc.Open();
 
-
                         Pago pago = Pago.GetPago(pagoid);
-
 
                         DateTime today = DateTime.Now;
                         int day = today.Day;
@@ -88,7 +87,6 @@ namespace ProyectoSIGNDVC.Models
                         //XMLWorker also reads from a TextReader and not directly from a string
                         using (var srHtml = new StringReader(body))
                         {
-
                             //Parse the HTML
                             iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, doc, srHtml);
                         }
@@ -100,6 +98,8 @@ namespace ProyectoSIGNDVC.Models
                 //After all of the PDF "stuff" above is done and closed but **before** we
                 //close the MemoryStream, grab all of the active bytes from the stream
                 bytes = ms.ToArray();
+                mss = ms;
+
             }
 
             //Now we just need to do something with those bytes.
@@ -108,7 +108,7 @@ namespace ProyectoSIGNDVC.Models
             //could pass them to another function for further PDF processing.
             var testFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "test.pdf");
             System.IO.File.WriteAllBytes(testFile, bytes);
-            return bytes;
+            return mss;
         }
 
          

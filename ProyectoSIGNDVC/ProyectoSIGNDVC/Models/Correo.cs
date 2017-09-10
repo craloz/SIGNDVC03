@@ -44,12 +44,17 @@ namespace ProyectoSIGNDVC.Models
             this.pagos = pagos;
         }
 
-        public void EnviarCorreo(String desde)
+        public void EnviarCorreo(String desde, int pagoid)
         {
+
+            PDF pdf = new PDF();
             var message = new MailMessage();
             message.To.Add(new MailAddress(this.emailTo));  // replace with valid value 
             message.From = new MailAddress(this.desde);  // replace with valid value
             message.Subject = this.subject;
+
+            message.Attachments.Add(new Attachment(pdf.generarPDF(pagoid), "test.pdf"));
+
             message.Body = string.Format(this.body);
 
 
@@ -80,6 +85,7 @@ namespace ProyectoSIGNDVC.Models
                 }
                 catch (Exception e)
                 {
+                    System.Diagnostics.Debug.WriteLine("ERROR: "+e);
 
                 }
             }
@@ -118,11 +124,11 @@ namespace ProyectoSIGNDVC.Models
                     + e.FAOV.ToString() + "</p> <p>INCES</p> <p>0,00</p> <p style='border-bottom: 1px solid black;margin-bottom:0px'>0,00</p> <p style='margin-top: 0px'>0,00</p> <p style='border-top: 1px solid black;'>RETENCIONES</p> </div> </div> </div> <p style='text-align: center'>Este monto fue abonado en la cuenta del BANCO VENEZOLANO DE CREDITO N# <span style='font-weight: bold'>xxxx-xxxx-xxxx</span></p> <p style='text-align: center;font-weight: bold'>Fecha: "+
                     pago.f_pago.ToString() + "</p> </div>";*/
 
-                this.emailTo = u.email;
+                this.emailTo = u.email;                
                 this.body = body;
                 this.desde = "carlosenriquelozanoperez@hotmail.com";
                 this.subject = Properties.Resources.TituloNuevoPago +" "+ pago.numero_ref.ToString();
-                this.EnviarCorreo(Properties.Resources.EmailDVC);
+                this.EnviarCorreo(Properties.Resources.EmailDVC,pago.PagoID);
             }
         }
 
