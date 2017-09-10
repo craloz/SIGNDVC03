@@ -31,23 +31,32 @@ namespace ProyectoSIGNDVC
         public int Fk_Nomina { get; set; }
         [ForeignKey("Fk_Nomina")]
         public Nomina Nomina { get; set; }
-
-
-        public static List<Pago> CreatePagos(List<Usuario> usuarios)
-        {
-            List<Pago> listaPagos = new List<Pago>();
-            foreach (var usuario in usuarios)
-            {
-                listaPagos.Add(new Pago {
-                    numero_ref = 12345,
-                    monto = usuario.Empleado.sueldo / 2,
-                    f_pago = DateTime.Now,
-                    aprobado = false
-
-                });
-            }
-            return listaPagos;
-        }
+        
+        public float SSO { get; set; }
+        
+        public float RPE { get; set; }
+        
+        public float FAOV { get; set; }
+        
+        public float INCES { get; set; }
+        [NotMapped]
+        public float Retenciones { get; set; }
+        
+        public float SSO_ap { get; set; }
+        
+        public float RPE_ap { get; set; }
+        
+        public float FAOV_ap { get; set; }
+        
+        public float INCES_ap { get; set; }
+        [NotMapped]
+        public float Aportes { get; set; }
+        
+        public float BonoAlimentacion { get; set; }
+        [NotMapped]
+        public float costoCargas { get; set; }
+        [NotMapped]
+        public float MontoTotal { get; set; }
 
 
         public static void GenerarNomina(DateTime fechaefectiva)
@@ -70,7 +79,16 @@ namespace ProyectoSIGNDVC
                         monto = emp.MontoTotal,
                         aprobado = false,
                         Fk_Empleado = emp.EmpleadoID,
-                        Fk_Nomina = idnom
+                        Fk_Nomina = idnom,
+                        SSO = emp.SSO,
+                        RPE = emp.RPE,
+                        FAOV = emp.FAOV,
+                        INCES = emp.INCES,
+                        SSO_ap = emp.SSO_ap,
+                        RPE_ap = emp.RPE_ap,
+                        FAOV_ap = emp.FAOV_ap,
+                        INCES_ap = emp.INCES_ap,
+                        BonoAlimentacion = emp.BonoAlimentacion
                     };
                     ctx.Pagos.Add(pago);
                     ctx.SaveChanges();

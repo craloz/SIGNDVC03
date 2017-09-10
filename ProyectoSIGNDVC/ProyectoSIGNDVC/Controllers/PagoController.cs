@@ -75,7 +75,7 @@ namespace ProyectoSIGNDVC.Controllers
         public ActionResult VerNomina( int nominaid)
         {
             float total = 0;
-            List<Empleado> listemp = Empleado.calcularSalarioByNomina(nominaid);
+            List<Empleado> listemp = Empleado.calcularSalarioByNomina(nominaid);            
             foreach(var emp in listemp)
             {
                 total += emp.MontoTotal;
@@ -174,6 +174,8 @@ namespace ProyectoSIGNDVC.Controllers
 
         public ActionResult VerPago(String pago)
         {
+            PDF pd = new PDF();
+            Byte[] pdf = pd.generarPDF(int.Parse(pago));
             ViewModel vm = new ViewModel {
                 pago = Pago.GetPago(int.Parse(pago))
             };
@@ -202,8 +204,9 @@ namespace ProyectoSIGNDVC.Controllers
             document.Add(new Paragraph("Nombre: " + u.Empleado.Persona.nombre +" "+u.Empleado.Persona.apellido +" CI:"+ u.Empleado.Persona.cedula ));
             document.Close();
 
-
-            byte[] byteInfo = workStream.ToArray();
+            PDF pdf = new PDF();
+            //byte[] byteInfo = workStream.ToArray();
+            byte[] byteInfo = pdf.generarPDF(int.Parse(pago));
             workStream.Write(byteInfo, 0, byteInfo.Length);
             workStream.Position = 0;
         

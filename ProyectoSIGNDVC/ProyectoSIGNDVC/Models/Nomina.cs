@@ -49,6 +49,7 @@ namespace ProyectoSIGNDVC.Models
 
         public static List<Nomina> GetAllNominas()
         {
+
             using (var ctx = new AppDbContext())
             {
                 var query = (from nomina in ctx.Nominas

@@ -61,11 +61,6 @@ namespace ProyectoSIGNDVC
         public float MontoTotal { get; set; }
 
 
-
-
-
-
-
         public static float getCostoCargas(int idEmpleado)
         {
             using (var ctx = new AppDbContext())
@@ -139,7 +134,7 @@ namespace ProyectoSIGNDVC
                     em.RPE_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_aporte / 100)) * calcularLunes());
                     em.FAOV_ap = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_aporte / 100));
                     em.INCES_ap = (((empl.emp.sueldo * (60 / 360)) * 12) * (conf.inces_aporte / 100));
-                    if (day > 25)
+                    if (day > 15)
                     {
                         em.BonoAlimentacion = (conf.bonoalimentacion * conf.unid_tributaria * 30);
                     }
