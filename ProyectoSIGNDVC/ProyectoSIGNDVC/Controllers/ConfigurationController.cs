@@ -25,7 +25,7 @@ namespace ProyectoSIGNDVC.Controllers
                 return View(vm);
             } catch (Exception)
             {
-                return RedirectToAction("Unexpected", "Error");
+                return RedirectToAction("UnexpectedError", "Error");
             }
             
         }
@@ -95,7 +95,7 @@ namespace ProyectoSIGNDVC.Controllers
             }
             catch (Exception)
             {
-                return RedirectToAction("Unexpected", "Error");
+                return RedirectToAction("UnexpectedError", "Error");
             }
         }
 
@@ -109,7 +109,7 @@ namespace ProyectoSIGNDVC.Controllers
                 return View();
             } catch (Exception)
             {
-                return RedirectToAction("Unexpected", "Error");
+                return RedirectToAction("UnexpectedError", "Error");
             }
             
         }
@@ -125,7 +125,7 @@ namespace ProyectoSIGNDVC.Controllers
             }
             catch (Exception)
             {
-                return RedirectToAction("Unexpected", "Error");
+                return RedirectToAction("UnexpectedError", "Error");
             }
             
         }
@@ -141,7 +141,7 @@ namespace ProyectoSIGNDVC.Controllers
             }
             catch (Exception)
             {
-                return RedirectToAction("Unexpected", "Error");
+                return RedirectToAction("UnexpectedError", "Error");
             }
             
         }
@@ -176,7 +176,7 @@ namespace ProyectoSIGNDVC.Controllers
             }
             catch (Exception)
             {
-                return RedirectToAction("Unexpected", "Error");
+                return RedirectToAction("UnexpectedError", "Error");
             }
 
         }
@@ -200,7 +200,7 @@ namespace ProyectoSIGNDVC.Controllers
             }
             catch (Exception)
             {
-                return RedirectToAction("Unexpected", "Error");
+                return RedirectToAction("UnexpectedError", "Error");
             }
             
         }
@@ -290,7 +290,7 @@ namespace ProyectoSIGNDVC.Controllers
             }
             catch (Exception)
             {
-                return RedirectToAction("Unexpected", "Error");
+                return RedirectToAction("UnexpectedError", "Error");
             }
 
         }
@@ -306,7 +306,7 @@ namespace ProyectoSIGNDVC.Controllers
             }
             catch (Exception)
             {
-                return RedirectToAction("Unexpected", "Error");
+                return RedirectToAction("UnexpectedError", "Error");
             }
             
         }
