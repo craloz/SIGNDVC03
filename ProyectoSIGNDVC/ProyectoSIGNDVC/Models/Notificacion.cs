@@ -93,5 +93,19 @@ namespace ProyectoSIGNDVC
             }
         }
 
+        public static List<Notificacion> GetAllNotificacionNomina()
+        {
+            using (var ctx = new AppDbContext())
+            {
+                var query = (from notif in ctx.Notificaciones
+                             join nomina in ctx.Nominas on notif.Fk_Nomina equals nomina.NominaID
+                             where notif.tipo == "NOMINA" && nomina.fecha_aprobacion == null
+                             orderby notif.f_enviado descending 
+                             select notif
+                    );
+                return query.ToList();
+            }
+        }
+
     }
 }

@@ -10,7 +10,7 @@ namespace ProyectoSIGNDVC.Controllers
 {
     public class HomeController : Controller
     {
-        [SessionExpire]
+        [IniciarSesion]
         public ActionResult Index()
         {
             try
@@ -29,7 +29,7 @@ namespace ProyectoSIGNDVC.Controllers
             
         }
 
-        [SessionExpire]
+        [IniciarSesion]
         public ActionResult About()
         {
 
@@ -46,7 +46,7 @@ namespace ProyectoSIGNDVC.Controllers
            
         }
 
-        [SessionExpire]
+        [IniciarSesion]
         public ActionResult Contact()
         {
             try
@@ -62,7 +62,7 @@ namespace ProyectoSIGNDVC.Controllers
             
         }
 
-        [SessionExpire]
+        [IniciarSesion]
         public ActionResult Error()
         {
 

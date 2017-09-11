@@ -11,13 +11,17 @@ namespace ProyectoSIGNDVC.Controllers
     public class ReporteController : Controller
     {
         // GET: Reporte
-        [SessionExpire]
+        [IniciarSesion]
+        [AutorizarRol]
         public ActionResult Index(String error)
         {
             try
             {
+                ViewModel vm = new ViewModel {
+                    usuarios = Usuario.GetAllUsuarios()
+                };
                 var e = error;
-                return View();
+                return View(vm);
             }
             catch (Exception)
             {
@@ -26,7 +30,8 @@ namespace ProyectoSIGNDVC.Controllers
            
         }
         [HttpPost]
-        [SessionExpire]
+        [IniciarSesion]
+        [AutorizarRol]
         public ActionResult Nomina_Trabajador(FormCollection fc)
         {
             try
@@ -50,7 +55,8 @@ namespace ProyectoSIGNDVC.Controllers
             
         }
 
-        [SessionExpire]
+        [IniciarSesion]
+        [AutorizarRol]
         public ActionResult Aprobacion_Quincenal()
         {
 
@@ -64,7 +70,8 @@ namespace ProyectoSIGNDVC.Controllers
             }
         }
 
-        [SessionExpire]
+        [IniciarSesion]
+        [AutorizarRol]
         public ActionResult Detalle_Abono()
         {
             try

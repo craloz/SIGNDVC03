@@ -17,7 +17,7 @@ namespace ProyectoSIGNDVC.Controllers
     public class PagoController : Controller
     {
         // GET: Pago
-        [SessionExpire]
+        [IniciarSesion]
         public ActionResult TablaPagos()
         {
 
@@ -33,7 +33,8 @@ namespace ProyectoSIGNDVC.Controllers
 
         }
 
-        [SessionExpire]
+        [IniciarSesion]
+        [AutorizarRol]
         public ActionResult PagoNomina()
         {
 
@@ -61,12 +62,14 @@ namespace ProyectoSIGNDVC.Controllers
             
         }
 
-        [SessionExpire]
+        [IniciarSesion]
+        [AutorizarDirector]
         public ActionResult AprobarNomina(String nominaid)
         {
 
             try
             {
+                
                 Models.Nomina.AprobarNomina(int.Parse(nominaid));
                 return RedirectToAction("ListaNomina", "Pago");
             }
@@ -77,11 +80,14 @@ namespace ProyectoSIGNDVC.Controllers
 
         }
 
-        [SessionExpire]
+        [IniciarSesion]
         public ActionResult AprobarPago(String pagoid)
         {
             try
             {
+
+                Notificacion.AddNotificacion("PAGO", Properties.Resources.TituloPagoAprobado, Properties.Resources.DescripcionPagoAprobado, int.Parse(pagoid), Usuario.GetUsuarioDirector().usuarioID);
+                Pago.AprobarPago(int.Parse(pagoid));
                 return RedirectToAction("TablaPagos", "Pago");
             }
             catch (Exception)
@@ -91,7 +97,8 @@ namespace ProyectoSIGNDVC.Controllers
             
         }
 
-        [SessionExpire]
+        [IniciarSesion]
+        [AutorizarRol]
         public ActionResult Nomina()
         {
             try
@@ -105,7 +112,8 @@ namespace ProyectoSIGNDVC.Controllers
             
         }
 
-        [SessionExpire]
+        [IniciarSesion]
+        [AutorizarRol]
         public ActionResult ListaNomina()
         {
             try
@@ -120,7 +128,8 @@ namespace ProyectoSIGNDVC.Controllers
 
         }
 
-        [SessionExpire]
+        [IniciarSesion]
+        [AutorizarRol]
         public ActionResult VerNomina( int nominaid)
         {
 
@@ -140,7 +149,7 @@ namespace ProyectoSIGNDVC.Controllers
         }
 
 
-        [SessionExpire]
+        [IniciarSesion]
         public ActionResult DetallePago()
         {
 
@@ -156,7 +165,8 @@ namespace ProyectoSIGNDVC.Controllers
             
         }
 
-        [SessionExpire]
+        [IniciarSesion]
+        [AutorizarRol]
         [HttpPost]
         public ActionResult GenerarNomina(FormCollection fc)
         {
@@ -165,6 +175,9 @@ namespace ProyectoSIGNDVC.Controllers
             {
                 DateTime fechaefectivo = DateTime.Parse(fc.Get("fechaefectiva"));
                 Pago.GenerarNomina(fechaefectivo);
+                Correo correo = new Correo(Usuario.GetUsuarioDirector().email);
+                Thread thread = new Thread(correo.EnviarCorreo);
+                thread.Start();
 
                 return RedirectToAction("ListaNomina", "Pago");
             }
@@ -177,6 +190,7 @@ namespace ProyectoSIGNDVC.Controllers
         }
 
         [HttpPost]
+        [AutorizarRol]
         public ActionResult EditarPagos(FormCollection fc)
         {
             try
@@ -215,7 +229,8 @@ namespace ProyectoSIGNDVC.Controllers
         }
 
 
-        [SessionExpire]
+        [IniciarSesion]
+        [AutorizarRol]
         public ActionResult EditarPago()
         {
             try
@@ -315,6 +330,7 @@ namespace ProyectoSIGNDVC.Controllers
             
         }
 
+        [IniciarSesion]
         public ActionResult VerPago(String pago)
         {
             Pago pag = new Pago();
@@ -329,6 +345,7 @@ namespace ProyectoSIGNDVC.Controllers
             return View(vm);
         }
 
+        [IniciarSesion]
         public ActionResult DownloadPdf(String pago)
         {
             PDF pdf = new PDF();
@@ -336,6 +353,7 @@ namespace ProyectoSIGNDVC.Controllers
             return File(stream, "application/pdf", "DownloadName.pdf");
         }
 
+        [IniciarSesion]
         public FileStreamResult VerPagoPdf(String pago)
         {
             MemoryStream workStream = new MemoryStream();

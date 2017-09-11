@@ -52,7 +52,7 @@ namespace ProyectoSIGNDVC.Controllers
         }
 
         // GET: Login
-        [SessionExpire]
+        [IniciarSesion]
         public ActionResult LogOff()
         {
 

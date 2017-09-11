@@ -24,6 +24,7 @@
                             <th>Numero Ref</th>
                             <th>Fecha</th>
                             <th>Monto</th>
+                            <th>Status</th>
                             <th>Confirmación</th>
                             <th>Ver</th>
                         </tr>
@@ -36,8 +37,29 @@
                                 <td>@pago.f_pago</td>
                                 <td>@pago.monto</td>
                                 <td>
+                                    @if (!pago.aprobado)
+                                    {
+                                        <p>No Aprobado</p>
+
+                                    }
+                                    else
+                                    {
+                                        <p>Aprobado</p>
+                                    }
+                                </td>
+                                <td>
                                     <center>
-                                        <a href="/Pago/AprobarPago?pagoid=@pago.PagoID" onclick="return confirm('Estas seguro de aprobar el pago?')" style="color:#5cb85c" class="fa fa-check fa-fw"></a>
+                                        @if (!pago.aprobado)
+                                        {
+
+                                            <a href="/Pago/AprobarPago?pagoid=@pago.PagoID" onclick="return confirm('Estas seguro de aprobar el pago?')" style="color:#5cb85c" class="fa fa-check fa-fw"></a>
+
+                                        }
+                                        else
+                                        {
+                                            <p>Sin Accion</p>
+                                        }
+                                        
                                     </center>
                                 </td>
                                 <td>
