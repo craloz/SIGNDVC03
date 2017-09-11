@@ -132,12 +132,8 @@ namespace ProyectoSIGNDVC.Controllers
             {
                 float total = 0;
                 List<Empleado> listemp = Empleado.calcularSalarioByNomina(nominaid);
-                foreach (var emp in listemp)
-                {
-                    total += emp.MontoTotal;
-                }
-
-                ViewModel vm = new ViewModel { empleados = listemp, totalNomina = total };
+                List<Pago> listPago = Pago.GetAllPagosNomina(nominaid);
+                ViewModel vm = new ViewModel { pagos = listPago, empleados = listemp, totalNomina = listPago[0].monto };
                 return View(vm);
             }
             catch (Exception)
@@ -193,10 +189,7 @@ namespace ProyectoSIGNDVC.Controllers
 
             try
             {
-                DateTime fechaefectivo = DateTime.Parse(fc.Get("fechaefectiva"));
-                Pago.GenerarNomina(fechaefectivo);
-
-                return RedirectToAction("ListaNomina", "Pago");
+                return RedirectToAction("PagoNomina", "Pago");
             }
             catch (Exception)
             {
@@ -206,15 +199,13 @@ namespace ProyectoSIGNDVC.Controllers
 
 
         [SessionExpire]
-        public ActionResult EditarPago(String empleado)
+        public ActionResult EditarPago()
         {
-
             try
             {
-                ViewModel vm = new ViewModel
-                {
-                    empleado = Empleado.calcularSalarioByEmp(int.Parse(empleado))
-                };
+                List<Empleado> listemp = Empleado.calcularSalario();
+
+                ViewModel vm = new ViewModel{empleados = listemp};
                 return View(vm);
                 
             }
@@ -309,11 +300,14 @@ namespace ProyectoSIGNDVC.Controllers
 
         public ActionResult VerPago(String pago)
         {
+            Pago pag = new Pago();
+            pag = Pago.GetPago(int.Parse(pago));
 
             PDF pd = new PDF();
             Byte[] pdf = pd.generarPDF(int.Parse(pago)).ToArray();
             ViewModel vm = new ViewModel {
-                pago = Pago.GetPago(int.Parse(pago))
+                pago = pag,
+                empleado = Empleado.calcularSalarioByEmp(pag.Fk_Empleado)
             };
             return View(vm);
         }

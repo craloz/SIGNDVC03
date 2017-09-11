@@ -100,7 +100,7 @@ namespace ProyectoSIGNDVC.Models
             message.From = new MailAddress(this.desde);  // replace with valid value
             message.Subject = this.subject;
 
-            message.Attachments.Add(new Attachment(pdf.generarPDF(pagoid), "test.pdf"));
+            //message.Attachments.Add(new Attachment(pdf.generarPDF(pagoid), "test.pdf"));
 
             message.Body = string.Format(this.body);
 

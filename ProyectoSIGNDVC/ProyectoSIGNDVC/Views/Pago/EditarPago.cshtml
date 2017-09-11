@@ -1,58 +1,76 @@
 ﻿@model ProyectoSIGNDVC.Models.ViewModel
 @{
     ViewBag.Title = "EditarPago";
-    Layout = "~/Views/Templates/_TemplateLogin.cshtml";
+    Layout = "~/Views/Templates/_TemplateIndex.cshtml";
 }
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Editar Pago</h1>
+            <h1 class="page-header">Detalle de pago</h1>
         </div>
 
         <div class="col-lg-12">
-            <form role="form" action="/Pago/EditarPagoByEmp" method="post">
-                <div>
-                    <fieldset>
-                        <div class="row">
-                            <div class="col-xs-5">
-                                <h2 class="page-header">Datos Personales</h2>
+            <form role="form" action="/Pago/EditarPago" method="post">
+                <input required id="length" class="form-control" name="lenght" type="hidden" autofocus value="@Model.empleados.Count()">
+                @foreach (var u in Model.empleados)
+                {
+                    <div>
+                        <input required id="id" class="form-control" name="id" type="hidden" autofocus value="@u.EmpleadoID">                        
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <p>@(u.Persona.nombre + " " + u.Persona.apellido)</p>
+                                </div>
                             </div>
-                        </div>
+                            <div class="form-group row">
+                                <div class="col-xs-3">
+                                    <label for="Salario">Salario</label>
+                                    <input id="sueldo" class="form-control" name="@String.Concat("sueldo-"+u.EmpleadoID)" type="text" autofocus value="@Model.empleado.sueldo">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-3">
+                                    <label for="Prestamo">Prestamos</label>
+                                    <input id="prestamo" class="form-control" name="@String.Concat("prestamo-"+u.EmpleadoID)" type="text" autofocus value="0">
+                                </div>                                
+                                <div class="col-xs-3">
+                                    <label for="retroactiv">Retroactivo</label>
+                                    <input id="retroactivo" class="form-control" name="@String.Concat("retroactivo-"+u.EmpleadoID)" type="text" autofocus value="0" />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-3">
+                                    <label for="sso">S.S.O</label>
+                                    <input name="sso" id="sso" class="form-control" type="text" autofocus value="@u.SSO" readonly />
+                                </div>
+                                <div class="col-xs-3">
+                                    <label for="rpe">R.P.E</label>
+                                    <input id="rpe" name="rpe" type="text" autofocus class="form-control" value="@u.RPE" readonly>
+                                </div>
+                                <div class="col-xs-3">
+                                    <label for="faov">F.A.O.V.</label>
+                                    <input id="rpe" name="rpe" type="text" autofocus class="form-control" value="@u.FAOV" readonly>
+                                </div>
+                                <div class="col-xs-3">
+                                    <label for="inces">INCES</label>
+                                    <input required id="rpe" name="rpe" type="text" autofocus class="form-control" value="@u.INCES" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-3">
+                                    <label for="alimentacion">Bono Alimentacion</label>
+                                    <input required id="alimentacion" name="rpe" type="text" autofocus class="form-control" value="@u.BonoAlimentacion" readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-15">
+                                <input type="submit" class="btn btn-success" value="Guardar">
+                                <a href="/Pago/PagoNomina" class="btn btn-danger">Cancelar</a>
+                            </div>
+                        </fieldset>
+                    </div>
 
-                        <div class="form-group row">
-                            <div class="col-xs-4">
-
-                                <label for="Salario">Salario</label>
-                                <input required id="sueldo" class="form-control" name="sueldo" type="text" autofocus value="@Model.empleado.sueldo">
-                            </div>
-                            <div class="col-xs-4">
-                                <label for="retroactiv">Retroactivo</label>
-                                <input required id="retroactivo" class="form-control" name="retroactivo" type="text" autofocus value="" />
-                            </div>
-
-                            <div class="col-xs-4">
-                                <label for="sso">S.S.O</label>
-                                <input required name="sso" id="sso" class="form-control"  type="text" autofocus value="@Model.empleado.SSO" />
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-xs-3">
-                                <label for="rpe">R.P.E</label>
-                                <input required id="rpe" name="rpe" type="number" autofocus class="form-control" value="@Model.empleado.RPE">
-                            </div>
-                            <div class="col-xs-3">
-                                <label for="faov">F.A.O.V.</label>
-                                <input required id="rpe" name="rpe" type="number" autofocus class="form-control" value="@Model.empleado.FAOV">
-                            </div>
-                            <div class="col-xs-3">
-                                <label for="inces">INCES</label>
-                                <input required id="rpe" name="rpe" type="number" autofocus class="form-control" value="@Model.empleado.RPE">
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>                
+                }
             </form>
         </div>
 

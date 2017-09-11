@@ -37,7 +37,12 @@ namespace ProyectoSIGNDVC
         public float RPE { get; set; }
         
         public float FAOV { get; set; }
-        
+
+        public float sueldo { get; set; }
+
+        public float prestamos { get; set; }
+        public float retroactivos { get; set; }
+
         public float INCES { get; set; }
         [NotMapped]
         public float Retenciones { get; set; }
@@ -80,6 +85,7 @@ namespace ProyectoSIGNDVC
                         aprobado = false,
                         Fk_Empleado = emp.EmpleadoID,
                         Fk_Nomina = idnom,
+                        sueldo = emp.sueldo,
                         SSO = emp.SSO,
                         RPE = emp.RPE,
                         FAOV = emp.FAOV,
@@ -118,6 +124,7 @@ namespace ProyectoSIGNDVC
             using (var ctx = new AppDbContext())
             {
                 var query = (from pag in ctx.Pagos
+                             join emp in ctx.Empleados on pag.Fk_Empleado equals emp.EmpleadoID
                              where pag.Fk_Nomina == nominaid
                              select pag
                             );

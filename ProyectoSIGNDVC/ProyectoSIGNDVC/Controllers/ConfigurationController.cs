@@ -93,7 +93,7 @@ namespace ProyectoSIGNDVC.Controllers
                 ViewModel vm = new ViewModel { direcciones = Direccion.GetAllEstadoDireccion(), cargos = Cargo.GetAllCargo() };
                 return RedirectToAction("TablaUsuarios","Configuration");
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return RedirectToAction("UnexpectedError", "Error");
             }
