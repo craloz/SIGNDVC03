@@ -88,6 +88,15 @@ namespace ProyectoSIGNDVC.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Se ha Aprobado un Pago.
+        /// </summary>
+        internal static string DescripcionPagoAprobado {
+            get {
+                return ResourceManager.GetString("DescripcionPagoAprobado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to dvc.serviciocomunitario@dividendovoluntario.org.
         /// </summary>
         internal static string EmailDVC {
@@ -156,6 +165,15 @@ namespace ProyectoSIGNDVC.Properties {
         internal static string TituloNuevoPago {
             get {
                 return ResourceManager.GetString("TituloNuevoPago", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pago Aprobado.
+        /// </summary>
+        internal static string TituloPagoAprobado {
+            get {
+                return ResourceManager.GetString("TituloPagoAprobado", resourceCulture);
             }
         }
     }

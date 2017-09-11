@@ -67,6 +67,7 @@ namespace ProyectoSIGNDVC.Controllers
 
             try
             {
+                
                 Models.Nomina.AprobarNomina(int.Parse(nominaid));
                 return RedirectToAction("ListaNomina", "Pago");
             }
@@ -82,6 +83,9 @@ namespace ProyectoSIGNDVC.Controllers
         {
             try
             {
+
+                Notificacion.AddNotificacion("PAGO", Properties.Resources.TituloPagoAprobado, Properties.Resources.DescripcionPagoAprobado, int.Parse(pagoid), Usuario.GetUsuarioDirector().usuarioID);
+                Pago.AprobarPago(int.Parse(pagoid));
                 return RedirectToAction("TablaPagos", "Pago");
             }
             catch (Exception)
@@ -169,6 +173,9 @@ namespace ProyectoSIGNDVC.Controllers
             {
                 DateTime fechaefectivo = DateTime.Parse(fc.Get("fechaefectiva"));
                 Pago.GenerarNomina(fechaefectivo);
+                Correo correo = new Correo(Usuario.GetUsuarioDirector().email);
+                Thread thread = new Thread(correo.EnviarCorreo);
+                thread.Start();
 
                 return RedirectToAction("ListaNomina", "Pago");
             }

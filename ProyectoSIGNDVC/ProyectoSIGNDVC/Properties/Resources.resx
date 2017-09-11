@@ -127,6 +127,9 @@
   <data name="DescripcionNuevoPago" xml:space="preserve">
     <value>Su pago se ha hecho efectivo</value>
   </data>
+  <data name="DescripcionPagoAprobado" xml:space="preserve">
+    <value>Se ha Aprobado un Pago</value>
+  </data>
   <data name="EmailDVC" xml:space="preserve">
     <value>dvc.serviciocomunitario@dividendovoluntario.org</value>
     <comment>Cuenta Email desde donde sera enviado el correo</comment>
@@ -154,5 +157,9 @@
   <data name="TituloNuevoPago" xml:space="preserve">
     <value>Nuevo Pago</value>
     <comment>Texto para la notificacion de Nuevo Pago</comment>
+  </data>
+  <data name="TituloPagoAprobado" xml:space="preserve">
+    <value>Pago Aprobado</value>
+    <comment>Texto para la notificacion de Pago Aprobado</comment>
   </data>
 </root>

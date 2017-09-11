@@ -239,6 +239,19 @@ namespace ProyectoSIGNDVC
             }
         }
 
+        public static void AprobarPago(int pagoid)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                var pago = GetPago(pagoid);
+                pago.aprobado = true;
+                ctx.Entry(pago).State = System.Data.Entity.EntityState.Modified;
+                ctx.SaveChanges();
+
+
+            }
+        }
+
     }
 
     
