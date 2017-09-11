@@ -192,15 +192,13 @@ namespace ProyectoSIGNDVC.Controllers
 
 
         [SessionExpire]
-        public ActionResult EditarPago(String empleado)
+        public ActionResult EditarPago()
         {
-
             try
             {
-                ViewModel vm = new ViewModel
-                {
-                    empleado = Empleado.calcularSalarioByEmp(int.Parse(empleado))
-                };
+                List<Empleado> listemp = Empleado.calcularSalario();
+
+                ViewModel vm = new ViewModel{empleados = listemp};
                 return View(vm);
                 
             }

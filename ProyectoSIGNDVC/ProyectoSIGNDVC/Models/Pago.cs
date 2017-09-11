@@ -85,6 +85,7 @@ namespace ProyectoSIGNDVC
                         aprobado = false,
                         Fk_Empleado = emp.EmpleadoID,
                         Fk_Nomina = idnom,
+                        sueldo = emp.sueldo,
                         SSO = emp.SSO,
                         RPE = emp.RPE,
                         FAOV = emp.FAOV,
