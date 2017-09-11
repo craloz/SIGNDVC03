@@ -128,12 +128,8 @@ namespace ProyectoSIGNDVC.Controllers
             {
                 float total = 0;
                 List<Empleado> listemp = Empleado.calcularSalarioByNomina(nominaid);
-                foreach (var emp in listemp)
-                {
-                    total += emp.MontoTotal;
-                }
-
-                ViewModel vm = new ViewModel { empleados = listemp, totalNomina = total };
+                List<Pago> listPago = Pago.GetAllPagosNomina(nominaid);
+                ViewModel vm = new ViewModel { pagos = listPago, empleados = listemp, totalNomina = listPago[0].monto };
                 return View(vm);
             }
             catch (Exception)
