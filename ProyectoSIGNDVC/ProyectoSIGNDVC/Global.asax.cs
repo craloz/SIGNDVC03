@@ -19,9 +19,9 @@ namespace ProyectoSIGNDVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            Daemon daemon = new Daemon();
-            Thread thread = new Thread(daemon.CheckNominas);
-            thread.Start();
+            //Daemon daemon = new Daemon();
+            //Thread thread = new Thread(daemon.CheckNominas);
+            //thread.Start();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace ProyectoSIGNDVC.Controllers
     public class ConfigurationController : Controller
     {
         
-        [SessionExpire]
+        [IniciarSesion]
         [AutorizarRol]
         public ActionResult RegistroUsuario()
         {
@@ -32,7 +32,7 @@ namespace ProyectoSIGNDVC.Controllers
 
 
         [HttpPost]
-        [SessionExpire]
+        [IniciarSesion]
         [AutorizarRol]
         public ActionResult RegistroUsuario(FormCollection fc)
         {
@@ -100,7 +100,7 @@ namespace ProyectoSIGNDVC.Controllers
         }
 
         [HttpPost]
-        [SessionExpire]
+        [IniciarSesion]
         [AutorizarRol]
         public ActionResult AgregarUsuario()
         {
@@ -114,7 +114,7 @@ namespace ProyectoSIGNDVC.Controllers
             
         }
 
-        [SessionExpire]
+        [IniciarSesion]
         [AutorizarRol]
         public ActionResult TablaUsuarios()
         {
@@ -129,7 +129,7 @@ namespace ProyectoSIGNDVC.Controllers
             }
             
         }
-        [SessionExpire]
+        [IniciarSesion]
         [AutorizarRol]
         public ActionResult  Variables()
         {
@@ -146,7 +146,7 @@ namespace ProyectoSIGNDVC.Controllers
             
         }
 
-        [SessionExpire]
+        [IniciarSesion]
         [AutorizarRol]
         [HttpPost]
         public ActionResult Variables(FormCollection fc)
@@ -205,7 +205,7 @@ namespace ProyectoSIGNDVC.Controllers
             
         }
 
-
+        [IniciarSesion]
         [HttpPost]
         public ActionResult EditarUsuario(FormCollection fc)
         {
@@ -295,7 +295,7 @@ namespace ProyectoSIGNDVC.Controllers
 
         }
 
-        [SessionExpire]
+        [IniciarSesion]
         [AutorizarRol]
         public ActionResult DeleteUsuario(String usuario)
         {

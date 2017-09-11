@@ -41,7 +41,7 @@
                         <i class="fa fa-book fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">12</div>
+                        <div class="huge">@Notificacion.GetAllNotificacionNomina().Count</div>
                         <div>Nuevas Nominas Por Aprobar!</div>
                     </div>
                 </div>
@@ -87,14 +87,14 @@
                                     @if (notif.Fk_Pago != null)
                                     {
                                         <td>
-                                            <a href="/@notif.Fk_Pago">Ver Pago</a>
+                                            <a href="/Pago/VerPago/?pago=@notif.Fk_Pago">Ver Pago</a>
                                         </td>
 
                                     }
                                     else if (notif.Fk_Nomina != null)
                                     {
                                         <td>
-                                            <a href="/@notif.Fk_Nomina">Ver Nomina</a>
+                                            <a href="/Pago/VerNomina/?nominaid=@notif.Fk_Nomina">Ver Nomina</a>
                                         </td>
                                     }
                                 </tr>

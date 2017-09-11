@@ -44,6 +44,53 @@ namespace ProyectoSIGNDVC.Models
             this.pagos = pagos;
         }
 
+        public Correo(String emailTo)
+        {
+            this.correo = Properties.Resources.EmailDVC;
+            this.clave = Properties.Resources.PasswordDVC;
+            this.host = Properties.Resources.Host;
+            this.puerto = 587;
+            this.emailTo = emailTo;
+            this.desde = Properties.Resources.EmailDVC;
+        }
+
+        public void EnviarCorreo()
+        {
+
+            var message = new MailMessage();
+            message.To.Add(new MailAddress(this.emailTo));  // replace with valid value 
+            message.From = new MailAddress(this.desde);  // replace with valid value
+            this.subject = "Nueva Nomina";
+            message.Subject = this.subject;
+            this.body= "<h1>Se ha Generado una Nueva Nomina Pendiente de Aprobacion</h1>";
+            message.Body = string.Format(this.body);
+
+            message.IsBodyHtml = true;
+
+            using (var smtp = new SmtpClient())
+            {
+                var credential = new NetworkCredential
+                {
+                    UserName = this.correo,  // replace with valid value
+                    Password = this.clave // replace with valid value
+                };
+                smtp.Credentials = credential;
+                smtp.Host = this.host;
+                smtp.Port = this.puerto;
+                smtp.EnableSsl = true;
+                try
+                {
+                    smtp.Send(message);
+                }
+                catch (Exception e)
+                {
+                    System.Diagnostics.Debug.WriteLine("ERROR: " + e);
+
+                }
+            }
+
+        }
+
         public void EnviarCorreo(String desde, int pagoid)
         {
 
