@@ -374,7 +374,10 @@ namespace ProyectoSIGNDVC
         {
             using (var ctx = new AppDbContext())
             {
-                ctx.Entry(empleado).State = System.Data.Entity.EntityState.Modified;
+                ctx.Empleados.Attach(empleado);
+                var entry = ctx.Entry(empleado);
+                entry.Property(e => e.sueldo).IsModified = true;
+                //ctx.Entry(empleado).State = System.Data.Entity.EntityState.Modified;
                 ctx.SaveChanges();
             }
         }

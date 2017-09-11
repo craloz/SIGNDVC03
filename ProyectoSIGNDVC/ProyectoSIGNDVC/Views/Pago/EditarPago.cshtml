@@ -16,7 +16,7 @@
                 <fieldset>
                 @foreach (var u in Model.empleados)
                 {
-                    <div class="col-xs-5 row">
+                    <div class="col-xs-12 row">
                         <h4 class="page-header">@(u.Persona.nombre + " " + u.Persona.apellido)</h4>
                     </div>
                     <div>
@@ -63,12 +63,16 @@
                         </div>              
                     </div>
                 }
-                <div class="col-lg-15">
-                    <input type="submit" class="btn btn-success" value="Guardar">
-                    <a href="/Pago/PagoNomina" class="btn btn-danger">Cancelar</a>
-                    <input required id="fechaefectiva" name="fechaefectiva" type="date" autofocus class="pull-right form-control">
-                </div>
-            </fieldset>
+                    <div class="row">
+                        <div class="col-md-offset-5 col-md-4">
+                            <input required id="fechaefectiva" name="fechaefectiva" type="date" autofocus class="pull-right form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" class="btn btn-success" value="Guardar">
+                            <a href="/Pago/PagoNomina" class="btn btn-danger">Cancelar</a>
+                        </div>
+                    </div>
+</fieldset>
                     
 
                 
