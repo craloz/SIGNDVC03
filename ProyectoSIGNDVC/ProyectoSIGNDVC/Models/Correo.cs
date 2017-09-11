@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -100,7 +101,11 @@ namespace ProyectoSIGNDVC.Models
             message.From = new MailAddress(this.desde);  // replace with valid value
             message.Subject = this.subject;
 
-            //message.Attachments.Add(new Attachment(pdf.generarPDF(pagoid), "test.pdf"));
+            MemoryStream memoryStream = new MemoryStream();
+            memoryStream = pdf.generarPDF(pagoid);
+            memoryStream.Position = 0;
+
+            message.Attachments.Add(new Attachment(memoryStream, "test.pdf"));
 
             message.Body = string.Format(this.body);
 

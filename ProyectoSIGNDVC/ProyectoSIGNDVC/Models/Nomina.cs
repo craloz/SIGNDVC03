@@ -76,13 +76,14 @@ namespace ProyectoSIGNDVC.Models
         public static void AprobarNomina(int nominaid)
         {
             using (var ctx = new AppDbContext())
-            {
-                var nomina = GetNomina(nominaid);
+            {                
+                var nomina = GetNomina(nominaid);                
                 nomina.fecha_aprobacion = DateTime.Now;
                 ctx.Entry(nomina).State = System.Data.Entity.EntityState.Modified;
                 ctx.SaveChanges();
             }
         }
+        
 
         public static void CambiarStatusEnviadoNomina (int nominaId)
         {

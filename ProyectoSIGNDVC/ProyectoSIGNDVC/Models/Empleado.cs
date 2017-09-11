@@ -289,6 +289,8 @@ namespace ProyectoSIGNDVC
                     
                     em.EmpleadoID = empl.emp.EmpleadoID;
                     em.Persona = empl.per;
+                    em.Banco = empl.emp.Banco;
+                    em.N_Cuenta = empl.emp.N_Cuenta;
                     em.sueldo = empl.emp.sueldo;
                     em.SSO = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_retencion / 100)) * calcularLunes());
                     em.RPE = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_retencion / 100)) * calcularLunes());

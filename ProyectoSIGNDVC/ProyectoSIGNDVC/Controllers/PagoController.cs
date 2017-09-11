@@ -335,22 +335,18 @@ namespace ProyectoSIGNDVC.Controllers
         {
             Pago pag = new Pago();
             pag = Pago.GetPago(int.Parse(pago));
-
+            int month = pag.f_pago.Month;
+            String[] meses = new string[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
             PDF pd = new PDF();
             Byte[] pdf = pd.generarPDF(int.Parse(pago)).ToArray();
             ViewModel vm = new ViewModel {
                 pago = pag,
-                empleado = Empleado.calcularSalarioByEmp(pag.Fk_Empleado)
+                empleado = Empleado.calcularSalarioByEmp(pag.Fk_Empleado),
+                desde = pag.f_pago,
+                mes = meses[month + 1]
+
             };
             return View(vm);
-        }
-
-        [IniciarSesion]
-        public ActionResult DownloadPdf(String pago)
-        {
-            PDF pdf = new PDF();
-            MemoryStream stream = pdf.generarPDF(int.Parse(pago));
-            return File(stream, "application/pdf", "DownloadName.pdf");
         }
 
         [IniciarSesion]
