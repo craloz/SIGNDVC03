@@ -186,10 +186,7 @@ namespace ProyectoSIGNDVC.Controllers
 
             try
             {
-                DateTime fechaefectivo = DateTime.Parse(fc.Get("fechaefectiva"));
-                Pago.GenerarNomina(fechaefectivo);
-
-                return RedirectToAction("ListaNomina", "Pago");
+                return RedirectToAction("PagoNomina", "Pago");
             }
             catch (Exception)
             {
@@ -302,11 +299,14 @@ namespace ProyectoSIGNDVC.Controllers
 
         public ActionResult VerPago(String pago)
         {
+            Pago pag = new Pago();
+            pag = Pago.GetPago(int.Parse(pago));
 
             PDF pd = new PDF();
             Byte[] pdf = pd.generarPDF(int.Parse(pago)).ToArray();
             ViewModel vm = new ViewModel {
-                pago = Pago.GetPago(int.Parse(pago))
+                pago = pag,
+                empleado = Empleado.calcularSalarioByEmp(pag.Fk_Empleado)
             };
             return View(vm);
         }

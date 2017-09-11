@@ -34,6 +34,10 @@ namespace ProyectoSIGNDVC
         public ICollection<Carga> Cargas { get; set; }
         public ICollection<Pago> Pagos { get; set; }
         [NotMapped]
+        public float Retroactivos{ get; set; }
+        [NotMapped]
+        public float Prestamos { get; set; }
+        [NotMapped]
         public float SSO { get; set; }
         [NotMapped]
         public float RPE { get; set; }
