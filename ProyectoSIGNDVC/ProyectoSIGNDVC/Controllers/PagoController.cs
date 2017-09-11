@@ -177,14 +177,38 @@ namespace ProyectoSIGNDVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarPagoByEmp(FormCollection fc)
+        public ActionResult EditarPagos(FormCollection fc)
         {
-
             try
             {
+                List<int> ids = new List<int>();
+                DateTime fechaefectivo = DateTime.Parse(fc.Get("fechaefectiva"));
+                List<Empleado> listem = Empleado.GetEmpleados();
+                List<Empleado> listemp = new List<Empleado>();
+                foreach (var e in listem)
+                {
+                    ids.Add(e.EmpleadoID);
+
+                }
+                int len = int.Parse(fc.Get("lenght"));                
+                
+                for (int i=0; (i < len); i++)
+                {
+                    int Retroactivos = int.Parse(fc.Get("retroactivo-" + ids[i].ToString()));
+                    int Prestamos = int.Parse(fc.Get("prestamo-" + ids[i].ToString()));
+                    Empleado emp = new Empleado()
+                    {
+                        EmpleadoID = ids[i],
+                        sueldo = int.Parse(fc.Get("sueldo-" + ids[i].ToString()))                        
+                    };                    
+                    Empleado.EditEmpleado(emp);
+                    listemp.Add(Empleado.calcularSalarioByEmp(ids[i], Retroactivos, Prestamos));
+                }
+
+                Pago.GenerarNomina(fechaefectivo,listemp);
                 return RedirectToAction("PagoNomina", "Pago");
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return RedirectToAction("UnexpectedError", "Error");
             }

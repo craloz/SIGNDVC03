@@ -103,6 +103,46 @@ namespace ProyectoSIGNDVC
             }
         }
 
+        public static void GenerarNomina(DateTime fechaefectiva, List<Empleado> listEm)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                Nomina.AddNomina(fechaefectiva);
+                int idnom = Nomina.GetLastNominaID();                
+                DateTime today = DateTime.Now;
+                int year = today.Year;
+                int month = today.Month;
+                foreach (var emp in listEm)
+                {
+                    int cont = 1;
+                    Pago pago = new Pago()
+                    {
+                        numero_ref = int.Parse(month.ToString() + year.ToString() + cont.ToString().PadLeft(4, '0')),
+                        f_pago = today,
+                        monto = emp.MontoTotal,
+                        aprobado = false,
+                        Fk_Empleado = emp.EmpleadoID,
+                        Fk_Nomina = idnom,
+                        sueldo = emp.sueldo,
+                        SSO = emp.SSO,
+                        RPE = emp.RPE,
+                        FAOV = emp.FAOV,
+                        INCES = emp.INCES,
+                        SSO_ap = emp.SSO_ap,
+                        RPE_ap = emp.RPE_ap,
+                        FAOV_ap = emp.FAOV_ap,
+                        INCES_ap = emp.INCES_ap,
+                        retroactivos = emp.Retroactivos,
+                        prestamos = emp.Prestamos,
+                        BonoAlimentacion = emp.BonoAlimentacion
+                    };
+                    ctx.Pagos.Add(pago);
+                    ctx.SaveChanges();
+
+                }
+            }
+        }
+
         public static List<Pago> GetPagos(int empleadoId)
         {
             using(var ctx = new AppDbContext())

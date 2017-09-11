@@ -64,6 +64,20 @@ namespace ProyectoSIGNDVC
         [NotMapped]
         public float MontoTotal { get; set; }
 
+        public static List<Empleado> GetEmpleados()
+        {
+            using (var ctx = new AppDbContext())
+            {
+                var query = (from emp in ctx.Empleados                             
+                             select emp
+                    );
+                return query.ToList();
+
+
+            }
+
+        }
+
 
         public static float getCostoCargas(int idEmpleado)
         {
@@ -157,6 +171,53 @@ namespace ProyectoSIGNDVC
             }
             
             
+        }
+
+        public static List<Empleado> calcularSalario(int retroactivo, int prestamo)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                DateTime today = DateTime.Now;
+                int day = today.Day;
+                List<Empleado> listEmp = new List<Empleado>();
+                Configuracion conf = new Configuracion();
+                conf = Configuracion.GetLastConfiguracion();
+                var empleado = (from emp in ctx.Empleados
+                                join per in ctx.Personas on emp.Fk_Persona equals per.PersonaID
+                                select new { per, emp });
+                foreach (var empl in empleado.ToList())
+                {
+                    Empleado em = new Empleado();
+                    em.EmpleadoID = empl.emp.EmpleadoID;
+                    em.Persona = empl.per;
+                    em.sueldo = empl.emp.sueldo;
+                    em.SSO = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_retencion / 100)) * calcularLunes());
+                    em.RPE = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_retencion / 100)) * calcularLunes());
+                    em.FAOV = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion / 100));
+                    em.INCES = (((empl.emp.sueldo * (60 / 360)) * 12) * (conf.inces_retencion / 100));
+                    em.SSO_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_aporte / 100)) * calcularLunes());
+                    em.RPE_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_aporte / 100)) * calcularLunes());
+                    em.FAOV_ap = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_aporte / 100));
+                    em.INCES_ap = (((empl.emp.sueldo * (60 / 360)) * 12) * (conf.inces_aporte / 100));
+                    if (day > 15)
+                    {
+                        em.BonoAlimentacion = (conf.bonoalimentacion * conf.unid_tributaria * 30);
+                    }
+                    else
+                    {
+                        em.BonoAlimentacion = 0;
+                    }
+                    em.Retenciones = em.SSO + em.RPE + em.FAOV + em.INCES;
+                    em.Aportes = em.SSO_ap + em.RPE_ap + em.FAOV_ap + em.INCES_ap;
+                    em.costoCargas = (float)((getCostoCargas(empl.emp.EmpleadoID) * (0.3)) / 12);
+                    em.MontoTotal = ((em.sueldo / 2) - (em.Retenciones / 2) - (em.costoCargas) + (em.BonoAlimentacion) - retroactivo - prestamo);
+                    listEmp.Add(em);
+
+                }
+                return listEmp;
+            }
+
+
         }
 
 
@@ -253,6 +314,56 @@ namespace ProyectoSIGNDVC
 
                  }
                 
+                return em;
+            }
+
+
+        }
+
+        public static Empleado calcularSalarioByEmp(int idEmpleado, int retroactivo, int prestamo)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                DateTime today = DateTime.Now;
+                int day = today.Day;
+                Configuracion conf = new Configuracion();
+                conf = Configuracion.GetLastConfiguracion();
+                Empleado em = new Empleado();
+                var empleado = (from emp in ctx.Empleados
+                                where emp.EmpleadoID == idEmpleado
+                                join per in ctx.Personas on emp.Fk_Persona equals per.PersonaID
+                                select new { per, emp });
+                foreach (var empl in empleado.ToList())
+                {
+                    em.EmpleadoID = empl.emp.EmpleadoID;
+                    em.Persona = empl.per;
+                    em.sueldo = empl.emp.sueldo;
+                    em.Retroactivos = retroactivo;
+                    em.Prestamos = prestamo;
+                    em.SSO = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_retencion / 100)) * calcularLunes());
+                    em.RPE = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_retencion / 100)) * calcularLunes());
+                    em.FAOV = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion / 100));
+                    em.INCES = (((empl.emp.sueldo * (60 / 360)) * 12) * (conf.inces_retencion / 100));
+                    em.SSO_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_aporte / 100)) * calcularLunes());
+                    em.RPE_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_aporte / 100)) * calcularLunes());
+                    em.FAOV_ap = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_aporte / 100));
+                    em.INCES_ap = (((empl.emp.sueldo * (60 / 360)) * 12) * (conf.inces_aporte / 100));
+                    if (day > 25)
+                    {
+                        em.BonoAlimentacion = (conf.bonoalimentacion * conf.unid_tributaria * 30);
+                    }
+                    else
+                    {
+                        em.BonoAlimentacion = 0;
+                    }
+                    em.Retenciones = em.SSO + em.RPE + em.FAOV + em.INCES;
+                    em.Aportes = em.SSO_ap + em.RPE_ap + em.FAOV_ap + em.INCES_ap;
+                    em.costoCargas = (float)((getCostoCargas(empl.emp.EmpleadoID) * (0.3)) / 12);
+                    em.MontoTotal = ((em.sueldo / 2) - (em.Retenciones / 2) - (em.costoCargas) + (em.BonoAlimentacion) + retroactivo - prestamo);
+
+
+                }
+
                 return em;
             }
 
