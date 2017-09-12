@@ -167,7 +167,7 @@ namespace ProyectoSIGNDVC.Models
             doc.Close();
             ms.Position = 0;
             bytes = ms.ToArray();
-            message.Attachments.Add(new Attachment(ms, "test.pdf"));
+            message.Attachments.Add(new Attachment(ms, "ReciboDePago.pdf"));
 
             message.Body = string.Format(this.body);
 
