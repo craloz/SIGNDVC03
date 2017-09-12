@@ -20,14 +20,14 @@
             </div>
         </div>
         <div>
-            <p style='background-color: #45454;text-align: center'>Ha Recibido del <span style='font-weight: bold'>DIVIDENDO VOLUNTARIADO PARA LA COMUNIDAD</span>, por concepto de salario correspondiente a la @if (Model.pago.f_pago.Day > 15) {<span>2da</span> } else { <span>1ra</span> } Quincena de @(Model.mes +" "+ Model.desde.Year)  .</p>
+            <p style='background-color: #45454;text-align: center'>Ha Recibido del <span style='font-weight: bold'>DIVIDENDO VOLUNTARIADO PARA LA COMUNIDAD</span>, por concepto de salario correspondiente a la @if (Model.pago.f_pago.Day > 15) {<span>1ra</span> } else { <span>2da</span> } Quincena de @(Model.mes +" "+ Model.desde.Year)  .</p>
             <div style='overflow: hidden;text-align: right;' width='100%'>
                 <div style='float: left; width: 50% !important; ' width='50%' height='100px'>
                     <p>SALARIO</p> <p>RETROACTIVO</p><p style='text-decoration: underline;font-weight: bold'>DEDUCCIONES</p> <p>S.S.O</p> <p>R.P.E</p> <p>F.A.O.V</p> <p>I.N.C.E.S</p> <p>PRESTAMOS</p> <p>I.S.L.R</p> <p style='margin-bottom:0px'>POLIZA HCM</p> <p style='font-weight: bold;margin-top:0px'>TOTAL DEDUCCIONES</p> <p>NETO</p>
                 </div>
                 <div style='float: left; text-align: center; width: 50% !important;' width='50%' height='100px'>
                     <div style='width: 50% !important;margin-left: 10px;'>
-                        <p>@Model.pago.sueldo</p><p>@Model.pago.retroactivos</p><p style="padding-bottom:20px"></p><p>@Model.pago.SSO</p><p>@Model.pago.RPE</p><p>@Model.empleado.FAOV</p><p>@Model.empleado.INCES</p><p>@Model.pago.prestamos</p><p style='border-bottom: 1px solid black;margin-bottom:0px'>@Model.empleado.costoCargas</p><p style='margin-bottom: 0px; padding-top: 10px'>@Model.pago.costoCargas</p><p style='border-top: 1px solid black;'>@(Model.pago.SSO+Model.pago.INCES+Model.pago.prestamos+Model.pago.FAOV+Model.pago.RPE)</p><p >@Model.pago.monto</p>
+                        <p>@Model.pago.sueldo</p><p>@Model.pago.retroactivos</p><p style="padding-bottom: 20px;" ></p><p>@Model.pago.SSO</p><p>@Model.pago.RPE</p><p>@Model.pago.FAOV</p><p>@Model.pago.INCES</p><p>@Model.pago.prestamos</p><p style='border-bottom: 1px solid black;margin-bottom:0px'>@Model.empleado.costoCargas</p><p style='margin-bottom: 0px; padding-top: 10px'>@Model.pago.costoCargas</p><p style='border-top: 1px solid black;'>@(Model.pago.SSO+Model.pago.INCES+Model.pago.prestamos+Model.pago.FAOV+Model.pago.RPE)</p><p >@Model.pago.monto</p>
                     </div>
                 </div>
             </div>
