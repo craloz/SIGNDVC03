@@ -72,6 +72,29 @@ namespace ProyectoSIGNDVC
                              select emp
                     );
                 return query.ToList();
+            }
+
+        }
+
+
+        public static Empleado GetEmpleado(int idempleado)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                var query = (from emp in ctx.Empleados
+                             where emp.EmpleadoID == idempleado
+                             join per in ctx.Personas on emp.Fk_Persona equals per.PersonaID
+                             select new { emp, per });
+                var query2 = query.SingleOrDefault();
+                if (query2 == null)
+                {
+                    return null;
+                }
+                Empleado emple = new Empleado();
+                emple = query2.emp;
+                emple.Persona = query2.per;
+
+                return emple;
 
 
             }
@@ -146,8 +169,8 @@ namespace ProyectoSIGNDVC
                     em.sueldo = empl.emp.sueldo;
                     em.SSO =( (((empl.emp.sueldo*12)/ 52) * (conf.sso_retencion/100)) * calcularLunes());
                     em.RPE = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_retencion / 100)) * calcularLunes());
-                    em.FAOV = ( calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion/100) );
-                    em.INCES = (((empl.emp.sueldo * (60 / 360))*12)*(conf.inces_retencion/100));
+                    em.FAOV = ( calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion/100) );                    
+                    em.INCES = (((empl.emp.sueldo * 60 * 12) / 360) * (conf.inces_retencion / 100));
                     em.SSO_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_aporte / 100)) * calcularLunes());
                     em.RPE_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_aporte / 100)) * calcularLunes());
                     em.FAOV_ap = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_aporte / 100));
@@ -194,7 +217,7 @@ namespace ProyectoSIGNDVC
                     em.SSO = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_retencion / 100)) * calcularLunes());
                     em.RPE = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_retencion / 100)) * calcularLunes());
                     em.FAOV = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion / 100));
-                    em.INCES = (((empl.emp.sueldo * (60 / 360)) * 12) * (conf.inces_retencion / 100));
+                    em.INCES = (((empl.emp.sueldo * 60 * 12) / 360) * (conf.inces_retencion / 100));
                     em.SSO_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_aporte / 100)) * calcularLunes());
                     em.RPE_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_aporte / 100)) * calcularLunes());
                     em.FAOV_ap = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_aporte / 100));
@@ -244,7 +267,7 @@ namespace ProyectoSIGNDVC
                     em.SSO = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_retencion / 100)) * calcularLunes());
                     em.RPE = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_retencion / 100)) * calcularLunes());
                     em.FAOV = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion / 100));
-                    em.INCES = (((empl.emp.sueldo * (60 / 360)) * 12) * (conf.inces_retencion / 100));
+                    em.INCES = (((empl.emp.sueldo * 60 * 12) / 360) * (conf.inces_retencion / 100));
                     em.SSO_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_aporte / 100)) * calcularLunes());
                     em.RPE_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_aporte / 100)) * calcularLunes());
                     em.FAOV_ap = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_aporte / 100));
@@ -295,7 +318,7 @@ namespace ProyectoSIGNDVC
                     em.SSO = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_retencion / 100)) * calcularLunes());
                     em.RPE = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_retencion / 100)) * calcularLunes());
                     em.FAOV = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion / 100));
-                    em.INCES = (((empl.emp.sueldo * (60 / 360)) * 12) * (conf.inces_retencion / 100));
+                    em.INCES = (((empl.emp.sueldo * 60 * 12) / 360) * (conf.inces_retencion / 100));
                     em.SSO_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_aporte / 100)) * calcularLunes());
                     em.RPE_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_aporte / 100)) * calcularLunes());
                     em.FAOV_ap = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_aporte / 100));

@@ -8,10 +8,6 @@ namespace ProyectoSIGNDVC.Models
 {
     public class Daemon
     {
-
-
-
-
         public void CheckNominas()
         {
             while (true)
@@ -32,8 +28,9 @@ namespace ProyectoSIGNDVC.Models
 
                     Thread.Sleep(1000*5);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+
                 }
             }
         }

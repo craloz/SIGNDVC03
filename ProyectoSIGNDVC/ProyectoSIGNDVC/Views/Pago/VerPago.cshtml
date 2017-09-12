@@ -27,7 +27,7 @@
                 </div>
                 <div style='float: left; text-align: center; width: 50% !important;' width='50%' height='100px'>
                     <div style='width: 50% !important;margin-left: 10px;'>
-                        <p>@Model.pago.sueldo</p><p>@Model.pago.retroactivos</p><p>@Model.pago.Retenciones</p><p>@Model.pago.SSO</p><p>@Model.pago.RPE</p><p>@Model.empleado.FAOV</p><p>@Model.empleado.INCES</p><p>@Model.pago.prestamos</p><p style='border-bottom: 1px solid black;margin-bottom:0px'>@Model.empleado.costoCargas</p><p style='margin-top: 0px'>0,00</p><p style='border-top: 1px solid black;'>@Model.empleado.MontoTotal</p>
+                        <p>@Model.pago.sueldo</p><p>@Model.pago.retroactivos</p><p style="padding-bottom:20px"></p><p>@Model.pago.SSO</p><p>@Model.pago.RPE</p><p>@Model.empleado.FAOV</p><p>@Model.empleado.INCES</p><p>@Model.pago.prestamos</p><p style='border-bottom: 1px solid black;margin-bottom:0px'>@Model.empleado.costoCargas</p><p style='margin-bottom: 0px; padding-top: 10px'>@Model.pago.costoCargas</p><p style='border-top: 1px solid black;'>@(Model.pago.SSO+Model.pago.INCES+Model.pago.prestamos+Model.pago.FAOV+Model.pago.RPE)</p><p >@Model.pago.monto</p>
                     </div>
                 </div>
             </div>

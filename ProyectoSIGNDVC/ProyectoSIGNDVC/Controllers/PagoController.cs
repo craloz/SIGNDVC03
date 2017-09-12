@@ -37,7 +37,6 @@ namespace ProyectoSIGNDVC.Controllers
         [AutorizarRol]
         public ActionResult PagoNomina()
         {
-
             try
             {
                 var nomina = new Nomina
@@ -66,7 +65,7 @@ namespace ProyectoSIGNDVC.Controllers
         [AutorizarDirector]
         public ActionResult AprobarNomina(String nominaid)
         {
-
+            
             try
             {
                 
@@ -132,20 +131,21 @@ namespace ProyectoSIGNDVC.Controllers
         [AutorizarRol]
         public ActionResult VerNomina( int nominaid)
         {
-
             try
             {
-                float total = 0;
-                List<Empleado> listemp = Empleado.calcularSalarioByNomina(nominaid);
-                List<Pago> listPago = Pago.GetAllPagosNomina(nominaid);
-                ViewModel vm = new ViewModel { pagos = listPago, empleados = listemp, totalNomina = listPago[0].monto };
+                float total = 0;                
+                List<Pago> listPago = Pago.GetAllPagosNominas(nominaid);   
+                foreach(var p in listPago)
+                {
+                    total += p.monto;
+                }
+                ViewModel vm = new ViewModel { pagos = listPago, totalNomina = total };
                 return View(vm);
             }
             catch (Exception)
             {
                 return RedirectToAction("UnexpectedError", "Error");
             }
-            
         }
 
 

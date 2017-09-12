@@ -1,4 +1,8 @@
 ﻿using System;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
+using iTextSharp;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -95,17 +99,75 @@ namespace ProyectoSIGNDVC.Models
         public void EnviarCorreo(String desde, int pagoid)
         {
 
+            //Create a byte array that will eventually hold our final PDF
+            Byte[] bytes;
+
+
+            //Boilerplate iTextSharp setup here
+            //Create a stream that we can write to, in this case a MemoryStream
+            var ms = new MemoryStream();
+
+
+            //Create an iTextSharp Document which is an abstraction of a PDF but **NOT** a PDF
+            var doc = new Document();
+
+
+            //Create a writer that's bound to our PDF abstraction and our stream
+            var writer = PdfWriter.GetInstance(doc, ms);
+            //Open the document for writing
+            doc.Open();
+
+            
+
+            DateTime today = DateTime.Now;
+            int day = today.Day;
+            int year = today.Year;
+            int month = today.Month;
+            string quincena = "";
+            String[] meses = new string[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
+            if (day > 15) {
+                quincena = "1ra";
+            } else {
+                quincena = "2da";
+            }
+            Pago pago = Pago.GetPago(pagoid);
+            Usuario u = Usuario.GetUsuario((Usuario.GetUsuario(pago.Fk_Empleado).usuario));
+            Empleado e = Empleado.calcularSalarioByEmp(u.Empleado.EmpleadoID);
+            var body = @"<div style='margin-left: 30%; margin-right: 30%; border: 2px solid black !important; padding-left: 10px; padding-right: 10px; '><div style='overflow: hidden;padding-left: 15px;padding-top: 15px;'><div style='float: left;width: 50%;'><p>DIVIDENDO VOLUNTARIO PARA LA COMUNIDAD AC</p></div><div style='float: left;width: 50%'><div style='text-align: right;'><strong>"
+            + u.Empleado.Persona.nombre + " " + u.Empleado.Persona.apellido
+            + "</strong><p>C.I N#: " + u.Empleado.Persona.cedula.ToString() + "</p><p>Codigo: " + u.Empleado.Codigo + "</p></div></div></div><div><p style='background-color: #45454;text-align: center'>Ha Recibido del <span style='font-weight: bold'>DIVIDENDO VOLUNTARIADO PARA LA COMUNIDAD</span>, por concepto de salario correspondiente a la "+quincena+" Quincena de "
+            + meses[month - 1] + " " + year.ToString() + ".</p> <div style='overflow: hidden;text-align: right;' > <div style='float: left; width: 50% !important; ' > <p>SALARIO</p> <p>RETROACTIVO</p><p style='text-decoration: underline;font-weight: bold'>DEDUCCIONES</p> <p>S.S.O</p> <p>R.P.E</p> <p>F.A.O.V</p> <p>I.N.C.E.S</p> <p>PRESTAMOS</p> <p>I.S.L.R</p> <p style='margin-bottom:0px'>POLIZA HCM</p> <p style='font-weight: bold;margin-top:0px'>TOTAL DEDUCCIONES</p> <p>NETO</p> </div> <div style='float: left; text-align: center; width: 50% !important;'  > <div style='width: 50% !important;margin-left: 10px;'> <p>"
+            + u.Empleado.sueldo.ToString() + "</p><p style='padding - bottom:20px'></p><p>" + pago.retroactivos.ToString() + "</p><p>"
+            + pago.SSO.ToString() + "</p><p>"
+            + pago.RPE.ToString() + "</p><p>"
+            + pago.FAOV.ToString() + "</p><p>"
+            + pago.INCES + "</p><p>" + pago.prestamos + "</p><p style='border-bottom: 1px solid black;margin-bottom:0px'>0,00</p><p style='margin-top: 0px'>0,00</p><p style='border-top: 1px solid black;'>RETENCIONES</p></div></div></div><p style='text-align: center'>Este monto fue abonado en la cuenta del "
+            + u.Empleado.Banco + " N# <span style='font-weight: bold'>"
+            + u.Empleado.N_Cuenta + "</span></p><p style='text-align: center;font-weight: bold'>Fecha: " +
+            pago.f_pago.ToString() + "</p></div></div>";
+
+            //XMLWorker also reads from a TextReader and not directly from a string
+            using (var srHtml = new StringReader(body))
+            {
+                //Parse the HTML
+
+                iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, doc, srHtml);
+            }
+
             PDF pdf = new PDF();
             var message = new MailMessage();
             message.To.Add(new MailAddress(this.emailTo));  // replace with valid value 
             message.From = new MailAddress(this.desde);  // replace with valid value
             message.Subject = this.subject;
 
-            MemoryStream memoryStream = new MemoryStream();
-            memoryStream = pdf.generarPDF(pagoid);
-            memoryStream.Position = 0;
-
-            message.Attachments.Add(new Attachment(memoryStream, "test.pdf"));
+            //MemoryStream memoryStream = new MemoryStream();
+            //pdf.generarPDF1(pagoid, message);
+            //memoryStream.Position = 0;
+            writer.CloseStream = false;
+            doc.Close();
+            ms.Position = 0;
+            bytes = ms.ToArray();
+            message.Attachments.Add(new Attachment(ms, "test.pdf"));
 
             message.Body = string.Format(this.body);
 
@@ -133,11 +195,14 @@ namespace ProyectoSIGNDVC.Models
                 smtp.EnableSsl = true;
                 try
                 {
+                    
                     smtp.Send(message);
+                    
+                    
                 }
-                catch (Exception e)
+                catch (Exception er)
                 {
-                    System.Diagnostics.Debug.WriteLine("ERROR: "+e);
+                    System.Diagnostics.Debug.WriteLine("ERROR: "+er);
 
                 }
             }

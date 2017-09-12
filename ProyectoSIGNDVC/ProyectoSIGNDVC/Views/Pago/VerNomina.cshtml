@@ -22,106 +22,26 @@
                         <th>Retenciones</th>
                         <th>Bono de Alimentación</th>
                         <th>Cargas</th>
-                        <th>Neto a pagar</th>
-                        <th>Detalle</th>
+                        <th>Neto a pagar</th>                        
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var user in Model.empleados)
+                    @foreach (var user in Model.pagos)
                     {
                         <tr class="odd gradeX">
-                            <td>@String.Concat(user.Persona.nombre, " " + user.Persona.apellido)</td>
+                            <td>@String.Concat(user.Empleado.Persona.nombre, " " + user.Empleado.Persona.apellido)</td>
                             <td style="color: green">@( (user.sueldo / 2).ToString("C3") )</td>
-                            <td style="color: red">- @( (user.Retenciones / 2).ToString("C3") )</td>
+                            <td style="color: red">- @( ((user.FAOV + user.RPE + user.SSO + user.INCES) / 2).ToString("C3") )</td>
                             <td style="color: green">@( (user.BonoAlimentacion).ToString("C3") )</td>
                             <td style="color: red">- @( (user.costoCargas).ToString("C3") )</td>
-                            <td>@((user.MontoTotal).ToString("C3"))</td>
-                            <td>
-                                <center>
-                                    <a title="Ver" data-toggle="modal" data-target="#myModal" onclick="">
-                                        <i class="fa fa-search fa-fw"></i>
-                                    </a>
-                                </center>
-                            </td>
+                            <td style="color: red">- @( (user.monto).ToString("C3") )</td>
+                            
+                            
                         </tr>
                     }
 
                 </tbody>
             </table>
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h3 class="modal-title" id="myModalLabel">Detalle</h3>
-                        </div>
-                        <div class="modal-body">
-                            <form role="form" action="/Configuration/RegistroUsuario" method="post">
-                                <fieldset>
-                                    <div class="form-group-row">
-                                        <div class="col-md-6">
-                                            <label for="salarioq">Salario Quincenal</label>
-                                            <input id="salarioq" class="form-control" value="1234" readonly />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group-row">
-                                        <div class="col-md-6">
-                                            <label for="retroact">Retroactivo</label>
-                                            <input id="retroact" class="form-control" readonly />
-                                        </div>
-                                    </div>
-
-                                    <h4 class="page-header header-modal">Retenciones</h4>
-                                    <div class="col-md-6">
-                                        <label for="sso">S.S.O</label>
-                                        <input id="sso" class="form-control" readonly />
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="rpe">R.P.E</label>
-                                        <input id="rpe" class="form-control" readonly />
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="faov">F.A.O.V</label>
-                                        <input id="faov" class="form-control" readonly />
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="islr">I.S.L.R</label>
-                                        <input id="islr" class="form-control" readonly />
-                                    </div>
-                                    <h4 class="page-header header-modal">Aportes</h4>
-                                    <div class="col-md-6">
-                                        <label for="abv">Alic. Bono Vacacional</label>
-                                        <input id="abv" class="form-control" readonly />
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="autilidades">Alix. Utilidades</label>
-                                        <input id="autilidades" class="form-control" readonly />
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="apresta">Alic. Prestaciones</label>
-                                        <input id="apresta" class="form-control" readonly />
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="cesta">Cesta Tickets</label>
-                                        <input id="cesta" class="form-control" readonly />
-                                    </div>
-
-
-                                </fieldset>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
 
 
             <div>

@@ -58,7 +58,7 @@ namespace ProyectoSIGNDVC
         public float Aportes { get; set; }
         
         public float BonoAlimentacion { get; set; }
-        [NotMapped]
+        
         public float costoCargas { get; set; }
         [NotMapped]
         public float MontoTotal { get; set; }
@@ -89,6 +89,7 @@ namespace ProyectoSIGNDVC
                         SSO = emp.SSO,
                         RPE = emp.RPE,
                         FAOV = emp.FAOV,
+                        costoCargas = emp.costoCargas,
                         INCES = emp.INCES,
                         SSO_ap = emp.SSO_ap,
                         RPE_ap = emp.RPE_ap,
@@ -128,6 +129,7 @@ namespace ProyectoSIGNDVC
                         RPE = emp.RPE,
                         FAOV = emp.FAOV,
                         INCES = emp.INCES,
+                        costoCargas = emp.costoCargas,
                         SSO_ap = emp.SSO_ap,
                         RPE_ap = emp.RPE_ap,
                         FAOV_ap = emp.FAOV_ap,
@@ -157,6 +159,30 @@ namespace ProyectoSIGNDVC
                 
             }
                 
+        }
+
+        public static List<Pago> GetAllPagosNominas(int nominaid)
+        {
+            using (var ctx = new AppDbContext())
+            {
+                var query = (from pag in ctx.Pagos
+                             join emp in ctx.Empleados on pag.Fk_Empleado equals emp.EmpleadoID
+                             where pag.Fk_Nomina == nominaid
+                             select pag
+                            );                
+                var pagos = query.ToList();
+                List<Pago> listpago = new List<Pago>();
+                
+                foreach(var pag in pagos)
+                {
+                    pag.Empleado = Empleado.GetEmpleado(pag.Fk_Empleado);
+                    listpago.Add(pag);
+
+                }
+                
+
+                return listpago;
+            }
         }
 
         public static List<Pago> GetAllPagosNomina(int nominaid)
