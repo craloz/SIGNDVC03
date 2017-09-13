@@ -206,7 +206,6 @@
     <Content Include="Content\dist\css\sb-admin-2.min.css" />
     <Content Include="Content\dist\js\sb-admin-2.js" />
     <Content Include="Content\dist\js\sb-admin-2.min.js" />
-    <Content Include="Content\images\backgroundlogin.jpg" />
     <Content Include="Content\images\dvclogo.png" />
     <Content Include="Content\images\fondologin.jpg" />
     <Content Include="Content\js\appscript.js" />
@@ -248,7 +247,6 @@
     <Content Include="Content\vendor\datatables\css\jquery.dataTables.css" />
     <Content Include="Content\vendor\datatables\css\jquery.dataTables.min.css" />
     <Content Include="Content\vendor\datatables\css\jquery.dataTables_themeroller.css" />
-    <Content Include="Content\vendor\datatables\images\favicon.ico" />
     <Content Include="Content\vendor\datatables\images\sort_asc.png" />
     <Content Include="Content\vendor\datatables\images\sort_asc_disabled.png" />
     <Content Include="Content\vendor\datatables\images\sort_both.png" />
@@ -375,6 +373,7 @@
     <Content Include="Content\less\variables.less" />
     <Content Include="Models\ClassDiagram1.cd" />
     <Content Include="ClassDiagram1.cd" />
+    <None Include="Properties\PublishProfiles\CustomProfile4.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
