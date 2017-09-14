@@ -345,7 +345,7 @@ namespace ProyectoSIGNDVC
 
         }
 
-        public static Empleado calcularSalarioByEmp(int idEmpleado, int retroactivo, int prestamo)
+        public static Empleado calcularSalarioByEmp(int idEmpleado, float retroactivo, float prestamo)
         {
             using (var ctx = new AppDbContext())
             {

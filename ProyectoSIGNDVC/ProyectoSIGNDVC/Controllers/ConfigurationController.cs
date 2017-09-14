@@ -74,7 +74,7 @@ namespace ProyectoSIGNDVC.Controllers
                             cedula = int.Parse(fc.Get("cedula")),
                             sexo = fc.Get("sexo")
                         },
-                        sueldo = int.Parse(fc.Get("sueldo")),
+                        sueldo = float.Parse(fc.Get("sueldo")),
                         Codigo = fc.Get("codempleado"),
                         Banco = fc.Get("banco"),
                         N_Cuenta = fc.Get("cuenta"),
@@ -274,7 +274,7 @@ namespace ProyectoSIGNDVC.Controllers
 
                 usuario.Empleado.Banco = fc.Get("banco");
                 usuario.Empleado.N_Cuenta = fc.Get("cuenta");
-                usuario.Empleado.sueldo = int.Parse(fc.Get("sueldo"));
+                usuario.Empleado.sueldo = float.Parse(fc.Get("sueldo"));
                 usuario.Empleado.Codigo = fc.Get("codempleado");
                 usuario.Empleado.Persona.nombre = fc.Get("nombre");
                 usuario.Empleado.Persona.apellido = fc.Get("apellido");

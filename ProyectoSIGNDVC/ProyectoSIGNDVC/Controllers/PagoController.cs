@@ -208,19 +208,19 @@ namespace ProyectoSIGNDVC.Controllers
                 
                 for (int i=0; (i < len); i++)
                 {
-                    int Retroactivos = int.Parse(fc.Get("retroactivo-" + ids[i].ToString()));
-                    int Prestamos = int.Parse(fc.Get("prestamo-" + ids[i].ToString()));
+                    float Retroactivos = float.Parse(fc.Get("retroactivo-" + ids[i].ToString()));
+                    float Prestamos = float.Parse(fc.Get("prestamo-" + ids[i].ToString()));
                     Empleado emp = new Empleado()
                     {
                         EmpleadoID = ids[i],
-                        sueldo = int.Parse(fc.Get("sueldo-" + ids[i].ToString()))                        
+                        sueldo = float.Parse(fc.Get("sueldo-" + ids[i].ToString()))                        
                     };                    
                     Empleado.EditEmpleado(emp);
                     listemp.Add(Empleado.calcularSalarioByEmp(ids[i], Retroactivos, Prestamos));
                 }
 
                 Pago.GenerarNomina(fechaefectivo,listemp);
-                return RedirectToAction("PagoNomina", "Pago");
+                return RedirectToAction("ListaNomina", "Pago");
             }
             catch (Exception e)
             {
