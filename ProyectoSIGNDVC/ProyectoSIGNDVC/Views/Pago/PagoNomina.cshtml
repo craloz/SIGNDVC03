@@ -34,7 +34,7 @@
                         <tr class="odd gradeX">
                             <td>@String.Concat(user.Persona.nombre, " " + user.Persona.apellido)</td>
                             <td style="color: green">@( (user.sueldo / 2).ToString("C") )</td>
-                            <td style="color: red">- @( (user.Retenciones / 2).ToString("C") )</td>
+                            <td style="color: red">- @( (user.Retenciones ).ToString("C") )</td>
                             <td style="color: green">@( (user.BonoAlimentacion).ToString("C") )</td>
                             <td style="color: red">- @( (user.costoCargas).ToString("C") )</td>
                             <td>@((user.MontoTotal).ToString("C"))</td>                            
