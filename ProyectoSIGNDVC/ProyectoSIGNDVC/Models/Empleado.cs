@@ -140,13 +140,17 @@ namespace ProyectoSIGNDVC
             for (int i = 0; i < daysThisMonth; i++)
                 if (beginingOfThisMonth.AddDays(i).DayOfWeek == DayOfWeek.Monday)
                     mondays++;
-            return mondays;
+            int testera = mondays / 2;
+            return mondays/2;
         }
 
         public static float calcularSalarioIntegral(float sueldoBase)
         {
-            float alicBonoVac = (sueldoBase * (15 / 12 / 30));
-            float alicUtil = (sueldoBase * (60 / 360));
+            float i = (float)(15.0 / 12.0 / 30.0);
+            float alicBonoVac = (sueldoBase * i);
+            i = (float)(60.0 / 360.0);
+            float alicUtil = (sueldoBase * i);
+            var testera = sueldoBase + alicBonoVac + alicUtil;
             return sueldoBase + alicBonoVac + alicUtil;
         }
 
@@ -169,7 +173,7 @@ namespace ProyectoSIGNDVC
                     em.sueldo = empl.emp.sueldo;
                     em.SSO =( (((empl.emp.sueldo*12)/ 52) * (conf.sso_retencion/100)) * calcularLunes());
                     em.RPE = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_retencion / 100)) * calcularLunes());
-                    em.FAOV = ( calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion/100) );                    
+                    em.FAOV = ( calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion/100)/2 );                    
                     em.INCES = (((empl.emp.sueldo * 60 * 12) / 360) * (conf.inces_retencion / 100));
                     em.SSO_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_aporte / 100)) * calcularLunes());
                     em.RPE_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_aporte / 100)) * calcularLunes());
@@ -186,7 +190,7 @@ namespace ProyectoSIGNDVC
                     em.Retenciones = em.SSO + em.RPE + em.FAOV + em.INCES;
                     em.Aportes = em.SSO_ap + em.RPE_ap + em.FAOV_ap + em.INCES_ap;
                     em.costoCargas = (float) ((getCostoCargas(empl.emp.EmpleadoID) * (0.3))/12);
-                    em.MontoTotal = ((em.sueldo / 2) - (em.Retenciones / 2) - (em.costoCargas) + (em.BonoAlimentacion));
+                    em.MontoTotal = ((em.sueldo / 2) - (em.Retenciones) - (em.costoCargas) + (em.BonoAlimentacion));
                     listEmp.Add(em);
 
                 }
@@ -216,7 +220,7 @@ namespace ProyectoSIGNDVC
                     em.sueldo = empl.emp.sueldo;
                     em.SSO = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_retencion / 100)) * calcularLunes());
                     em.RPE = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_retencion / 100)) * calcularLunes());
-                    em.FAOV = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion / 100));
+                    em.FAOV = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion / 100)/2);
                     em.INCES = (((empl.emp.sueldo * 60 * 12) / 360) * (conf.inces_retencion / 100));
                     em.SSO_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_aporte / 100)) * calcularLunes());
                     em.RPE_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_aporte / 100)) * calcularLunes());
@@ -233,7 +237,7 @@ namespace ProyectoSIGNDVC
                     em.Retenciones = em.SSO + em.RPE + em.FAOV + em.INCES;
                     em.Aportes = em.SSO_ap + em.RPE_ap + em.FAOV_ap + em.INCES_ap;
                     em.costoCargas = (float)((getCostoCargas(empl.emp.EmpleadoID) * (0.3)) / 12);
-                    em.MontoTotal = ((em.sueldo / 2) - (em.Retenciones / 2) - (em.costoCargas) + (em.BonoAlimentacion) - retroactivo - prestamo);
+                    em.MontoTotal = ((em.sueldo / 2) - (em.Retenciones) - (em.costoCargas) + (em.BonoAlimentacion) - retroactivo - prestamo);
                     listEmp.Add(em);
 
                 }
@@ -266,7 +270,7 @@ namespace ProyectoSIGNDVC
                     em.sueldo = empl.emp.sueldo;
                     em.SSO = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_retencion / 100)) * calcularLunes());
                     em.RPE = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_retencion / 100)) * calcularLunes());
-                    em.FAOV = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion / 100));
+                    em.FAOV = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion / 100)/2);
                     em.INCES = (((empl.emp.sueldo * 60 * 12) / 360) * (conf.inces_retencion / 100));
                     em.SSO_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_aporte / 100)) * calcularLunes());
                     em.RPE_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_aporte / 100)) * calcularLunes());
@@ -283,7 +287,7 @@ namespace ProyectoSIGNDVC
                     em.Retenciones = em.SSO + em.RPE + em.FAOV + em.INCES;
                     em.Aportes = em.SSO_ap + em.RPE_ap + em.FAOV_ap + em.INCES_ap;
                     em.costoCargas = (float)((getCostoCargas(empl.emp.EmpleadoID) * (0.3)) / 12);
-                    em.MontoTotal = ((em.sueldo / 2) - (em.Retenciones / 2) - (em.costoCargas) + (em.BonoAlimentacion));
+                    em.MontoTotal = ((em.sueldo / 2) - (em.Retenciones ) - (em.costoCargas) + (em.BonoAlimentacion));
                     listEmp.Add(em);
 
                 }
@@ -317,7 +321,7 @@ namespace ProyectoSIGNDVC
                     em.sueldo = empl.emp.sueldo;
                     em.SSO = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_retencion / 100)) * calcularLunes());
                     em.RPE = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_retencion / 100)) * calcularLunes());
-                    em.FAOV = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion / 100));
+                    em.FAOV = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion / 100)/2);
                     em.INCES = (((empl.emp.sueldo * 60 * 12) / 360) * (conf.inces_retencion / 100));
                     em.SSO_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_aporte / 100)) * calcularLunes());
                     em.RPE_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_aporte / 100)) * calcularLunes());
@@ -334,7 +338,7 @@ namespace ProyectoSIGNDVC
                     em.Retenciones = em.SSO + em.RPE + em.FAOV + em.INCES;
                     em.Aportes = em.SSO_ap + em.RPE_ap + em.FAOV_ap + em.INCES_ap;
                     em.costoCargas = (float)((getCostoCargas(empl.emp.EmpleadoID) * (0.3)) / 12);
-                    em.MontoTotal = ((em.sueldo / 2) - (em.Retenciones / 2) - (em.costoCargas) + (em.BonoAlimentacion));
+                    em.MontoTotal = ((em.sueldo / 2) - (em.Retenciones ) - (em.costoCargas) + (em.BonoAlimentacion));
                     
 
                  }
@@ -367,7 +371,7 @@ namespace ProyectoSIGNDVC
                     em.Prestamos = prestamo;
                     em.SSO = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_retencion / 100)) * calcularLunes());
                     em.RPE = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_retencion / 100)) * calcularLunes());
-                    em.FAOV = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion / 100));
+                    em.FAOV = (calcularSalarioIntegral(empl.emp.sueldo) * (conf.faov_retencion / 100)/2);
                     em.INCES = (((empl.emp.sueldo * (60 / 360)) * 12) * (conf.inces_retencion / 100));
                     em.SSO_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_aporte / 100)) * calcularLunes());
                     em.RPE_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_aporte / 100)) * calcularLunes());
@@ -384,7 +388,7 @@ namespace ProyectoSIGNDVC
                     em.Retenciones = em.SSO + em.RPE + em.FAOV + em.INCES;
                     em.Aportes = em.SSO_ap + em.RPE_ap + em.FAOV_ap + em.INCES_ap;
                     em.costoCargas = (float)((getCostoCargas(empl.emp.EmpleadoID) * (0.3)) / 12);
-                    em.MontoTotal = ((em.sueldo / 2) - (em.Retenciones / 2) - (em.costoCargas) + (em.BonoAlimentacion) + retroactivo - prestamo);
+                    em.MontoTotal = ((em.sueldo / 2) - (em.Retenciones) - (em.costoCargas) + (em.BonoAlimentacion) + retroactivo - prestamo);
 
 
                 }
