@@ -188,7 +188,7 @@ namespace ProyectoSIGNDVC
                     em.sueldo = empl.emp.sueldo;
                     em.SSO =( (((empl.emp.sueldo*12)/ 52) * (conf.sso_retencion/100)) * calcularLunes());
                     em.RPE = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_retencion / 100)) * calcularLunes());
-                    em.FAOV = ( calcularSalarioIntegral(empl.emp.sueldo, empl.emp.fecha_ingreso) * (conf.faov_retencion/100)/2 );                    
+                    em.FAOV = ( calcularSalarioIntegral(empl.emp.sueldo, empl.emp.fecha_ingreso) * (conf.faov_retencion/100) )/2;                    
                     em.INCES = (((empl.emp.sueldo * 60 * 12) / 360) * (conf.inces_retencion / 100));
                     em.SSO_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.sso_aporte / 100)) * calcularLunes());
                     em.RPE_ap = ((((empl.emp.sueldo * 12) / 52) * (conf.rpe_aporte / 100)) * calcularLunes());
@@ -421,10 +421,10 @@ namespace ProyectoSIGNDVC
         {
             using (var ctx = new AppDbContext())
             {
-                ctx.Empleados.Attach(empleado);
-                var entry = ctx.Entry(empleado);
-                entry.Property(e => e.sueldo).IsModified = true;
-                //ctx.Entry(empleado).State = System.Data.Entity.EntityState.Modified;
+                //ctx.Empleados.Attach(empleado);
+                //var entry = ctx.Entry(empleado);
+                //entry.Property(e => e.sueldo).IsModified = true;
+                ctx.Entry(empleado).State = System.Data.Entity.EntityState.Modified;
                 ctx.SaveChanges();
             }
         }

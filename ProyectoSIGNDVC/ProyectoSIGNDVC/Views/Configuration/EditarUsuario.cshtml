@@ -162,6 +162,10 @@
                                 <label for="codempleado">Codigo de Empleado</label>
                                 <input type="text" id="codempleado" name="codempleado" placeholder="000001" class="form-control" value="@Model.usuario.Empleado.Codigo" required/>
                             </div>
+                            <div class="col-xs-3">
+                            <label for="fechanac">Fecha de Ingreso</label>
+                            <input required id="fecha_ingreso" name="fecha_ingreso" type="date" autofocus class="form-control" value="@String.Format("{0:yyyy-MM-dd}",Model.usuario.Empleado.fecha_ingreso)">
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-5">

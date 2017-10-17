@@ -27,7 +27,11 @@ namespace ProyectoSIGNDVC.Controllers
         }
 
         public ActionResult Status() {
+            try { 
             Direccion.GetAllEstadoDireccion();
+            }
+            catch (Exception e) {
+            }
             return View();
         }
 

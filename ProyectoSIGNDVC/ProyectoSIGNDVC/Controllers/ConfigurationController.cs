@@ -276,6 +276,7 @@ namespace ProyectoSIGNDVC.Controllers
                 usuario.Empleado.N_Cuenta = fc.Get("cuenta");
                 usuario.Empleado.sueldo = float.Parse(fc.Get("sueldo"));
                 usuario.Empleado.Codigo = fc.Get("codempleado");
+                usuario.Empleado.fecha_ingreso = DateTime.Parse(fc.Get("fecha_ingreso"));
                 usuario.Empleado.Persona.nombre = fc.Get("nombre");
                 usuario.Empleado.Persona.apellido = fc.Get("apellido");
                 usuario.Empleado.Persona.cedula = int.Parse(fc.Get("cedula"));
