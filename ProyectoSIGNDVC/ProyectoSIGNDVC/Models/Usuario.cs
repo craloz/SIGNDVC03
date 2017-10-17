@@ -34,7 +34,7 @@ namespace ProyectoSIGNDVC
                 var query = (from user in ctx.Usuarios
                              join emp in ctx.Empleados on user.EmpleadoID equals emp.EmpleadoID
                              join per in ctx.Personas on emp.Fk_Persona equals per.PersonaID
-                             where user.usuario == usuario
+                             where user.usuario == usuario && emp.fecha_salida == null
                              select new { per, user, emp });
                 var query2 = query.SingleOrDefault();
                 if (query2 == null)
@@ -72,7 +72,7 @@ namespace ProyectoSIGNDVC
                 var query = (from user in ctx.Usuarios
                              join emp in ctx.Empleados on user.EmpleadoID equals emp.EmpleadoID
                              join per in ctx.Personas on emp.Fk_Persona equals per.PersonaID
-                             where user.usuario == usuario
+                             where user.usuario == usuario && emp.fecha_salida == null
                              select per);
                 var query2=query.SingleOrDefault();
                 return  query2.nombre+" "+query2.apellido; 
@@ -85,8 +85,9 @@ namespace ProyectoSIGNDVC
             {
 
                 var query = (from user in ctx.Usuarios
-                             join emp in ctx.Empleados on user.EmpleadoID equals emp.EmpleadoID
+                             join emp in ctx.Empleados on user.EmpleadoID equals emp.EmpleadoID 
                              join per in ctx.Personas on emp.Fk_Persona equals per.PersonaID
+                             where emp.fecha_salida == null
                              select new { per, user, emp });
                 var usuarios=new List<Usuario>();
                 foreach (var item in query)
@@ -97,8 +98,6 @@ namespace ProyectoSIGNDVC
                 }
                 return usuarios;
             }
-
-            return null;
         }
 
         public static bool CheckCredencialesUsuarios(String usuario,String clave )
@@ -126,7 +125,11 @@ namespace ProyectoSIGNDVC
             using (var ctx = new AppDbContext())
             {
                 Usuario usuariodelete = ctx.Usuarios.First(x => x.usuario == usuario);
+              
                 ctx.Usuarios.Remove(usuariodelete);
+                Empleado emp = Empleado.GetEmpleado(usuariodelete.EmpleadoID);
+                emp.fecha_salida = DateTime.Now;
+                ctx.Entry(emp).State = System.Data.Entity.EntityState.Modified;
                 ctx.SaveChanges();
             }
         }

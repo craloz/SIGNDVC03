@@ -43,7 +43,7 @@ namespace ProyectoSIGNDVC.Controllers
                 }
                 return View();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return RedirectToAction("UnexpectedError", "Error");
             }

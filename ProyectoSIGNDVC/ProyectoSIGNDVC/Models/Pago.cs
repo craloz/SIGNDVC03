@@ -167,7 +167,7 @@ namespace ProyectoSIGNDVC
             {
                 var query = (from pag in ctx.Pagos
                              join emp in ctx.Empleados on pag.Fk_Empleado equals emp.EmpleadoID
-                             where pag.Fk_Nomina == nominaid
+                             where pag.Fk_Nomina == nominaid && emp.fecha_salida == null
                              select pag
                             );                
                 var pagos = query.ToList();
@@ -191,7 +191,7 @@ namespace ProyectoSIGNDVC
             {
                 var query = (from pag in ctx.Pagos
                              join emp in ctx.Empleados on pag.Fk_Empleado equals emp.EmpleadoID
-                             where pag.Fk_Nomina == nominaid
+                             where pag.Fk_Nomina == nominaid && emp.fecha_salida == null
                              select pag
                             );
                 return query.ToList();
