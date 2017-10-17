@@ -78,8 +78,8 @@ namespace ProyectoSIGNDVC.Controllers
                         Codigo = fc.Get("codempleado"),
                         Banco = fc.Get("banco"),
                         N_Cuenta = fc.Get("cuenta"),
-                        fecha_ingreso = DateTime.Now,
-                        fecha_salida = DateTime.Now,
+                        fecha_ingreso = DateTime.Parse(fc.Get("fecha_ingreso")),
+                        fecha_salida = null,
                         Direccion = new Direccion { nombre = fc.Get("direccion"), tipo = "Direccion", Fk_Direccion = fk_dir },
                         Fk_Cargo = Cargo.GetCargoID(fc.Get("cargo"))
                     }
@@ -302,6 +302,12 @@ namespace ProyectoSIGNDVC.Controllers
             try
             {
                 Usuario.DeleteUsuario(usuario);
+                if (Session["usuario"].ToString() == usuario)
+                {
+                    Session.Clear();
+                    return RedirectToAction("Login","Login");
+                }
+                
                 return RedirectToAction("TablaUsuarios", "Configuration");
             }
             catch (Exception)

@@ -19,7 +19,7 @@ namespace ProyectoSIGNDVC
         public float sueldo { get; set; }
         [Column(TypeName = "Date")]
         public DateTime fecha_ingreso { get; set; }
-        public DateTime fecha_salida { get; set; }
+        public DateTime? fecha_salida { get; set; }
         public String Banco { get; set; }
         public String N_Cuenta { get; set; }
         public int Fk_Direccion { get; set; }
@@ -68,8 +68,10 @@ namespace ProyectoSIGNDVC
         {
             using (var ctx = new AppDbContext())
             {
-                var query = (from emp in ctx.Empleados                             
+                var query = (from emp in ctx.Empleados
+                             where emp.fecha_salida == null
                              select emp
+                            
                     );
                 return query.ToList();
             }
@@ -82,7 +84,7 @@ namespace ProyectoSIGNDVC
             using (var ctx = new AppDbContext())
             {
                 var query = (from emp in ctx.Empleados
-                             where emp.EmpleadoID == idempleado
+                             where emp.EmpleadoID == idempleado && emp.fecha_salida == null
                              join per in ctx.Personas on emp.Fk_Persona equals per.PersonaID
                              select new { emp, per });
                 var query2 = query.SingleOrDefault();
@@ -164,6 +166,7 @@ namespace ProyectoSIGNDVC
                 conf = Configuracion.GetLastConfiguracion();
                 var empleado = (from emp in ctx.Empleados
                                 join per in ctx.Personas on emp.Fk_Persona equals per.PersonaID
+                                where emp.fecha_salida == null
                                 select new { per, emp });
                 foreach (var empl in empleado.ToList())
                 {
@@ -211,6 +214,7 @@ namespace ProyectoSIGNDVC
                 conf = Configuracion.GetLastConfiguracion();
                 var empleado = (from emp in ctx.Empleados
                                 join per in ctx.Personas on emp.Fk_Persona equals per.PersonaID
+                                where emp.fecha_salida == null
                                 select new { per, emp });
                 foreach (var empl in empleado.ToList())
                 {
@@ -260,7 +264,7 @@ namespace ProyectoSIGNDVC
                 var empleado = (from pag in ctx.Pagos
                                 join emp in ctx.Empleados on pag.Fk_Empleado equals emp.EmpleadoID
                                 join per in ctx.Personas on emp.Fk_Persona equals per.PersonaID
-                                where pag.Fk_Nomina == idNomina
+                                where pag.Fk_Nomina == idNomina && emp.fecha_salida == null
                                 select new { per, emp });
                 foreach (var empl in empleado.ToList())
                 {
@@ -308,7 +312,7 @@ namespace ProyectoSIGNDVC
                 conf = Configuracion.GetLastConfiguracion();
                 Empleado em = new Empleado();
                 var empleado = (from emp in ctx.Empleados
-                                where emp.EmpleadoID == idEmpleado
+                                where emp.EmpleadoID == idEmpleado && emp.fecha_salida == null
                                 join per in ctx.Personas on emp.Fk_Persona equals per.PersonaID
                                 select new { per, emp });
                 foreach (var empl in empleado.ToList()) { 
@@ -359,7 +363,7 @@ namespace ProyectoSIGNDVC
                 conf = Configuracion.GetLastConfiguracion();
                 Empleado em = new Empleado();
                 var empleado = (from emp in ctx.Empleados
-                                where emp.EmpleadoID == idEmpleado
+                                where emp.EmpleadoID == idEmpleado && emp.fecha_salida == null
                                 join per in ctx.Personas on emp.Fk_Persona equals per.PersonaID
                                 select new { per, emp });
                 foreach (var empl in empleado.ToList())
