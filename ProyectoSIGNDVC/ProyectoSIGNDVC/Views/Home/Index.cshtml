@@ -87,14 +87,14 @@
                                     @if (notif.Fk_Pago != null)
                                     {
                                         <td>
-                                            <a href="/Pago/VerPago/?pago=@notif.Fk_Pago">Ver Pago</a>
+                                            <a href="/Pago/VerPago?pago=@notif.Fk_Pago">Ver Pago</a>
                                         </td>
 
                                     }
                                     else if (notif.Fk_Nomina != null)
                                     {
                                         <td>
-                                            <a href="/Pago/VerNomina/?nominaid=@notif.Fk_Nomina">Ver Nomina</a>
+                                            <a href="/Pago/VerNomina?nominaid=@notif.Fk_Nomina">Ver Nomina</a>
                                         </td>
                                     }
                                 </tr>
